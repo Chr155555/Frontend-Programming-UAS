@@ -1,0 +1,1075 @@
+/* ==========================================================================
+   Monochrome / Clean Unified Palette (Primary Accent: #0284c7)
+   ========================================================================== */
+
+/* Page Wrapper */
+.pageWrapper {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 20px 60px;
+  color: #0f172a;
+  font-family: inherit;
+  width: 100%;
+}
+
+/* Search Section Header (Single-hue unified deep blue) */
+.searchSection {
+  background: #0284c7;
+  border-radius: 16px;
+  padding: 24px;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.18);
+  margin-bottom: 24px;
+}
+
+.flightSummaryHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-bottom: 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.routeBadge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.routeTitle {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.routeArrow {
+  color: rgba(255, 255, 255, 0.85);
+  display: inline-flex;
+  align-items: center;
+}
+
+.searchMeta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.metaPill {
+  background: rgba(255, 255, 255, 0.18);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+/* Route Selection Grid */
+.routeSelectionGrid {
+  display: grid;
+  grid-template-columns: 1.5fr auto 1.5fr 1.2fr 1.3fr;
+  gap: 12px;
+  align-items: flex-end;
+  margin-bottom: 18px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.formLabel {
+  font-size: 12px;
+  font-weight: 600;
+  color: #e0f2fe;
+}
+
+.selectWrapper {
+  position: relative;
+}
+
+.routeSelect,
+.dateInput {
+  width: 100%;
+  padding: 10px 14px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0f172a;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease;
+}
+
+.routeSelect:focus,
+.dateInput:focus {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
+}
+
+.btnSwapRoute {
+  width: 42px;
+  height: 42px;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 1px;
+}
+
+.btnSwapRoute:hover {
+  background: #ffffff;
+  color: #0284c7;
+  transform: rotate(180deg);
+}
+
+/* Search bar */
+.searchbar {
+  font-size: 14px;
+  font-family: inherit;
+  color: #0f172a;
+  display: flex;
+  height: 46px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  margin: 0 auto;
+  width: 100%;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+  transition: border-color 0.15s ease;
+}
+
+.searchbar:focus-within {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+}
+
+.searchbarWrapper {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  height: 100%;
+}
+
+.searchbarLeft {
+  display: flex;
+  align-items: center;
+  padding-right: 10px;
+}
+
+.searchIconWrapper {
+  color: #64748b;
+  display: flex;
+  align-items: center;
+}
+
+.searchbarCenter {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  height: 100%;
+}
+
+.searchbarInput {
+  background-color: transparent;
+  border: none;
+  margin: 0;
+  padding: 0;
+  color: #0f172a;
+  outline: none;
+  font-size: 14px;
+  font-weight: 500;
+  width: 100%;
+  height: 100%;
+  font-family: inherit;
+}
+
+.searchbarInput::placeholder {
+  color: #94a3b8;
+}
+
+.searchbarRight {
+  display: flex;
+  align-items: center;
+}
+
+.searchbarClearIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  border-radius: 4px;
+  color: #94a3b8;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.searchbarClearIcon:hover {
+  color: #0f172a;
+}
+
+/* Date Strip */
+.dateStripWrapper {
+  margin-bottom: 20px;
+}
+
+.dateStripHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.dateTitle {
+  font-weight: 700;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dateNote {
+  color: #64748b;
+  font-size: 13px;
+}
+
+.dateCarousel {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.dateCard {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 8px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  position: relative;
+}
+
+.dateCard:hover {
+  border-color: #0284c7;
+}
+
+.dateCardActive {
+  background: #0284c7 !important;
+  border-color: #0284c7 !important;
+  color: #ffffff !important;
+}
+
+.dateCardActive .dateDay,
+.dateCardActive .dateNum,
+.dateCardActive .datePrice {
+  color: #ffffff !important;
+}
+
+.cheapestBadge {
+  position: absolute;
+  top: -8px;
+  background: #0284c7;
+  color: #ffffff;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 6px;
+  text-transform: uppercase;
+}
+
+.dateCardActive .cheapestBadge {
+  background: #ffffff;
+  color: #0284c7;
+}
+
+.dateDay {
+  font-size: 12px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+.dateNum {
+  font-size: 14px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.datePrice {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+}
+
+/* Toolbar */
+.toolbar {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.filterChips {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filterChip {
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.filterChip:hover {
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+.filterChipActive {
+  background: #0284c7 !important;
+  color: #ffffff !important;
+  border-color: #0284c7 !important;
+}
+
+.sortBox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.sortSelect {
+  border: 1px solid #e2e8f0;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-family: inherit;
+  font-weight: 500;
+  color: #0f172a;
+  outline: none;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+.sortSelect:focus {
+  border-color: #0284c7;
+}
+
+/* Ticket List Container */
+.containerCardsTicket {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
+/* Single Ticket Card (Clean Minimalist Monochromatic) */
+.cardTicket {
+  position: relative;
+  min-height: 200px;
+  width: 100%;
+  display: flex;
+  color: #0f172a;
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  overflow: hidden;
+}
+
+.cardTicket:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.contentTicket {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: 20px 24px;
+  gap: 16px;
+  background: #ffffff;
+}
+
+.airlineHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  border-bottom: 1px dashed #e2e8f0;
+  padding-bottom: 12px;
+}
+
+.airlineInfo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Unified clean airline badge */
+.airlineCodeBadge {
+  width: 38px;
+  height: 38px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  background: #f8fafc;
+  color: #0f172a;
+  border: 1px solid #e2e8f0;
+}
+
+.airlineText {
+  display: flex;
+  flex-direction: column;
+}
+
+.airlineName {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.2;
+}
+
+.flightCode {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 500;
+}
+
+.ticketDateBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #f8fafc;
+  color: #475569;
+  border: 1px solid #e2e8f0;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.contentData {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+}
+
+.destination {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.dest {
+  display: flex;
+  flex-direction: column;
+  min-width: 140px;
+}
+
+.destOrigin {
+  text-align: left;
+}
+
+.destPoint {
+  text-align: right;
+}
+
+.hour {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.1;
+  color: #0f172a;
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.destPoint .hour {
+  justify-content: flex-end;
+}
+
+.timezone {
+  font-size: 11px;
+  font-weight: 500;
+  color: #64748b;
+}
+
+/* Acronym in clean bold text (no distracting colors) */
+.acronym {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  letter-spacing: 0.3px;
+  margin-top: 2px;
+}
+
+.country {
+  font-size: 14px;
+  font-weight: 500;
+  color: #334155;
+}
+
+.airportDetail {
+  font-size: 12px;
+  color: #64748b;
+  white-space: nowrap;
+}
+
+/* Minimal clean date text (no background box) */
+.flightDateTag {
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748b;
+  margin-top: 4px;
+  display: inline-block;
+  width: fit-content;
+}
+
+.destPoint .flightDateTag {
+  margin-left: auto;
+}
+
+.flightDurationCenter {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  max-width: 220px;
+}
+
+.durationText {
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748b;
+  margin-bottom: 4px;
+}
+
+.flightLineTrack {
+  width: 100%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+}
+
+.flightLineTrack::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 1.5px;
+  background: #cbd5e1;
+  transform: translateY(-50%);
+}
+
+.flightLineDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #64748b;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.flightLineDotStart {
+  left: 0;
+}
+
+.flightLineDotEnd {
+  right: 0;
+}
+
+.flightPlaneIcon {
+  background: #ffffff;
+  padding: 0 6px;
+  color: #0284c7;
+  position: relative;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* "Langsung" badge in clean neutral */
+.flightTypeBadge {
+  font-size: 11px;
+  font-weight: 500;
+  color: #64748b;
+  margin-top: 4px;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.dataFlex {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  background: #f8fafc;
+  padding: 10px 14px;
+  border-radius: 6px;
+  border: 1px solid #edf2f7;
+}
+
+.dataItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.dataTitle {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.dataSubtitle {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.facilitiesBadges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.badgeItem {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #475569;
+  background: #f8fafc;
+  padding: 3px 8px;
+  border-radius: 4px;
+  border: 1px solid #e2e8f0;
+}
+
+/* Perforated Separator */
+.separator {
+  position: relative;
+  width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+}
+
+.spanLines {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  height: 100%;
+  border-left: 1.5px dashed #cbd5e1;
+}
+
+.spanLines::after {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: -1px;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+}
+
+.spanLines::before {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: -1px;
+  transform: translateX(-50%);
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+}
+
+/* Ticket Stub */
+.ticketStub {
+  width: 250px;
+  min-width: 250px;
+  background: #ffffff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.stubTopTags {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+/* Clean neutral tag */
+.stubTag {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  width: fit-content;
+  background: #f1f5f9;
+  color: #334155;
+  border: 1px solid #e2e8f0;
+}
+
+.seatQuota {
+  font-size: 12px;
+  font-weight: 500;
+  color: #64748b;
+}
+
+.priceContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.priceLabel {
+  font-size: 11px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.priceOld {
+  font-size: 13px;
+  color: #94a3b8;
+  text-decoration: line-through;
+  font-weight: 400;
+}
+
+.priceCurrent {
+  font-size: 20px;
+  font-weight: 700;
+  color: #0284c7;
+  line-height: 1.1;
+  display: flex;
+  align-items: baseline;
+  gap: 3px;
+}
+
+.priceUnit {
+  font-size: 12px;
+  color: #64748b;
+  font-weight: 400;
+}
+
+.priceTax {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.btnBookTicket {
+  background: #0284c7;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: background-color 0.15s ease;
+  width: 100%;
+  font-family: inherit;
+  text-decoration: none;
+}
+
+.btnBookTicket:hover {
+  background: #0369a1;
+}
+
+.ticketExtraNote {
+  font-size: 11px;
+  color: #64748b;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Empty State */
+.emptyState {
+  background: #ffffff;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  padding: 48px 24px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.emptyIcon {
+  width: 56px;
+  height: 56px;
+  background: #f1f5f9;
+  color: #64748b;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 6px;
+}
+
+.emptyTitle {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.emptyDesc {
+  font-size: 13px;
+  color: #64748b;
+  max-width: 400px;
+}
+
+.btnResetFilter {
+  margin-top: 6px;
+  background: #0284c7;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.btnResetFilter:hover {
+  background: #0369a1;
+}
+
+/* Info Banner */
+.infoBanner {
+  background: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 32px;
+  border: 1px solid #e2e8f0;
+}
+
+.infoTitle {
+  font-size: 15px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 12px;
+}
+
+.infoGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 12px;
+}
+
+.infoItem {
+  background: #f8fafc;
+  padding: 12px 14px;
+  border-radius: 6px;
+  border: 1px solid #edf2f7;
+}
+
+.infoItem h4 {
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.infoItem p {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+/* Responsive Media Queries */
+@media (max-width: 992px) {
+  .routeSelectionGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .btnSwapRoute {
+    grid-column: span 2;
+    margin: 0 auto;
+  }
+
+  .cardTicket {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .separator {
+    width: 100%;
+    height: 0;
+  }
+
+  .separator .spanLines {
+    width: 100%;
+    height: 0;
+    border-left: none;
+    border-top: 1.5px dashed #cbd5e1;
+    left: 0;
+    right: 0;
+  }
+
+  .separator .spanLines::after {
+    top: -10px;
+    left: -10px;
+    transform: none;
+  }
+
+  .separator .spanLines::before {
+    bottom: -10px;
+    right: -10px;
+    left: auto;
+    transform: none;
+  }
+
+  .ticketStub {
+    width: 100%;
+    min-width: 100%;
+    border-left: none;
+    padding: 16px 20px;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .stubTopTags,
+  .priceContainer,
+  .btnBookTicket {
+    flex: 1;
+    min-width: 160px;
+  }
+
+  .dataFlex {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .dateCarousel {
+    grid-template-columns: repeat(7, 120px);
+  }
+}
+
+@media (max-width: 640px) {
+  .routeSelectionGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .btnSwapRoute {
+    grid-column: 1;
+  }
+
+  .destination {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .destPoint {
+    text-align: left;
+  }
+
+  .destPoint .hour {
+    justify-content: flex-start;
+  }
+
+  .destPoint .flightDateTag {
+    margin-left: 0;
+  }
+
+  .flightDurationCenter {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .ticketStub {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .dataFlex {
+    grid-template-columns: 1fr;
+  }
+}
