@@ -11,13 +11,13 @@ export const Footer = () => {
                     <Link href="/tiket">Penerbangan</Link>
                 </li>
                 <li>
-                    <Link href="/">Hotel</Link>
+                    <Link href="/hotel">Hotel</Link>
                 </li>
                 <li>
                     <Link href="/">Kebijakan Privasi</Link>
                 </li>
                 <li>
-                    <Link href="">Syarat dan Ketentuan</Link>
+                    <Link href="/">Syarat dan Ketentuan</Link>
                 </li>
                 <li>
                     <Link href="/">Bantuan</Link>
