@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Header } from "./components/header";
-import { Footer } from "./components/footer";
+import { Shell } from "./components/shell";
 import "./globals.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -29,9 +28,7 @@ export default function RootLayout({
   return (
     <html lang="id" className={`${geistSans.variable} ${geistMono.variable}`}>
       <body>
-        <Header />
-        {children}
-        <Footer />
+        <Shell>{children}</Shell>
       </body>
     </html>
   );
