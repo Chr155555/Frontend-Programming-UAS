@@ -56,7 +56,7 @@ a {
 }
 
 a:hover {
-  transform: scale(1.2);
+  text-decoration: underline;
 }
 
 header {
