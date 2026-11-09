@@ -50,16 +50,25 @@ body {
   margin: 0;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  transform: scale(1.2);
+}
+
 header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  background-color: rgb(201, 210, 247);
+  background-color: rgb(238, 240, 248);
   text-align: center;
   font-size: 26px;
 }
 
-header ul {
+ header ul {
   display: flex;
   list-style: none;
   gap: 2rem;
@@ -76,18 +85,23 @@ header ul {
   margin-right: 16rem;
 }
 
-header ul span {
+#logo span {
   color: rgb(218, 200, 42);
 }
 
-
-a {
-  color: inherit;
-  text-decoration: none;
+footer ul {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+  align-items: center;
+  padding: 1rem 2rem;
+  color: black;
 }
 
-a:hover {
-  transform: scale(1.2);
+footer p {
+  text-align: right;
+  margin-right: 1rem;
+  padding: 0.3rem 0;
 }
 
 @media (prefers-color-scheme: dark) {
