@@ -31,6 +31,14 @@ export const Header = () => {
                     </li>
                 </ul>
             </nav>
+            <ul className="header-auth">
+                <li>
+                    <Link href="/auth">Login</Link>
+                </li>
+                <li>
+                    <Link href="/auth?mode=register">Daftar</Link>
+                </li>
+            </ul>
         </header>
     );
 };

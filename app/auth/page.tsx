@@ -1,13 +1,17 @@
-"use client";
+﻿"use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import styles from "./auth.module.css";
 
 type Mode = "login" | "register";
 
-export default function AuthPage() {
-  const [mode, setMode] = useState<Mode>("login");
+function AuthForm() {
+  const searchParams = useSearchParams();
+  const [mode, setMode] = useState<Mode>(
+    searchParams.get("mode") === "register" ? "register" : "login"
+  );
   const [showPassword, setShowPassword] = useState(false);
   const [form, setForm] = useState({
     nama: "",
@@ -156,8 +160,21 @@ export default function AuthPage() {
             {isLogin ? "Daftar" : "Masuk"}
           </button>
         </p>
+
+        <p className={styles.terms}>
+          Dengan melanjutkan, kamu menyetujui{" "}
+          <Link href="/kebijakan">Kebijakan Privasi</Link> dan{" "}
+          <Link href="#">Syarat &amp; Ketentuan</Link> TiketKu.
+        </p>
       </div>
     </main>
   );
 }
 
+export default function AuthPage() {
+  return (
+    <Suspense>
+      <AuthForm />
+    </Suspense>
+  );
+}

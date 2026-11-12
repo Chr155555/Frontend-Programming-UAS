@@ -89,6 +89,10 @@ header {
   color: rgb(218, 200, 42);
 }
 
+header .header-auth {
+  margin-right: 35px;
+}
+
 footer ul {
   display: flex;
   list-style: none;
