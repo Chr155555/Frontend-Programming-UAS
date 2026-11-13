@@ -141,19 +141,10 @@ export default function KebijakanPage() {
 
       <p>Selamat datang di situs TiketKu.</p>
       <p>
-        Situs ini dioperasikan oleh TiketKu (&quot;TiketKu&quot;,
-        &quot;Perusahaan&quot;, atau &quot;Kami&quot;). Kami mengoperasikan situs
-        web dan layanan yang tersedia secara online melalui situs web:
-        account.bliblitiket.com untuk ios dan untuk android.
+        {`Situs ini dioperasikan oleh TiketKu ("TiketKu", "Perusahaan", atau "Kami"). Kami mengoperasikan situs web dan layanan yang tersedia secara online melalui situs web: account.bliblitiket.com untuk ios dan untuk android.`}
       </p>
       <p>
-        Di TiketKu, privasi Anda dan perlindungan data pribadi Anda
-        merupakan hal yang sangat penting bagi Kami. Data pribadi adalah setiap
-        informasi yang berkaitan dengan seseorang yang teridentifikasi atau dapat
-        diidentifikasi. Seseorang yang dapat diidentifikasi adalah individu yang
-        dapat dikenali, baik secara langsung maupun tidak langsung melalui
-        kombinasi dengan informasi lainnya, baik melalui sistem elektronik atau
-        nonelektronik (&quot;Data Pribadi&quot;).
+        {`Di TiketKu, privasi Anda dan perlindungan data pribadi Anda merupakan hal yang sangat penting bagi Kami. Data pribadi adalah setiap informasi yang berkaitan dengan seseorang yang teridentifikasi atau dapat diidentifikasi. Seseorang yang dapat diidentifikasi adalah individu yang dapat dikenali, baik secara langsung maupun tidak langsung melalui kombinasi dengan informasi lainnya, baik melalui sistem elektronik atau nonelektronik ("Data Pribadi").`}
       </p>
       <p>
         Pemberitahuan Privasi ini menjelaskan bagaimana Kami mengumpulkan,
@@ -162,12 +153,7 @@ export default function KebijakanPage() {
         berbagai platforms yang tergabung.
       </p>
       <p>
-        Dengan bergabung dalam ekosistem ini, Anda memahami bahwa Data Pribadi
-        Anda dapat dibagikan, diakses, dan dikelola bersama oleh
-        platform-platform yang berpartisipasi (&quot;Platforms&quot;) untuk
-        kepentingan Anda. Kami menghargai privasi Anda sehingga Kami berkomitmen
-        untuk menjaga kerahasiaan serta melindungi Data Pribadi sesuai dengan
-        peraturan perundang-undangan yang berlaku.
+        {`Dengan bergabung dalam ekosistem ini, Anda memahami bahwa Data Pribadi Anda dapat dibagikan, diakses, dan dikelola bersama oleh platform-platform yang berpartisipasi ("Platforms") untuk kepentingan Anda. Kami menghargai privasi Anda sehingga Kami berkomitmen untuk menjaga kerahasiaan serta melindungi Data Pribadi sesuai dengan peraturan perundang-undangan yang berlaku.`}
       </p>
       <p>
         Untuk menjaga kepercayaan Anda terhadap sistem, program, dan layanan pada

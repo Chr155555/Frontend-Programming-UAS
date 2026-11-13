@@ -1,4 +1,4 @@
-﻿"use client";
+"use client";
 
 import { Suspense, useState } from "react";
 import Link from "next/link";
@@ -164,7 +164,7 @@ function AuthForm() {
         <p className={styles.terms}>
           Dengan melanjutkan, kamu menyetujui{" "}
           <Link href="/kebijakan">Kebijakan Privasi</Link> dan{" "}
-          <Link href="#">Syarat &amp; Ketentuan</Link> TiketKu.
+          <Link href="/syarat">Syarat &amp; Ketentuan</Link> TiketKu.
         </p>
       </div>
     </main>

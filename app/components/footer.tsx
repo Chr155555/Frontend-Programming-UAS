@@ -17,7 +17,7 @@ export const Footer = () => {
                     <Link href="/kebijakan">Kebijakan Privasi</Link>
                 </li>
                 <li>
-                    <Link href="/">Syarat dan Ketentuan</Link>
+                    <Link href="/syarat">Syarat dan Ketentuan</Link>
                 </li>
                 <li>
                     <Link href="/">Bantuan</Link>
