@@ -1,0 +1,353 @@
+.hotelContainer {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #ffffff;
+    color: #212529;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.heroWrapper {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.heroImageContainer {
+    position: relative;
+    height: 480px;
+    width: 100%;
+    background-color: #1e293b;
+}
+
+.heroImage {
+    object-fit: cover;
+    filter: brightness(0.65);
+}
+
+.heroCaption {
+    text-align: left;
+    padding-bottom: 3rem;
+    margin-bottom: 2rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+.heroTitle {
+    font-size: 40px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 12px;
+    line-height: 1.2;
+}
+
+.heroSubtitle {
+    font-size: 18px;
+    color: #f8fafc;
+    opacity: 0.9;
+    max-width: 600px;
+    line-height: 1.6;
+}
+
+.aboutBadge {
+    display: inline-block;
+    background-color: #e0f2fe;
+    color: #0284c7;
+    padding: 4px 14px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 12px;
+}
+
+.aboutTitle {
+    font-size: 32px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 16px;
+    line-height: 1.3;
+}
+
+.aboutText {
+    font-size: 16px;
+    line-height: 1.7;
+    color: #475569;
+    margin-bottom: 24px;
+}
+
+.aboutStats {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.statCard {
+    flex: 1;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+}
+
+.statNumber {
+    font-size: 24px;
+    font-weight: 700;
+    color: #0070f3;
+    margin: 0;
+}
+
+.statLabel {
+    font-size: 13px;
+    color: #64748b;
+    margin-top: 4px;
+}
+
+.aboutBtn {
+    background-color: #0ea5e9;
+    color: #ffffff;
+    padding: 10px 24px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.aboutBtn:hover {
+    background-color: #0284c7;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.aboutImgWrapper {
+    position: relative;
+    display: inline-block;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    border: 4px solid #ffffff;
+}
+
+.workSection {
+    background-color: #fff8d6;
+    padding: 48px 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.workHeading {
+    font-size: 32px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 8px;
+}
+
+.filterPills {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 16px;
+}
+
+.pillBtn {
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    border: 1px solid #334155;
+    background-color: #ffffff;
+    color: #334155;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pillBtn:hover {
+    background-color: #f1f5f9;
+}
+
+.pillBtnActive {
+    background-color: #1e293b;
+    color: #ffffff;
+    border-color: #1e293b;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.hotelCard {
+    height: 100%;
+    background-color: #ffffff;
+    border: none;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.hotelCard:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.12);
+}
+
+.cardImgWrapper {
+    position: relative;
+    width: 100%;
+    height: 280px;
+    overflow: hidden;
+}
+
+.hotelCardImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.hotelCard:hover .hotelCardImg {
+    transform: scale(1.03);
+}
+
+.ratingTag {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color: rgba(255, 255, 255, 0.95);
+    color: #1e293b;
+    font-weight: 700;
+    font-size: 13px;
+    padding: 4px 10px;
+    border-radius: 14px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.cityTag {
+    position: absolute;
+    bottom: 12px;
+    left: 12px;
+    background-color: #0070f3;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 12px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+.cardBody {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.hotelName {
+    font-size: 19px;
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 6px;
+    line-height: 1.3;
+}
+
+.hotelLocation {
+    font-size: 13px;
+    color: #64748b;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.hotelDesc {
+    font-size: 14px;
+    color: #475569;
+    line-height: 1.6;
+    flex-grow: 1;
+    margin-bottom: 14px;
+}
+
+.facilityGroup {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.facilityBadge {
+    background-color: #f1f5f9;
+    color: #475569;
+    font-size: 12px;
+    padding: 3px 8px;
+    border-radius: 6px;
+    border: 1px solid #e2e8f0;
+}
+
+.cardFooter {
+    padding-top: 14px;
+    border-top: 1px solid #f1f5f9;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.priceLabel {
+    font-size: 12px;
+    color: #64748b;
+    display: block;
+}
+
+.priceValue {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0070f3;
+}
+
+.bookBtn {
+    background-color: #0070f3;
+    color: #ffffff;
+    padding: 8px 18px;
+    border-radius: 8px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.bookBtn:hover {
+    background-color: #0051a8;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+@media (max-width: 768px) {
+    .heroImageContainer {
+        height: 380px;
+    }
+
+    .heroTitle {
+        font-size: 28px;
+    }
+
+    .heroSubtitle {
+        font-size: 15px;
+    }
+
+    .aboutTitle,
+    .workHeading {
+        font-size: 24px;
+    }
+
+    .aboutStats {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .cardImgWrapper {
+        height: 220px;
+    }
+}

@@ -11,7 +11,7 @@ export const Footer = () => {
                     <Link href="/tiket">Penerbangan</Link>
                 </li>
                 <li>
-                    <Link href="/">Hotel</Link>
+                    <Link href="/hotel">Hotel</Link>
                 </li>
                 <li>
                     <Link href="/kebijakan">Kebijakan Privasi</Link>
