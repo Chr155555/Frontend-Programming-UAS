@@ -7,15 +7,15 @@ import HotelWorkSection from "./components/HotelWorkSection";
 import styles from "./hotel.module.css";
 
 export default function HotelPage() {
-    const [filterCity] = useState<string>("Semua");
+  const [filterCity] = useState<string>("Semua");
 
-    return (
-        <main className={styles.hotelContainer}>
-            <HotelHero />
-            <HotelAbout />
-            <div id="hotel-list-section" className="mb-5">
-                <HotelWorkSection filterCity={filterCity} />
-            </div>
-        </main>
-    );
+  return (
+    <main className={styles.hotelContainer}>
+      <HotelHero />
+      <HotelAbout />
+      <div id="hotel-list-section">
+        <HotelWorkSection filterCity={filterCity} />
+      </div>
+    </main>
+  );
 }
