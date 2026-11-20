@@ -1,7 +1,7 @@
 "use client";
 
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
 export default function Footer() {
   return (
