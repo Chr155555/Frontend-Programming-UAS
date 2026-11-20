@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { Header } from "./header";
+import Header from "./header";
 import Footer from "./footer";
 
 const STANDALONE_PAGES = ["/auth"];
