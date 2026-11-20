@@ -59,44 +59,31 @@ a:hover {
   text-decoration: underline;
 }
 
-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  background-color: rgb(238, 240, 248);
-  text-align: center;
-  font-size: 26px;
-}
-
- header ul {
-  display: flex;
-  list-style: none;
-  gap: 2rem;
-  align-items: center;
-  padding: 5px;
-  color: black;
-}
-
 #logo {
-  font-size: 32px;
-  font-weight: 900;
-  color: rgb(0, 65, 206);
-  margin-left: 35px;
-  margin-right: 16rem;
+    font-size: 32px;
+    font-weight: 900;
+    color: rgb(0, 65, 206);
 }
 
 #logo span {
-  color: rgb(218, 200, 42);
+    color: rgb(218, 200, 42);
 }
 
-header .header-auth {
-  margin-right: 35px;
+.navbar {
+    font-size: 18px;
 }
 
-header ul li a {
-  color: #0a0a0a;
-  font-weight: 500;
-  text-decoration: none;
+.navbar .nav-link {
+    color: #0a0a0a;
+    font-weight: 500;
+}
+
+.navbar .nav-link:hover {
+    color: rgb(0, 65, 206);
+}
+
+.navbar .navbar-brand:hover {
+    text-decoration: none;
 }
 
 #footer ul li a {
