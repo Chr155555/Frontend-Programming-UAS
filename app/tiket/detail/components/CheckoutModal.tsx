@@ -81,7 +81,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
             Kembali
           </button>
           <Link
-            href="/booking"
+            href="/tiket/pembayaran"
             className={styles.btnModalConfirm}
             onClick={onClose}
           >

@@ -253,7 +253,7 @@
   grid-template-columns: repeat(7, 1fr);
   gap: 10px;
   overflow-x: auto;
-  padding-bottom: 4px;
+  padding: 14px 4px 6px;
 }
 
 .dateCard {
@@ -290,19 +290,25 @@
 
 .cheapestBadge {
   position: absolute;
-  top: -8px;
+  top: -9px;
   background: #0284c7;
   color: #ffffff;
   font-size: 9px;
   font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 6px;
+  padding: 2px 8px;
+  border-radius: 9999px;
   text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+  line-height: 1.2;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  z-index: 2;
 }
 
 .dateCardActive .cheapestBadge {
   background: #ffffff;
   color: #0284c7;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
 }
 
 .dateDay {
