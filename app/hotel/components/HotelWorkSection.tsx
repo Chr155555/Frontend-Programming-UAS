@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import Container from "react-bootstrap/Container";
+import Link from "next/link";
 import styles from "../hotel.module.css";
 
 export interface HotelItem {
@@ -22,7 +23,7 @@ export const HOTELS_DATA: HotelItem[] = [
     name: "Grand Sahid Jaya Jakarta",
     city: "Jakarta",
     location: "Tanah Abang, Jakarta Pusat, DKI Jakarta",
-    image: "/hotel/1.png",
+    image: "/hotel/1/1.png",
     rating: 4.4,
     reviewsCount: 255,
     price: "IDR 1.757.961",
@@ -33,7 +34,7 @@ export const HOTELS_DATA: HotelItem[] = [
     name: "Jambuluwuk Mansion Pakubuwono",
     city: "Jakarta",
     location: "Gelora, Jakarta Pusat, DKI Jakarta",
-    image: "/hotel/2.png",
+    image: "/hotel/2/2.png",
     rating: 4.7,
     reviewsCount: 67,
     price: "IDR 222.250",
@@ -44,7 +45,7 @@ export const HOTELS_DATA: HotelItem[] = [
     name: "Eminence Golf & Resort Lembang Bandung",
     city: "Bandung",
     location: "Lembang, Bandung, Jawa Barat",
-    image: "/hotel/3.png",
+    image: "/hotel/3/3.png",
     rating: 4.3,
     reviewsCount: 6,
     price: "IDR 1.500.500",
@@ -55,7 +56,7 @@ export const HOTELS_DATA: HotelItem[] = [
     name: "Villa Bumi Ayah",
     city: "Bogor",
     location: "Cisarua, Bogor, Jawa Barat",
-    image: "/hotel/4.png",
+    image: "/hotel/4/4.png",
     rating: 4.9,
     reviewsCount: 123,
     price: "IDR 1.500.500",
@@ -66,7 +67,7 @@ export const HOTELS_DATA: HotelItem[] = [
     name: "Sheraton Surabaya Hotel and Towers",
     city: "Surabaya",
     location: "Tegalsari, Surabaya, Jawa Timur",
-    image: "/hotel/5.png",
+    image: "/hotel/5/5.png",
     rating: 4.7,
     reviewsCount: 999,
     price: "IDR 1.517.658",
@@ -77,7 +78,7 @@ export const HOTELS_DATA: HotelItem[] = [
     name: "Uluwatu Sunset Ocean Resort",
     city: "Bali",
     location: "Pecatu, Kuta Selatan, Bali",
-    image: "/hotel/uluwatu.jpeg",
+    image: "/hotel/6/uluwatu.jpeg",
     rating: 4.9,
     reviewsCount: 15,
     price: "IDR 2.150.000",
@@ -89,8 +90,12 @@ interface HotelWorkSectionProps {
   filterCity?: string;
 }
 
-export default function HotelWorkSection({ filterCity }: HotelWorkSectionProps) {
-  const [selectedCity, setSelectedCity] = useState<string>(filterCity || "Semua");
+export default function HotelWorkSection({
+  filterCity,
+}: HotelWorkSectionProps) {
+  const [selectedCity, setSelectedCity] = useState<string>(
+    filterCity || "Semua",
+  );
 
   const cities = ["Semua", "Jakarta", "Bandung", "Bogor", "Surabaya", "Bali"];
 
@@ -151,9 +156,9 @@ export default function HotelWorkSection({ filterCity }: HotelWorkSectionProps) 
                 <p className={styles.priceLabel}>MULAI DARI</p>
                 <h3>{hotel.price}</h3>
                 <p className={styles.taxLabel}>TERMASUK PAJAK</p>
-                <button type="button" className={styles.btnDetail}>
+                <Link href={`/hotel/${hotel.id}`} className={styles.btnDetail}>
                   Lihat hotel
-                </button>
+                </Link>
               </div>
             </div>
           ))}

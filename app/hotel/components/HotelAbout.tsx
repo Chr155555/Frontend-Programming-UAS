@@ -16,7 +16,8 @@ export default function HotelAbout() {
             Kenyamanan Terbaik untuk Setiap Perjalanan Anda
           </h2>
           <p className={styles.aboutText}>
-            Tiketku adalah website yang menyediakan berbagai macam pilihan menu. terutama untuk pemesanan hotel, tiket pesawat.
+            Tiketku adalah website yang menyediakan berbagai macam pilihan menu.
+            terutama untuk pemesanan hotel, tiket pesawat.
           </p>
           <div className={styles.aboutStats}>
             <div className={styles.statCard}>
@@ -32,9 +33,7 @@ export default function HotelAbout() {
               <p className={styles.statLabel}>Customer Service</p>
             </div>
           </div>
-          <button className={styles.aboutBtn}>
-            Learn More
-          </button>
+          <button className={styles.aboutBtn}>Learn More</button>
         </Col>
 
         <Col md={6} className="text-center">
@@ -44,7 +43,12 @@ export default function HotelAbout() {
               alt="About TiketKu Hotel"
               width={540}
               height={360}
-              style={{ maxHeight: "360px", width: "100%", objectFit: "cover", display: "block" }}
+              style={{
+                maxHeight: "360px",
+                width: "100%",
+                objectFit: "cover",
+                display: "block",
+              }}
             />
           </div>
         </Col>
