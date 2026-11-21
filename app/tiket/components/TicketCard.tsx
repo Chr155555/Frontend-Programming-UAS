@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import styles from "../tiket.module.css";
 import { Ticket } from "../types";
 
@@ -156,13 +157,13 @@ export const TicketCard: React.FC<TicketCardProps> = ({
           <div className={styles.priceTax}>Termasuk pajak & biaya bandara</div>
         </div>
 
-        <button
-          type="button"
+        <Link
+          href="/tiket/detail"
           className={styles.btnBookTicket}
           onClick={() => onSelectTicket && onSelectTicket(ticket)}
         >
           <span>Pilih Tiket</span>
-        </button>
+        </Link>
 
         <div className={styles.ticketExtraNote}>{ticket.note}</div>
       </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import "bootstrap-icons/font/bootstrap-icons.css";
-import { Container, Row, Col, Form, Button, InputGroup } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 
 export default function Footer() {
   return (
@@ -18,8 +18,7 @@ export default function Footer() {
             <Col md={3}>
                 <h3>Produk</h3>
                 <ul className="list-unstyled d-flex flex-column">
-                    <li className="mb-2"><a href="#"></a></li>
-                    <li className="mb-2"><a href="#">Paket Liburan</a></li>
+                    <li className="mb-2"><a href="/paket">Paket Liburan</a></li>
                     <li className="mb-2"><a href="/tiket">Tiket Pesawat</a></li>
                     <li className="mb-2"><a href="/hotel">Hotel</a></li>
                 </ul>
