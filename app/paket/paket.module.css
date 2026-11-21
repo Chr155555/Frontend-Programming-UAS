@@ -1,0 +1,241 @@
+.aboutSection {
+    background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(207, 207, 207, 0.1)), url('../../public/paket/destinasi/destinasi_background.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 50vh;
+}
+
+.aboutTitle {
+    font-size: 48px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 16px;
+    line-height: 1.3;
+}
+
+.aboutText {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.7;
+    color: rgb(49, 49, 49);
+    margin-bottom: 3rem;
+}
+
+.aboutStats {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.statCard {
+    flex: 1;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 16px;
+    text-align: center;
+}
+
+.statNumber {
+    font-size: 32px;
+    font-weight: 700;
+    color: #0070f3;
+    margin: 0;
+}
+
+.statLabel {
+    font-size: 18px;
+    margin-top: 8px;
+}
+
+.aboutImgWrapper {
+    position: relative;
+    display: inline-block;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+    border: 4px solid #ffffff;
+}
+
+.listSection {
+    background-color: #f4f6fa;
+    padding: 40px 0 60px;
+}
+
+.listHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.listHeading {
+    font-size: 25px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0;
+}
+
+.filterPills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.pillBtn {
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid #cbd5e1;
+    background-color: #ffffff;
+    color: #334155;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.pillBtn:hover {
+    background-color: #e2e8f0;
+}
+
+.pillBtnActive {
+    background-color: #0284c7;
+    color: #ffffff;
+    border-color: #0284c7;
+    box-shadow: 0 2px 6px rgba(2, 132, 199, 0.25);
+}
+
+.paketList {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
+.paketCard {
+    width: 100%;
+    min-height: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+}
+
+.paketCard:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 24px rgba(2, 132, 199, 0.16);
+}
+
+.paketImage {
+    width: 100%;
+    height: 190px;
+    object-fit: cover;
+    flex-shrink: 0;
+}
+
+.paketInfo {
+    flex: 1;
+    padding: 16px 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 4px;
+}
+
+.paketTitle h3 {
+    font-size: 32px;
+    font-weight: 700;
+    color: #0f172a;
+    margin: 0 0 4px 0;
+    text-align: center;
+}
+
+.paketDivider {
+    width: 100%;
+    height: 2px;
+    background-color: #e2e8f0;
+    margin: 16px 0;
+}
+
+.btnDetail {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: 700;
+    padding: 9px 20px;
+    border-radius: 8px;
+    background: #0284c7;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+}
+
+.btnDetail:hover {
+    background: #0369a1;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(2, 132, 199, 0.35);
+    color: #ffffff;
+}
+
+@media (max-width: 1024px) {
+    .paketList {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    
+    .paketCard {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .paketImage {
+        width: 100%;
+        height: 200px;
+    }
+
+    .btnDetail {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .aboutTitle {
+        font-size: 24px;
+    }
+
+    .aboutStats {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .listHeader {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .paketList {
+        grid-template-columns: 1fr;
+    }
+
+    .paketImage {
+        height: 220px;
+    }
+
+    .listHeader {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+}
