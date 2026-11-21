@@ -16,7 +16,7 @@ export default function Header() {
 
                 <Navbar.Collapse id="navbar-tiketku">
                     <Nav className="me-auto gap-lg-3">
-                        <Nav.Link as={Link} href="/">Paket</Nav.Link>
+                        <Nav.Link as={Link} href="/paket">Paket</Nav.Link>
                         <Nav.Link as={Link} href="/tiket">Penerbangan</Nav.Link>
                         <Nav.Link as={Link} href="/hotel">Hotel</Nav.Link>
                         <Nav.Link as={Link} href="/">Pesanan</Nav.Link>

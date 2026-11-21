@@ -60,13 +60,18 @@ a:hover {
 }
 
 #logo {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 900;
     color: rgb(0, 65, 206);
+    transition: 0.5s ease-in-out;
 }
 
 #logo span {
     color: rgb(218, 200, 42);
+}
+
+#logo:hover {
+  transform: scale(1.1);
 }
 
 .navbar {
