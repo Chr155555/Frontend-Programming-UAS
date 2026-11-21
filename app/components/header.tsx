@@ -21,7 +21,7 @@ export default function Header() {
                         <Nav.Link as={Link} href="/hotel">Hotel</Nav.Link>
                         <Nav.Link as={Link} href="/">Pesanan</Nav.Link>
                         <Nav.Link as={Link} href="/">Favorit</Nav.Link>
-                        <Nav.Link as={Link} href="/">Bantuan</Nav.Link>
+                        <Nav.Link as={Link} href="/bantuan">Bantuan</Nav.Link>
                     </Nav>
 
                     <div className="d-flex align-items-center gap-3 mt-3 mt-lg-0">

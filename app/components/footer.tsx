@@ -1,6 +1,7 @@
 "use client";
 
 import "bootstrap-icons/font/bootstrap-icons.css";
+import Link from 'next/link';
 import { Container, Row, Col } from 'react-bootstrap';
 
 export default function Footer() {
@@ -18,27 +19,27 @@ export default function Footer() {
             <Col md={3}>
                 <h3>Produk</h3>
                 <ul className="list-unstyled d-flex flex-column">
-                    <li className="mb-2"><a href="/paket">Paket Liburan</a></li>
-                    <li className="mb-2"><a href="/tiket">Tiket Pesawat</a></li>
-                    <li className="mb-2"><a href="/hotel">Hotel</a></li>
+                    <li className="mb-2"><Link href="/paket">Paket Liburan</Link></li>
+                    <li className="mb-2"><Link href="/tiket">Tiket Pesawat</Link></li>
+                    <li className="mb-2"><Link href="/hotel">Hotel</Link></li>
                 </ul>
             </Col>
 
             <Col md={3}>
                 <h3>Dukungan</h3>
                 <ul className="list-unstyled d-flex flex-column">
-                    <li className="mb-2"><a href="/syarat">Syarat dan Ketentuan</a></li>
-                    <li className="mb-2"><a href="/kebijakan">Kebijakan Privasi</a></li>
-                    <li className="mb-2"><a href="#">Bantuan</a></li>
+                    <li className="mb-2"><Link href="/syarat">Syarat dan Ketentuan</Link></li>
+                    <li className="mb-2"><Link href="/kebijakan">Kebijakan Privasi</Link></li>
+                    <li className="mb-2"><Link href="/bantuan">Bantuan</Link></li>
                 </ul>
             </Col>
             <Col md={3}>
                 <h3>Ikuti Kami</h3>
                 <ul className="list-unstyled d-flex gap-3">
-                    <li><a href="#"><i className="bi bi-facebook fs-4"></i></a></li>
-                    <li><a href="#"><i className="bi bi-twitter fs-4"></i></a></li>
-                    <li><a href="#"><i className="bi bi-instagram fs-4"></i></a></li>
-                    <li><a href="#"><i className="bi bi-youtube fs-4"></i></a></li>
+                    <li><Link href="#"><i className="bi bi-facebook fs-4"></i></Link></li>
+                    <li><Link href="#"><i className="bi bi-twitter fs-4"></i></Link></li>
+                    <li><Link href="#"><i className="bi bi-instagram fs-4"></i></Link></li>
+                    <li><Link href="#"><i className="bi bi-youtube fs-4"></i></Link></li>
                 </ul>
             </Col>
         </Row>
