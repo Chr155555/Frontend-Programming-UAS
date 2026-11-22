@@ -20,7 +20,7 @@ export default function Header() {
                         <Nav.Link as={Link} href="/tiket">Penerbangan</Nav.Link>
                         <Nav.Link as={Link} href="/hotel">Hotel</Nav.Link>
                         <Nav.Link as={Link} href="/">Pesanan</Nav.Link>
-                        <Nav.Link as={Link} href="/">Favorit</Nav.Link>
+                        <Nav.Link as={Link} href="/favorite">Favorit</Nav.Link>
                         <Nav.Link as={Link} href="/bantuan">Bantuan</Nav.Link>
                     </Nav>
 
@@ -38,10 +38,10 @@ export default function Header() {
                             </Dropdown.Toggle>
 
                             <Dropdown.Menu className="shadow border-0 rounded-3 mt-2">
-                                <Dropdown.Item href="/profil">
+                                <Dropdown.Item as={Link} href="/profil">
                                     <i className="bi bi-person me-2"></i>Profil
                                 </Dropdown.Item>
-                                <Dropdown.Item href="/favorite">
+                                <Dropdown.Item as={Link} href="/favorite">
                                     <i className="bi bi-heart me-2"></i>Favorite
                                 </Dropdown.Item>
                                 <Dropdown.Divider />
