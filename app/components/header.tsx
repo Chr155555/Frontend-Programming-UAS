@@ -30,7 +30,10 @@ export default function Header() {
                         </Button>
 
                         <Dropdown align="end">
-                            <Dropdown.Toggle variant="primary" id="dropdown-profil">
+                            <Dropdown.Toggle
+                                variant="primary"
+                                id="dropdown-profil"
+                            >
                                 <i className="bi bi-person-fill"></i>
                             </Dropdown.Toggle>
 
@@ -42,18 +45,27 @@ export default function Header() {
                                     <i className="bi bi-heart me-2"></i>Favorite
                                 </Dropdown.Item>
                                 <Dropdown.Divider />
-                                <Dropdown.Item onClick={() => console.log("Logout diklik")} className="text-danger">
+                                <Dropdown.Item
+                                    onClick={() => console.log("Logout diklik")}
+                                    className="text-danger"
+                                >
                                     <i className="bi bi-box-arrow-right me-2"></i>
                                     Keluar (Logout)
                                 </Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
 
-                        <Link href="/auth?mode=register" style={{ textDecoration: 'none' }}>
+                        <Link
+                            href="/auth?mode=register"
+                            style={{ textDecoration: "none" }}
+                        >
                             <Button variant="light">Login</Button>
                         </Link>
 
-                        <Link href="/auth?mode=register" style={{ textDecoration: 'none' }}>
+                        <Link
+                            href="/auth?mode=register"
+                            style={{ textDecoration: "none" }}
+                        >
                             <Button variant="primary">Daftar</Button>
                         </Link>
                     </div>
@@ -61,4 +73,4 @@ export default function Header() {
             </Container>
         </Navbar>
     );
-};
+}
