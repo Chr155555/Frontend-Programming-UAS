@@ -8,10 +8,11 @@ import { FilterToolbar } from "./components/FilterToolbar";
 import { TicketCard } from "./components/TicketCard";
 import { InfoBanner } from "./components/InfoBanner";
 import { INITIAL_TICKETS, DATES, CITIES } from "./data/tickets";
-import { AirlineType, SortType, CabinClass, Ticket } from "./types";
+import { AirlineType, SortType, CabinClass, Ticket, DateOption } from "./types";
 
 export default function TicketDashboardPage() {
   const [ticketList, setTicketList] = useState<Ticket[]>(INITIAL_TICKETS);
+  const [dateList, setDateList] = useState<DateOption[]>(DATES);
   const [origin, setOrigin] = useState<string>("CGK");
   const [destination, setDestination] = useState<string>("SIN");
   const [flightDate, setFlightDate] = useState<string>("2026-09-28");
@@ -30,6 +31,15 @@ export default function TicketDashboardPage() {
         }
       })
       .catch(() => {});
+
+    fetch("/api/tickets/dates")
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.success && Array.isArray(res.data) && res.data.length > 0) {
+          setDateList(res.data);
+        }
+      })
+      .catch(() => {});
   }, []);
 
   const handleSwapRoutes = () => {
@@ -39,6 +49,24 @@ export default function TicketDashboardPage() {
 
   const filteredTickets = useMemo(() => {
     let result = [...ticketList];
+
+    if (origin) {
+      result = result.filter((t) => t.origin.code === origin);
+    }
+
+    if (destination) {
+      result = result.filter((t) => t.destination.code === destination);
+    }
+
+    if (cabinClass) {
+      result = result.filter((t) => t.cabinClass === cabinClass);
+    }
+
+    if (flightDate) {
+      result = result.filter(
+        (t) => t.rawDate === flightDate || t.date.includes(flightDate)
+      );
+    }
 
     if (selectedAirline !== "all") {
       result = result.filter((t) => t.airline === selectedAirline);
@@ -72,12 +100,16 @@ export default function TicketDashboardPage() {
     }
 
     return result;
-  }, [ticketList, selectedAirline, searchQuery, sortBy]);
+  }, [ticketList, origin, destination, cabinClass, flightDate, selectedAirline, searchQuery, sortBy]);
 
   const handleResetFilters = () => {
+    setOrigin("CGK");
+    setDestination("SIN");
+    setCabinClass("Ekonomi");
     setSelectedAirline("all");
     setSearchQuery("");
     setSortBy("recomended");
+    setFlightDate("2026-09-28");
   };
 
   return (
@@ -101,7 +133,7 @@ export default function TicketDashboardPage() {
         />
 
         <DateStrip
-          dates={DATES}
+          dates={dateList}
           selectedDate={flightDate}
           onSelectDate={setFlightDate}
         />

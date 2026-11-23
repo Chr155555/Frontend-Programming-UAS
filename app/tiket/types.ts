@@ -17,6 +17,7 @@ export interface Ticket {
   aircraft: string;
   serviceType: string;
   date: string;
+  rawDate?: string;
   origin: {
     code: string;
     city: string;

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/db";
 import { tickets } from "@/db/schema";
+import { eq } from "drizzle-orm";
 import { Ticket } from "@/app/tiket/types";
 
 function mapDbTicket(t: typeof tickets.$inferSelect): Ticket {
@@ -13,6 +14,7 @@ function mapDbTicket(t: typeof tickets.$inferSelect): Ticket {
     aircraft: t.aircraft,
     serviceType: t.serviceType,
     date: t.dateFormatted,
+    rawDate: t.date,
     origin: {
       code: t.originCode,
       city: t.originCity,
@@ -43,9 +45,15 @@ function mapDbTicket(t: typeof tickets.$inferSelect): Ticket {
   };
 }
 
-export async function GET() {
+export async function GET(request: Request) {
   try {
-    const rows = await db.select().from(tickets);
+    const { searchParams } = new URL(request.url);
+    const dateParam = searchParams.get("date");
+
+    const rows = dateParam
+      ? await db.select().from(tickets).where(eq(tickets.date, dateParam))
+      : await db.select().from(tickets);
+
     const data = rows.map(mapDbTicket);
     return NextResponse.json({ success: true, data });
   } catch {
