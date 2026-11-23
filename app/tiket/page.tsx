@@ -33,15 +33,6 @@ export default function TicketDashboardPage() {
       })
       .catch(() => {});
 
-    fetch("/api/tickets/dates")
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.success && Array.isArray(res.data) && res.data.length > 0) {
-          setDateList(res.data);
-        }
-      })
-      .catch(() => {});
-
     fetch("/api/tickets/cities")
       .then((res) => res.json())
       .then((res) => {
@@ -51,6 +42,17 @@ export default function TicketDashboardPage() {
       })
       .catch(() => {});
   }, []);
+
+  useEffect(() => {
+    fetch(`/api/tickets/dates?origin=${origin}&destination=${destination}`)
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.success && Array.isArray(res.data) && res.data.length > 0) {
+          setDateList(res.data);
+        }
+      })
+      .catch(() => {});
+  }, [origin, destination]);
 
   const handleSwapRoutes = () => {
     setOrigin(destination);

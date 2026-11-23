@@ -158,7 +158,7 @@ export const TicketCard: React.FC<TicketCardProps> = ({
         </div>
 
         <Link
-          href="/tiket/detail"
+          href={`/tiket/${ticket.id}`}
           className={styles.btnBookTicket}
           onClick={() => onSelectTicket && onSelectTicket(ticket)}
         >

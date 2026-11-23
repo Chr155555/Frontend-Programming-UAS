@@ -6,7 +6,7 @@ import { AddonItem } from "../types";
 
 interface PriceSidebarProps {
   departurePrice: number;
-  returnPrice: number;
+  returnPrice?: number;
   systemFee: number;
   addons: AddonItem[];
   selectedAddonIds: string[];
@@ -17,6 +17,8 @@ interface PriceSidebarProps {
   discount: number;
   totalPrice: number;
   onProceedPayment: () => void;
+  flightCode?: string;
+  routeText?: string;
 }
 
 export const PriceSidebar: React.FC<PriceSidebarProps> = ({
@@ -32,6 +34,8 @@ export const PriceSidebar: React.FC<PriceSidebarProps> = ({
   discount,
   totalPrice,
   onProceedPayment,
+  flightCode,
+  routeText,
 }) => {
   const formatRupiah = (val: number) => {
     return new Intl.NumberFormat("id-ID", {
@@ -40,6 +44,10 @@ export const PriceSidebar: React.FC<PriceSidebarProps> = ({
       maximumFractionDigits: 0,
     }).format(val);
   };
+
+  const selectedAddonsList = addons.filter((a) =>
+    selectedAddonIds.includes(a.id)
+  );
 
   return (
     <aside className={styles.detailSidebar}>
@@ -80,20 +88,26 @@ export const PriceSidebar: React.FC<PriceSidebarProps> = ({
 
         <div className={styles.pricePathBody}>
           <div className={styles.priceRouteSummary}>
-            <span className={styles.routeTags}>CGK ⇄ SIN (PP)</span>
+            <span className={styles.routeTags}>
+              {routeText || "Penerbangan (Sekali Jalan)"}
+            </span>
             <span className={styles.passengerTag}>1 Penumpang (Dewasa)</span>
           </div>
 
           <div className={styles.priceBreakdownList}>
             <div className={styles.priceRow}>
-              <span className={styles.rowLabel}>Tiket Pergi (GA-820)</span>
+              <span className={styles.rowLabel}>
+                {flightCode ? `Tiket Pergi (${flightCode})` : "Tiket Pergi"}
+              </span>
               <span className={styles.rowVal}>{formatRupiah(departurePrice)}</span>
             </div>
 
-            <div className={styles.priceRow}>
-              <span className={styles.rowLabel}>Tiket Pulang (GA-821)</span>
-              <span className={styles.rowVal}>{formatRupiah(returnPrice)}</span>
-            </div>
+            {returnPrice ? (
+              <div className={styles.priceRow}>
+                <span className={styles.rowLabel}>Tiket Pulang</span>
+                <span className={styles.rowVal}>{formatRupiah(returnPrice)}</span>
+              </div>
+            ) : null}
 
             <div className={styles.priceRow}>
               <span className={styles.rowLabel}>Pajak & Biaya Bandara</span>
@@ -105,57 +119,53 @@ export const PriceSidebar: React.FC<PriceSidebarProps> = ({
               <span className={styles.rowVal}>{formatRupiah(systemFee)}</span>
             </div>
 
-            {addons
-              .filter((a) => selectedAddonIds.includes(a.id))
-              .map((addon) => (
-                <div key={addon.id} className={styles.priceRow}>
-                  <span className={styles.rowLabel}>{addon.title}</span>
-                  <span className={styles.rowVal}>
-                    {formatRupiah(addon.price)}
-                  </span>
-                </div>
-              ))}
+            {selectedAddonsList.map((addon) => (
+              <div key={addon.id} className={styles.priceRow}>
+                <span className={styles.rowLabel}>{addon.title}</span>
+                <span className={styles.rowVal}>+{formatRupiah(addon.price)}</span>
+              </div>
+            ))}
 
             {discount > 0 && (
               <div className={styles.priceRow}>
-                <span className={styles.rowLabel}>Diskon Promo</span>
-                <span className={styles.rowValDiscount}>
-                  -{formatRupiah(discount)}
-                </span>
+                <span className={styles.rowLabelPromo}>Potongan Promo</span>
+                <span className={styles.rowValPromo}>-{formatRupiah(discount)}</span>
               </div>
             )}
           </div>
 
-          <div className={styles.promoBox}>
-            <div className={styles.promoForm}>
+          <div className={styles.promoFormArea}>
+            <div className={styles.promoInputWrapper}>
               <input
                 type="text"
-                className={styles.promoInput}
-                placeholder="KODE PROMO (MISAL: TIKETHEMAT)"
+                placeholder="Kode Promo (TIKETHEMAT)"
                 value={promoInput}
                 onChange={(e) => onPromoInputChange(e.target.value)}
+                className={styles.promoInputField}
               />
               <button
                 type="button"
-                className={styles.btnApplyPromo}
                 onClick={onApplyPromo}
+                className={styles.btnApplyPromo}
               >
-                Terapkan
+                Gunakan
               </button>
             </div>
             {promoMessage && (
-              <div className={styles.promoMessage}>{promoMessage}</div>
+              <div
+                className={
+                  discount > 0 ? styles.promoSuccessText : styles.promoErrorText
+                }
+              >
+                {promoMessage}
+              </div>
             )}
           </div>
 
-          <div className={styles.priceDivider}></div>
-
-          <div className={styles.totalPaymentBox}>
-            <div>
-              <div className={styles.totalLabel}>Total Pembayaran</div>
-              <div className={styles.totalSublabel}>
-                Termasuk seluruh pajak & biaya
-              </div>
+          <div className={styles.priceTotalBox}>
+            <div className={styles.totalLeft}>
+              <span className={styles.totalLabel}>Total Pembayaran</span>
+              <span className={styles.totalTaxNote}>Termasuk PPN & Surcharge</span>
             </div>
             <div className={styles.totalAmount}>{formatRupiah(totalPrice)}</div>
           </div>
@@ -165,10 +175,10 @@ export const PriceSidebar: React.FC<PriceSidebarProps> = ({
             className={styles.btnProceedPayment}
             onClick={onProceedPayment}
           >
-            <span>Lanjutkan ke Pembayaran</span>
+            <span>Lanjut ke Pembayaran</span>
             <svg
-              width="16"
-              height="16"
+              width="18"
+              height="18"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -180,40 +190,6 @@ export const PriceSidebar: React.FC<PriceSidebarProps> = ({
               <polyline points="12 5 19 12 12 19"></polyline>
             </svg>
           </button>
-        </div>
-
-        <div className={styles.priceTrustNotes}>
-          <div className={styles.trustItem}>
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#0284c7"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-            </svg>
-            <span>Transaksi Aman & Terenkripsi SSL</span>
-          </div>
-          <div className={styles.trustItem}>
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#0284c7"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polyline points="20 6 9 17 4 12"></polyline>
-            </svg>
-            <span>E-Tiket Resmi Langsung Terbit ke Email</span>
-          </div>
         </div>
       </div>
     </aside>
