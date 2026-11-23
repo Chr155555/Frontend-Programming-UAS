@@ -25,9 +25,11 @@ export default function Header() {
                     </Nav>
 
                     <div className="d-flex align-items-center gap-3 mt-3 mt-lg-0">
-                        <Button variant="secondary">
-                            <i className="bi bi-envelope-fill"></i>
-                        </Button>
+                        <Link href="/inbox">   
+                            <Button variant="secondary">
+                                <i className="bi bi-envelope-fill"></i>
+                            </Button>
+                        </Link>
 
                         <Dropdown align="end">
                             <Dropdown.Toggle
