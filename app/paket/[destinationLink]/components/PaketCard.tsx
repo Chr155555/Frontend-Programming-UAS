@@ -19,7 +19,7 @@ export default function PaketCard({
   return (
     <div className={styles.paketCard}>
       <div className={styles.paketImage}>
-        <Image src={pkg.image} alt={pkg.title} width={500} height={300} />
+        <Image src={pkg.coverImage} alt={pkg.title} width={500} height={300} />
         <span className={styles.paketBadge}>{pkg.badge}</span>
       </div>
 
@@ -42,7 +42,9 @@ export default function PaketCard({
             <h4>Penginapan</h4>
           </div>
           <div className={styles.paketSectionDetails}>
-            <p>{pkg.hotel}</p>
+            <p>
+              {pkg.hotelName} | {pkg.hotelStars} | {pkg.roomType} | Sarapan Termasuk
+            </p>
           </div>
         </div>
 
@@ -52,7 +54,7 @@ export default function PaketCard({
           </div>
           <div className={styles.paketSectionDetails}>
             <p>
-              {appliedAsal} → {destinationName} | {pkg.flightClass}
+              {appliedAsal} → {destinationName} | {pkg.outboundFlight.cabinClass} | No Transit | Pulang Pergi
             </p>
           </div>
         </div>
@@ -62,7 +64,9 @@ export default function PaketCard({
             <h4>Fitur Tambahan</h4>
           </div>
           <div className={styles.paketSectionDetails}>
-            <p>{pkg.features}</p>
+            <p>
+              {pkg.features.map((f) => f.title).join(" | ")}
+            </p>
           </div>
         </div>
 
