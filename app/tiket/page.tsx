@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import styles from "./tiket.module.css";
 import { RouteSearch } from "./components/RouteSearch";
 import { DateStrip } from "./components/DateStrip";
@@ -11,6 +11,7 @@ import { INITIAL_TICKETS, DATES, CITIES } from "./data/tickets";
 import { AirlineType, SortType, CabinClass, Ticket } from "./types";
 
 export default function TicketDashboardPage() {
+  const [ticketList, setTicketList] = useState<Ticket[]>(INITIAL_TICKETS);
   const [origin, setOrigin] = useState<string>("CGK");
   const [destination, setDestination] = useState<string>("SIN");
   const [flightDate, setFlightDate] = useState<string>("2026-09-28");
@@ -20,13 +21,24 @@ export default function TicketDashboardPage() {
   const [sortBy, setSortBy] = useState<SortType>("recomended");
   const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
 
+  useEffect(() => {
+    fetch("/api/tickets")
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.success && Array.isArray(res.data) && res.data.length > 0) {
+          setTicketList(res.data);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
   const handleSwapRoutes = () => {
     setOrigin(destination);
     setDestination(origin);
   };
 
   const filteredTickets = useMemo(() => {
-    let result = [...INITIAL_TICKETS];
+    let result = [...ticketList];
 
     if (selectedAirline !== "all") {
       result = result.filter((t) => t.airline === selectedAirline);
@@ -60,7 +72,7 @@ export default function TicketDashboardPage() {
     }
 
     return result;
-  }, [selectedAirline, searchQuery, sortBy]);
+  }, [ticketList, selectedAirline, searchQuery, sortBy]);
 
   const handleResetFilters = () => {
     setSelectedAirline("all");
