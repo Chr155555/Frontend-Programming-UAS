@@ -9,6 +9,7 @@ interface FilterToolbarProps {
   onAirlineSelect: (airline: AirlineType) => void;
   sortBy: SortType;
   onSortChange: (sort: SortType) => void;
+  airlineCounts?: Record<string, number>;
 }
 
 const AIRLINE_FILTERS: { label: string; value: AirlineType }[] = [
@@ -25,12 +26,14 @@ export const FilterToolbar: React.FC<FilterToolbarProps> = ({
   onAirlineSelect,
   sortBy,
   onSortChange,
+  airlineCounts,
 }) => {
   return (
     <div className={styles.toolbar}>
       <div className={styles.filterChips}>
         {AIRLINE_FILTERS.map((chip) => {
           const isActive = selectedAirline === chip.value;
+          const count = airlineCounts ? airlineCounts[chip.value] ?? 0 : null;
           return (
             <span
               key={chip.value}
@@ -40,6 +43,11 @@ export const FilterToolbar: React.FC<FilterToolbarProps> = ({
               onClick={() => onAirlineSelect(chip.value)}
             >
               {chip.label}
+              {count !== null && (
+                <span style={{ marginLeft: "4px", fontSize: "11px", opacity: 0.8 }}>
+                  ({count})
+                </span>
+              )}
             </span>
           );
         })}

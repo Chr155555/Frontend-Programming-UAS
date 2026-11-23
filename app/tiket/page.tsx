@@ -8,11 +8,12 @@ import { FilterToolbar } from "./components/FilterToolbar";
 import { TicketCard } from "./components/TicketCard";
 import { InfoBanner } from "./components/InfoBanner";
 import { INITIAL_TICKETS, DATES, CITIES } from "./data/tickets";
-import { AirlineType, SortType, CabinClass, Ticket, DateOption } from "./types";
+import { AirlineType, SortType, CabinClass, Ticket, DateOption, CityOption } from "./types";
 
 export default function TicketDashboardPage() {
   const [ticketList, setTicketList] = useState<Ticket[]>(INITIAL_TICKETS);
   const [dateList, setDateList] = useState<DateOption[]>(DATES);
+  const [citiesList, setCitiesList] = useState<CityOption[]>(CITIES);
   const [origin, setOrigin] = useState<string>("CGK");
   const [destination, setDestination] = useState<string>("SIN");
   const [flightDate, setFlightDate] = useState<string>("2026-09-28");
@@ -32,7 +33,18 @@ export default function TicketDashboardPage() {
       })
       .catch(() => {});
 
-    fetch("/api/tickets/dates")
+    fetch("/api/tickets/cities")
+      .then((res) => res.json())
+      .then((res) => {
+        if (res.success && Array.isArray(res.data) && res.data.length > 0) {
+          setCitiesList(res.data);
+        }
+      })
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    fetch(`/api/tickets/dates?origin=${origin}&destination=${destination}`)
       .then((res) => res.json())
       .then((res) => {
         if (res.success && Array.isArray(res.data) && res.data.length > 0) {
@@ -40,12 +52,28 @@ export default function TicketDashboardPage() {
         }
       })
       .catch(() => {});
-  }, []);
+  }, [origin, destination]);
 
   const handleSwapRoutes = () => {
     setOrigin(destination);
     setDestination(origin);
   };
+
+  const airlineCounts = useMemo(() => {
+    const counts: Record<string, number> = { all: 0 };
+    for (const t of ticketList) {
+      if (
+        (!origin || t.origin.code === origin) &&
+        (!destination || t.destination.code === destination) &&
+        (!cabinClass || t.cabinClass === cabinClass) &&
+        (!flightDate || t.rawDate === flightDate || t.date.includes(flightDate))
+      ) {
+        counts.all = (counts.all || 0) + 1;
+        counts[t.airline] = (counts[t.airline] || 0) + 1;
+      }
+    }
+    return counts;
+  }, [ticketList, origin, destination, cabinClass, flightDate]);
 
   const filteredTickets = useMemo(() => {
     let result = [...ticketList];
@@ -118,7 +146,7 @@ export default function TicketDashboardPage() {
         <RouteSearch
           origin={origin}
           destination={destination}
-          cities={CITIES}
+          cities={citiesList}
           onOriginChange={setOrigin}
           onDestinationChange={setDestination}
           onSwapRoutes={handleSwapRoutes}
@@ -143,6 +171,7 @@ export default function TicketDashboardPage() {
           onAirlineSelect={setSelectedAirline}
           sortBy={sortBy}
           onSortChange={setSortBy}
+          airlineCounts={airlineCounts}
         />
 
         <div className={styles.containerCardsTicket}>

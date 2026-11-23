@@ -11,6 +11,7 @@ interface FlightSummaryBannerProps {
   destCity: string;
   dateRangeText: string;
   passengerInfoText: string;
+  tripTypeText?: string;
 }
 
 export const FlightSummaryBanner: React.FC<FlightSummaryBannerProps> = ({
@@ -20,6 +21,7 @@ export const FlightSummaryBanner: React.FC<FlightSummaryBannerProps> = ({
   destCity,
   dateRangeText,
   passengerInfoText,
+  tripTypeText = "Sekali Jalan",
 }) => {
   return (
     <section className={styles.flightSummaryBanner}>
@@ -30,8 +32,8 @@ export const FlightSummaryBanner: React.FC<FlightSummaryBannerProps> = ({
           </span>
           <span className={styles.summaryRouteArrow}>
             <svg
-              width="22"
-              height="22"
+              width="20"
+              height="20"
               viewBox="0 0 24 24"
               fill="none"
               stroke="currentColor"
@@ -39,7 +41,8 @@ export const FlightSummaryBanner: React.FC<FlightSummaryBannerProps> = ({
               strokeLinecap="round"
               strokeLinejoin="round"
             >
-              <path d="M7 16V4M7 4L3 8M7 4L11 8M17 8V20M17 20L21 16M17 20L13 16" />
+              <line x1="5" y1="12" x2="19" y2="12" />
+              <polyline points="12 5 19 12 12 19" />
             </svg>
           </span>
           <span>
@@ -47,7 +50,7 @@ export const FlightSummaryBanner: React.FC<FlightSummaryBannerProps> = ({
           </span>
         </div>
         <div className={styles.summaryBadges}>
-          <span className={styles.summaryPill}>Pulang-Pergi (PP)</span>
+          <span className={styles.summaryPill}>{tripTypeText}</span>
           <span className={styles.summaryPill}>{dateRangeText}</span>
           <span className={styles.summaryPill}>{passengerInfoText}</span>
         </div>

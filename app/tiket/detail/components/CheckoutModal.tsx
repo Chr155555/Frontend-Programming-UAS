@@ -10,6 +10,7 @@ interface CheckoutModalProps {
   routeText: string;
   passengerName: string;
   totalPrice: number;
+  paymentUrl?: string;
 }
 
 export const CheckoutModal: React.FC<CheckoutModalProps> = ({
@@ -18,6 +19,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
   routeText,
   passengerName,
   totalPrice,
+  paymentUrl = "/tiket/pembayaran",
 }) => {
   if (!isOpen) return null;
 
@@ -81,7 +83,7 @@ export const CheckoutModal: React.FC<CheckoutModalProps> = ({
             Kembali
           </button>
           <Link
-            href="/tiket/pembayaran"
+            href={paymentUrl}
             className={styles.btnModalConfirm}
             onClick={onClose}
           >

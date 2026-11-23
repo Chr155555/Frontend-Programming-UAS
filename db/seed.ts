@@ -1,269 +1,173 @@
 import { db } from "./index";
 import { cities, tickets } from "./schema";
 
+const CITIES_DATA = [
+  { code: "CGK", city: "Jakarta", airport: "Soekarno-Hatta (T3)" },
+  { code: "SUB", city: "Surabaya", airport: "Juanda (T1)" },
+  { code: "DPS", city: "Bali / Denpasar", airport: "I Gusti Ngurah Rai (DPS)" },
+  { code: "YIA", city: "Yogyakarta", airport: "Yogyakarta International (YIA)" },
+  { code: "KNO", city: "Medan", airport: "Kualanamu (KNO)" },
+  { code: "SIN", city: "Singapura", airport: "Changi Airport (T3)" },
+  { code: "KUL", city: "Kuala Lumpur", airport: "KLIA (KUL)" },
+];
+
+const DATE_CONFIGS = [
+  { iso: "2026-09-27", formatted: "Minggu, 27 Sep 2026", mult: 1.35 },
+  { iso: "2026-09-28", formatted: "Senin, 28 Sep 2026", mult: 1.0 },
+  { iso: "2026-09-29", formatted: "Selasa, 29 Sep 2026", mult: 1.15 },
+  { iso: "2026-09-30", formatted: "Rabu, 30 Sep 2026", mult: 1.25 },
+  { iso: "2026-10-01", formatted: "Kamis, 01 Okt 2026", mult: 1.35 },
+  { iso: "2026-10-02", formatted: "Jumat, 02 Okt 2026", mult: 1.70 },
+  { iso: "2026-10-03", formatted: "Sabtu, 03 Okt 2026", mult: 1.95 },
+];
+
+const ROUTE_DESTINATIONS = [
+  { code: "YIA", city: "Yogyakarta", airport: "Yogyakarta International (YIA)", tz: "WIB", dur: "1j 15m", mins: 75, basePrice: 650000 },
+  { code: "DPS", city: "Bali / Denpasar", airport: "I Gusti Ngurah Rai (DPS)", tz: "WITA", dur: "1j 50m", mins: 110, basePrice: 850000 },
+  { code: "SUB", city: "Surabaya", airport: "Juanda (T1)", tz: "WIB", dur: "1j 30m", mins: 90, basePrice: 720000 },
+  { code: "KNO", city: "Medan", airport: "Kualanamu (KNO)", tz: "WIB", dur: "2j 15m", mins: 135, basePrice: 1100000 },
+  { code: "SIN", city: "Singapura", airport: "Changi Airport (T3)", tz: "SGT", dur: "1j 50m", mins: 110, basePrice: 775000 },
+  { code: "KUL", city: "Kuala Lumpur", airport: "KLIA (KUL)", tz: "MYT", dur: "2j 05m", mins: 125, basePrice: 820000 },
+];
+
+const AIRLINES = [
+  { key: "garuda", name: "Garuda Indonesia", code: "GA", flightNum: 204, aircraft: "Boeing 737-800", priceFactor: 1.45, times: [{ dep: "08:00", arr: "09:15" }, { dep: "15:30", arr: "16:45" }] },
+  { key: "citilink", name: "Citilink", code: "QG", flightNum: 132, aircraft: "Airbus A320", priceFactor: 1.0, times: [{ dep: "09:30", arr: "10:45" }, { dep: "18:20", arr: "19:35" }] },
+  { key: "batik", name: "Batik Air", code: "ID", flightNum: 6372, aircraft: "Boeing 737-800NG", priceFactor: 1.15, times: [{ dep: "11:40", arr: "12:55" }, { dep: "16:50", arr: "18:05" }] },
+  { key: "airasia", name: "AirAsia", code: "QZ", flightNum: 504, aircraft: "Airbus A320", priceFactor: 0.95, times: [{ dep: "06:15", arr: "07:30" }, { dep: "19:30", arr: "20:45" }] },
+  { key: "singapore", name: "Singapore Airlines", code: "SQ", flightNum: 951, aircraft: "Airbus A350-900", priceFactor: 1.85, times: [{ dep: "11:15", arr: "12:30" }, { dep: "17:40", arr: "18:55" }] },
+];
+
+const CABIN_CLASSES = [
+  { name: "Ekonomi", mult: 1.0, baggage: "20 Kg + Kabin 7 Kg", seatRow: "14", facilities: ["Bagasi 20 kg", "Kabin 7 kg", "Port USB", "Air Mineral"], serviceType: "Standar" },
+  { name: "Premium Ekonomi", mult: 1.55, baggage: "30 Kg + Kabin 7 Kg", seatRow: "08", facilities: ["Bagasi 30 kg", "Legroom Ekstra", "Makanan Pilihan", "Port USB & Wifi"], serviceType: "Layanan Ekstra" },
+  { name: "Bisnis", mult: 2.6, baggage: "40 Kg + Kabin 10 Kg", seatRow: "02", facilities: ["Bagasi 40 kg", "Lounge Akses", "Kursi Flatbed", "Gourmet Meal", "Prioritas Boarding"], serviceType: "Full Service Mewah" },
+];
+
 async function seed() {
   await db.delete(cities);
   await db.delete(tickets);
 
-  await db.insert(cities).values([
-    { code: "CGK", city: "Jakarta", airport: "Soekarno-Hatta (T3)" },
-    { code: "SUB", city: "Surabaya", airport: "Juanda (T1)" },
-    { code: "DPS", city: "Bali / Denpasar", airport: "I Gusti Ngurah Rai (DPS)" },
-    { code: "YIA", city: "Yogyakarta", airport: "Yogyakarta International (YIA)" },
-    { code: "KNO", city: "Medan", airport: "Kualanamu (KNO)" },
-    { code: "SIN", city: "Singapura", airport: "Changi Airport (T3)" },
-    { code: "KUL", city: "Kuala Lumpur", airport: "KLIA (KUL)" },
-  ]);
+  await db.insert(cities).values(CITIES_DATA);
 
-  await db.insert(tickets).values([
-    {
-      id: "t-1",
-      airline: "garuda",
-      airlineName: "Garuda Indonesia",
-      airlineCode: "GA",
-      flightCode: "GA-820 - Boeing 737-800 - Full Service",
-      aircraft: "Boeing 737-800",
-      serviceType: "Full Service",
-      date: "2026-09-28",
-      dateFormatted: "Senin, 28 Sep 2026",
-      originCode: "CGK",
-      originCity: "Jakarta",
-      originAirport: "Soekarno-Hatta (T3)",
-      originTime: "08:00",
-      originTimezone: "WIB",
-      destinationCode: "SIN",
-      destinationCity: "Singapura",
-      destinationAirport: "Changi Airport (T3)",
-      destinationTime: "10:50",
-      destinationTimezone: "SGT",
-      duration: "1j 50m",
-      durationMinutes: 110,
-      flightType: "Langsung",
-      passenger: "1 Dewasa",
-      seatNumber: "14A (Window)",
-      cabinClass: "Ekonomi",
-      baggage: "20 Kg + Kabin 7 Kg",
-      facilities: JSON.stringify(["Bagasi 20 kg", "Makanan Termasuk", "Port USB", "Bisa Reschedule"]),
-      tagText: "Pilihan Favorit",
-      tagType: "popular",
-      seatsLeft: 3,
-      originalPrice: 1750000,
-      price: 1485000,
-      note: "E-tiket langsung terbit",
-    },
-    {
-      id: "t-2",
-      airline: "singapore",
-      airlineName: "Singapore Airlines",
-      airlineCode: "SQ",
-      flightCode: "SQ-951 - Airbus A350-900 - Full Service",
-      aircraft: "Airbus A350-900",
-      serviceType: "Full Service",
-      date: "2026-09-28",
-      dateFormatted: "Senin, 28 Sep 2026",
-      originCode: "CGK",
-      originCity: "Jakarta",
-      originAirport: "Soekarno-Hatta (T3)",
-      originTime: "11:15",
-      originTimezone: "WIB",
-      destinationCode: "SIN",
-      destinationCity: "Singapura",
-      destinationAirport: "Changi Airport (T2)",
-      destinationTime: "14:00",
-      destinationTimezone: "SGT",
-      duration: "1j 45m",
-      durationMinutes: 105,
-      flightType: "Langsung",
-      passenger: "1 Dewasa",
-      seatNumber: "18C (Aisle)",
-      cabinClass: "Ekonomi",
-      baggage: "30 Kg + Kabin 7 Kg",
-      facilities: JSON.stringify(["Bagasi 30 kg", "Makan & Minum", "Free Wi-Fi", "Hiburan Kursi"]),
-      tagText: "Fasilitas Lengkap",
-      tagType: "best",
-      seatsLeft: 5,
-      originalPrice: 2450000,
-      price: 2150000,
-      note: "Maskapai Bintang 5",
-    },
-    {
-      id: "t-3",
-      airline: "batik",
-      airlineName: "Batik Air",
-      airlineCode: "ID",
-      flightCode: "ID-7153 - Boeing 737-800NG - Standar Kabin",
-      aircraft: "Boeing 737-800NG",
-      serviceType: "Standar Kabin",
-      date: "2026-09-28",
-      dateFormatted: "Senin, 28 Sep 2026",
-      originCode: "CGK",
-      originCity: "Jakarta",
-      originAirport: "Soekarno-Hatta (T2F)",
-      originTime: "13:40",
-      originTimezone: "WIB",
-      destinationCode: "SIN",
-      destinationCity: "Singapura",
-      destinationAirport: "Changi Airport (T4)",
-      destinationTime: "16:35",
-      destinationTimezone: "SGT",
-      duration: "1j 55m",
-      durationMinutes: 115,
-      flightType: "Langsung",
-      passenger: "1 Dewasa",
-      seatNumber: "21F (Window)",
-      cabinClass: "Ekonomi",
-      baggage: "20 Kg + Kabin 7 Kg",
-      facilities: JSON.stringify(["Bagasi 20 kg", "Snack Ringan", "Port USB", "Bisa Reschedule"]),
-      tagText: "Tarif Promo",
-      tagType: "promo",
-      seatsLeft: 2,
-      originalPrice: 1250000,
-      price: 985000,
-      note: "Konfirmasi instan",
-    },
-    {
-      id: "t-4",
-      airline: "citilink",
-      airlineName: "Citilink",
-      airlineCode: "QG",
-      flightCode: "QG-522 - Airbus A320neo - Anak Usaha Garuda",
-      aircraft: "Airbus A320neo",
-      serviceType: "Hemat",
-      date: "2026-09-28",
-      dateFormatted: "Senin, 28 Sep 2026",
-      originCode: "CGK",
-      originCity: "Jakarta",
-      originAirport: "Soekarno-Hatta (T3)",
-      originTime: "16:20",
-      originTimezone: "WIB",
-      destinationCode: "SIN",
-      destinationCity: "Singapura",
-      destinationAirport: "Changi Airport (T4)",
-      destinationTime: "19:10",
-      destinationTimezone: "SGT",
-      duration: "1j 50m",
-      durationMinutes: 110,
-      flightType: "Langsung",
-      passenger: "1 Dewasa",
-      seatNumber: "09B (Middle)",
-      cabinClass: "Ekonomi",
-      baggage: "20 Kg + Kabin 7 Kg",
-      facilities: JSON.stringify(["Bagasi 20 kg", "Kabin 7 kg", "Air Mineral", "Check-in Online"]),
-      tagText: "Pilihan Hemat",
-      tagType: "popular",
-      seatsLeft: 7,
-      originalPrice: 1100000,
-      price: 890000,
-      note: "Penerbangan sore",
-    },
-    {
-      id: "t-5",
-      airline: "airasia",
-      airlineName: "AirAsia",
-      airlineCode: "QZ",
-      flightCode: "QZ-504 - Airbus A320 - Tarif Hemat",
-      aircraft: "Airbus A320",
-      serviceType: "Budget Carrier",
-      date: "2026-09-28",
-      dateFormatted: "Senin, 28 Sep 2026",
-      originCode: "CGK",
-      originCity: "Jakarta",
-      originAirport: "Soekarno-Hatta (T2F)",
-      originTime: "19:30",
-      originTimezone: "WIB",
-      destinationCode: "SIN",
-      destinationCity: "Singapura",
-      destinationAirport: "Changi Airport (T4)",
-      destinationTime: "22:15",
-      destinationTimezone: "SGT",
-      duration: "1j 45m",
-      durationMinutes: 105,
-      flightType: "Langsung",
-      passenger: "1 Dewasa",
-      seatNumber: "12A (Window)",
-      cabinClass: "Ekonomi",
-      baggage: "Kabin 7 Kg",
-      facilities: JSON.stringify(["Kabin 7 kg Termasuk", "Pesan Makanan Tambahan", "Boarding Pass Digital"]),
-      tagText: "Harga Termurah",
-      tagType: "promo",
-      seatsLeft: 4,
-      originalPrice: 950000,
-      price: 775000,
-      note: "Penerbangan malam",
-    },
-    {
-      id: "t-6",
-      airline: "garuda",
-      airlineName: "Garuda Indonesia",
-      airlineCode: "GA",
-      flightCode: "GA-402 - Boeing 737-800 - Full Service",
-      aircraft: "Boeing 737-800",
-      serviceType: "Full Service",
-      date: "2026-09-27",
-      dateFormatted: "Minggu, 27 Sep 2026",
-      originCode: "CGK",
-      originCity: "Jakarta",
-      originAirport: "Soekarno-Hatta (T3)",
-      originTime: "07:15",
-      originTimezone: "WIB",
-      destinationCode: "SIN",
-      destinationCity: "Singapura",
-      destinationAirport: "Changi Airport (T3)",
-      destinationTime: "10:05",
-      destinationTimezone: "SGT",
-      duration: "1j 50m",
-      durationMinutes: 110,
-      flightType: "Langsung",
-      passenger: "1 Dewasa",
-      seatNumber: "11B (Aisle)",
-      cabinClass: "Ekonomi",
-      baggage: "20 Kg + Kabin 7 Kg",
-      facilities: JSON.stringify(["Bagasi 20 kg", "Makanan Termasuk", "Port USB"]),
-      tagText: "Pilihan Favorit",
-      tagType: "popular",
-      seatsLeft: 6,
-      originalPrice: 1350000,
-      price: 1150000,
-      note: "Penerbangan pagi",
-    },
-    {
-      id: "t-7",
-      airline: "citilink",
-      airlineName: "Citilink",
-      airlineCode: "QG",
-      flightCode: "QG-684 - Airbus A320 - Penerbangan Domestik",
-      aircraft: "Airbus A320",
-      serviceType: "Hemat",
-      date: "2026-09-29",
-      dateFormatted: "Selasa, 29 Sep 2026",
-      originCode: "CGK",
-      originCity: "Jakarta",
-      originAirport: "Soekarno-Hatta (T3)",
-      originTime: "09:30",
-      originTimezone: "WIB",
-      destinationCode: "SIN",
-      destinationCity: "Singapura",
-      destinationAirport: "Changi Airport (T4)",
-      destinationTime: "12:15",
-      destinationTimezone: "SGT",
-      duration: "1j 45m",
-      durationMinutes: 105,
-      flightType: "Langsung",
-      passenger: "1 Dewasa",
-      seatNumber: "16C (Aisle)",
-      cabinClass: "Ekonomi",
-      baggage: "20 Kg + Kabin 7 Kg",
-      facilities: JSON.stringify(["Bagasi 20 kg", "Check-in Online"]),
-      tagText: "Tarif Promo",
-      tagType: "promo",
-      seatsLeft: 5,
-      originalPrice: 1020000,
-      price: 890000,
-      note: "Penerbangan siang",
-    },
-  ]);
+  const ticketRows: (typeof tickets.$inferInsert)[] = [];
+  let idCounter = 1;
 
-  console.log("Database seeded successfully.");
+  for (const dateItem of DATE_CONFIGS) {
+    for (const dest of ROUTE_DESTINATIONS) {
+      const isInternational = dest.code === "SIN" || dest.code === "KUL";
+      const availableAirlines = isInternational
+        ? AIRLINES
+        : AIRLINES.filter((a) => a.key !== "singapore");
+
+      for (const airline of availableAirlines) {
+        for (const cabin of CABIN_CLASSES) {
+          if (
+            (airline.key === "airasia" || airline.key === "citilink") &&
+            cabin.name === "Bisnis"
+          ) {
+            continue;
+          }
+
+          const timeSlot = airline.times[idCounter % airline.times.length];
+          const rawPrice = Math.round((dest.basePrice * airline.priceFactor * cabin.mult * dateItem.mult) / 5000) * 5000;
+          const origPrice = Math.round((rawPrice * 1.15) / 5000) * 5000;
+
+          let tagText = undefined;
+          let tagType = undefined;
+          if (cabin.name === "Bisnis") {
+            tagText = "Kelas Premium";
+            tagType = "best";
+          } else if (dateItem.iso === "2026-09-28" && airline.key === "airasia" && cabin.name === "Ekonomi") {
+            tagText = "Harga Termurah";
+            tagType = "promo";
+          } else if (airline.key === "garuda") {
+            tagText = "Pilihan Favorit";
+            tagType = "popular";
+          }
+
+          ticketRows.push({
+            id: `t-${idCounter}`,
+            airline: airline.key,
+            airlineName: airline.name,
+            airlineCode: airline.code,
+            flightCode: `${airline.code}-${airline.flightNum + (idCounter % 50)} - ${airline.aircraft} - ${cabin.serviceType}`,
+            aircraft: airline.aircraft,
+            serviceType: cabin.serviceType,
+            date: dateItem.iso,
+            dateFormatted: dateItem.formatted,
+            originCode: "CGK",
+            originCity: "Jakarta",
+            originAirport: "Soekarno-Hatta (T3)",
+            originTime: timeSlot.dep,
+            originTimezone: "WIB",
+            destinationCode: dest.code,
+            destinationCity: dest.city,
+            destinationAirport: dest.airport,
+            destinationTime: timeSlot.arr,
+            destinationTimezone: dest.tz,
+            duration: dest.dur,
+            durationMinutes: dest.mins,
+            flightType: "Langsung",
+            passenger: "1 Dewasa",
+            seatNumber: `${cabin.seatRow}${idCounter % 2 === 0 ? "A (Window)" : "C (Aisle)"}`,
+            cabinClass: cabin.name,
+            baggage: cabin.baggage,
+            facilities: JSON.stringify(cabin.facilities),
+            tagText,
+            tagType,
+            seatsLeft: (idCounter % 6) + 2,
+            originalPrice: origPrice,
+            price: rawPrice,
+            note: cabin.name === "Bisnis" ? "Layanan prioritas" : "Konfirmasi instan",
+          });
+
+          idCounter++;
+
+          ticketRows.push({
+            id: `t-${idCounter}`,
+            airline: airline.key,
+            airlineName: airline.name,
+            airlineCode: airline.code,
+            flightCode: `${airline.code}-${airline.flightNum + 1 + (idCounter % 50)} - ${airline.aircraft} - ${cabin.serviceType}`,
+            aircraft: airline.aircraft,
+            serviceType: cabin.serviceType,
+            date: dateItem.iso,
+            dateFormatted: dateItem.formatted,
+            originCode: dest.code,
+            originCity: dest.city,
+            originAirport: dest.airport,
+            originTime: timeSlot.dep,
+            originTimezone: dest.tz,
+            destinationCode: "CGK",
+            destinationCity: "Jakarta",
+            destinationAirport: "Soekarno-Hatta (T3)",
+            destinationTime: timeSlot.arr,
+            destinationTimezone: "WIB",
+            duration: dest.dur,
+            durationMinutes: dest.mins,
+            flightType: "Langsung",
+            passenger: "1 Dewasa",
+            seatNumber: `${cabin.seatRow}${idCounter % 2 === 0 ? "B (Middle)" : "D (Aisle)"}`,
+            cabinClass: cabin.name,
+            baggage: cabin.baggage,
+            facilities: JSON.stringify(cabin.facilities),
+            tagText,
+            tagType,
+            seatsLeft: (idCounter % 5) + 3,
+            originalPrice: origPrice,
+            price: rawPrice,
+            note: "Penerbangan balik",
+          });
+
+          idCounter++;
+        }
+      }
+    }
+  }
+
+  await db.insert(tickets).values(ticketRows);
+  console.log(`Database seeded with ${ticketRows.length} tickets connecting all cities.`);
 }
 
 seed().catch((err) => {
