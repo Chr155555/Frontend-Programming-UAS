@@ -85,4 +85,51 @@ export const users = sqliteTable("users", {
     createdAt: text("created_at").$defaultFn(() => new Date().toISOString()),
 });
 
+export const destinations = sqliteTable("destinations", {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    destinationLink: text("destination_link").notNull().unique(),
+    name: text("name").notNull(),
+    regionGroup: text("region_group").notNull(),
+    coverImage: text("cover_image").notNull(),
+});
 
+export const packages = sqliteTable("packages", {
+    id: text("id").primaryKey(),
+    destinationId: integer("destination_id").notNull().references(() => destinations.id),
+    badge: text("badge").notNull(),
+    title: text("title").notNull(),
+    rating: text("rating").notNull(),
+    reviewsCount: integer("reviews_count").notNull(),
+    duration: text("duration").notNull(),
+    coverImage: text("cover_image").notNull(),
+    galleryImages: text("gallery_images").notNull(), // JSON string array
+    specs: text("specs").notNull(), // JSON string array
+    price: text("price").notNull(),
+
+    hotelName: text("hotel_name").notNull(),
+    hotelStars: text("hotel_stars").notNull(),
+    hotelRating: text("hotel_rating").notNull(),
+    hotelReviews: integer("hotel_reviews").notNull(),
+    hotelImage: text("hotel_image").notNull(),
+    hotelFacilities: text("hotel_facilities").notNull(), // JSON string array
+    roomType: text("room_type").notNull(),
+
+    outboundFlight: text("outbound_flight").notNull(), // JSON string object
+    returnFlight: text("return_flight").notNull(), // JSON string object
+
+    features: text("features").notNull(), // JSON string array
+    policies: text("policies").notNull(), // JSON string array
+});
+
+export const paketBookings = sqliteTable("paket_bookings", {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    orderId: text("order_id").notNull().unique(),
+    destinationLink: text("destination_link").notNull(),
+    packageId: text("package_id").notNull(),
+    packageTitle: text("package_title").notNull(),
+    guestName: text("guest_name").notNull(),
+    paymentMethod: text("payment_method").notNull(),
+    totalPrice: integer("total_price").notNull(),
+    status: text("status").notNull().default("diverifikasi"),
+    createdAt: text("created_at").$defaultFn(() => new Date().toISOString()),
+});
