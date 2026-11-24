@@ -13,16 +13,16 @@ interface PackageFavorite {
 
 const FAVORITE_PACKAGES: PackageFavorite[] = [
     {
-        id: 7,
-        name: "Malaysia",
-        image: "/paket/destinasi/kl.jpg",
-        link: "/paket",
+        id: 1,
+        name: "Yogyakarta",
+        image: "/paket/destinasi/gunungkidul.jpeg",
+        link: "/paket/yogyakarta",
     },
     {
-        id: 8,
-        name: "Hong Kong",
-        image: "/paket/destinasi/hongkong.jpg",
-        link: "/paket",
+        id: 2,
+        name: "Bali",
+        image: "/paket/destinasi/ulundanu.jpeg",
+        link: "/paket/bali",
     },
 ];
 
