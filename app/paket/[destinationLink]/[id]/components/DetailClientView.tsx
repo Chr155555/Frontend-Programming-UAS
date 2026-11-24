@@ -213,16 +213,18 @@ export default function DetailClientView({ destination, pkg }: Props) {
         </section>
 
         <CheckoutModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        pkgTitle={pkg.title}
-        hotelName={pkg.hotelName}
-        price={pkg.price}
-        destinationName={destination.name}
-        outboundDate={pkg.outboundFlight.date}
-        returnDate={pkg.returnFlight.date}
-        airline={pkg.outboundFlight.airline}
-        />
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            destinationLink={destination.destinationLink} 
+            packageId={pkg.id}
+            pkgTitle={pkg.title}
+            hotelName={pkg.hotelName}
+            price={pkg.price}
+            destinationName={destination.name}
+            outboundDate={pkg.outboundFlight.date}
+            returnDate={pkg.returnFlight.date}
+            airline={pkg.outboundFlight.airline} 
+            />
     </main>
   );
 }

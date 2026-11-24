@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import styles from "../detail_paket.module.css";
 
 interface CheckoutModalProps {
@@ -12,6 +13,8 @@ interface CheckoutModalProps {
   outboundDate: string;
   returnDate: string;
   airline: string;
+  destinationLink: string;
+  packageId: string;
 }
 
 export default function CheckoutModal({
@@ -23,8 +26,18 @@ export default function CheckoutModal({
   outboundDate,
   returnDate,
   airline,
+  destinationLink,
+  packageId,
 }: CheckoutModalProps) {
+  const router = useRouter();
+
   if (!isOpen) return null;
+
+  const handleProceedToPayment = () => {
+    const numericPrice = price.replace(/[^0-9]/g, "");
+    
+    router.push(`/paket/${destinationLink}/${packageId}/pembayaran?total=${numericPrice}`);
+  };
 
   return (
     <div className={`${styles["modal-backdrop"]} ${styles.active}`} aria-hidden="false">
@@ -34,8 +47,8 @@ export default function CheckoutModal({
             <polyline points="20 6 9 17 4 12"></polyline>
           </svg>
         </div>
-        <h3 className={styles["modal-title"]}>Konfirmasi Paket</h3>
-        <p className={styles["modal-desc"]}>Pastikan rincian paket perjalanan Anda sudah sesuai.</p>
+        <h3 className={styles["modal-title"]}>Konfirmasi Pemesanan</h3>
+        <p className={styles["modal-desc"]}>Pastikan rincian paket perjalanan Anda sudah sesuai sebelum lanjut ke halaman pembayaran.</p>
         
         <div className={styles["modal-summary-box"]}>
           <div className={styles["modal-summary-row"]}>
@@ -54,6 +67,10 @@ export default function CheckoutModal({
             <span>Pesawat:</span>
             <strong>{airline}</strong>
           </div>
+          <div className={styles["modal-summary-row"]}>
+            <span>Wisatawan:</span>
+            <strong>Budi Santoso (Tuan)</strong>
+          </div>
           <div className={`${styles["modal-summary-row"]} ${styles.total}`}>
             <span>Total Biaya:</span>
             <strong>{price}</strong>
@@ -67,7 +84,7 @@ export default function CheckoutModal({
           <button 
             type="button" 
             className={styles["btn-modal-confirm"]} 
-            onClick={() => alert("Pembayaran Berhasil!")}
+            onClick={handleProceedToPayment}
           >
             Bayar Sekarang
           </button>
