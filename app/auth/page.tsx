@@ -2,17 +2,19 @@
 
 import { Suspense, useState } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./auth.module.css";
 
 type Mode = "login" | "register";
 
 function AuthForm() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const [mode, setMode] = useState<Mode>(
     searchParams.get("mode") === "register" ? "register" : "login"
   );
   const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [form, setForm] = useState({
     nama: "",
     email: "",
@@ -20,6 +22,7 @@ function AuthForm() {
     konfirmasi: "",
   });
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
 
   const isLogin = mode === "login";
 
@@ -30,16 +33,58 @@ function AuthForm() {
   const switchMode = (m: Mode) => {
     setMode(m);
     setError("");
+    setSuccess("");
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
+    setSuccess("");
+
     if (!isLogin && form.password !== form.konfirmasi) {
       setError("Konfirmasi password tidak sama.");
       return;
     }
-    setError("");
-    alert(isLogin ? "Login berhasil (demo)" : "Akun berhasil dibuat (demo)");
+
+    setLoading(true);
+    try {
+      const endpoint = isLogin ? "/api/auth/login" : "/api/auth/register";
+      const payload = isLogin
+        ? { email: form.email, password: form.password }
+        : { nama: form.nama, email: form.email, password: form.password };
+
+      const res = await fetch(endpoint, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        setError(data.error || "Terjadi kesalahan.");
+        return;
+      }
+
+      if (data.user) {
+        localStorage.setItem("tiketku_user", JSON.stringify(data.user));
+        window.dispatchEvent(new Event("tiketku-auth-change"));
+      }
+
+      setSuccess(
+        isLogin
+          ? "Login berhasil! Mengalihkan ke beranda..."
+          : "Akun berhasil dibuat & masuk! Mengalihkan ke beranda..."
+      );
+
+      setTimeout(() => {
+        router.push("/");
+      }, 600);
+    } catch {
+      setError("Gagal terhubung ke server.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -144,9 +189,10 @@ function AuthForm() {
           </div>
 
           {error && <div className="alert alert-danger py-2">{error}</div>}
+          {success && <div className="alert alert-success py-2">{success}</div>}
 
-          <button type="submit" className={styles.submit}>
-            {isLogin ? "Masuk" : "Daftar"}
+          <button type="submit" className={styles.submit} disabled={loading}>
+            {loading ? "Memproses..." : isLogin ? "Masuk" : "Daftar"}
           </button>
         </form>
 
