@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import Link from "next/link";
 import styles from "../hotel.module.css";
@@ -86,6 +86,18 @@ export const HOTELS_DATA: HotelItem[] = [
   },
 ];
 
+interface ApiHotelItem {
+  id: number;
+  name: string;
+  city: string;
+  location: string;
+  image: string;
+  rating: number | string;
+  reviewsCount: number;
+  priceFormatted: string;
+  facilities: string[];
+}
+
 interface HotelWorkSectionProps {
   filterCity?: string;
 }
@@ -96,10 +108,33 @@ export default function HotelWorkSection({
   const [selectedCity, setSelectedCity] = useState<string>(
     filterCity || "Semua",
   );
+  const [hotelsList, setHotelsList] = useState<HotelItem[]>(HOTELS_DATA);
+
+  useEffect(() => {
+    fetch("/api/hotels")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data) && data.length > 0) {
+          const mapped: HotelItem[] = data.map((h: ApiHotelItem) => ({
+            id: h.id,
+            name: h.name,
+            city: h.city,
+            location: h.location,
+            image: h.image,
+            rating: typeof h.rating === "number" ? h.rating : parseFloat(h.rating),
+            reviewsCount: h.reviewsCount,
+            price: h.priceFormatted,
+            facilities: Array.isArray(h.facilities) ? h.facilities : [],
+          }));
+          setHotelsList(mapped);
+        }
+      })
+      .catch(() => {});
+  }, []);
 
   const cities = ["Semua", "Jakarta", "Bandung", "Bogor", "Surabaya", "Bali"];
 
-  const filteredHotels = HOTELS_DATA.filter((hotel) => {
+  const filteredHotels = hotelsList.filter((hotel) => {
     if (selectedCity === "Semua") return true;
     return hotel.city.toLowerCase() === selectedCity.toLowerCase();
   });

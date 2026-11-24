@@ -1,5 +1,6 @@
 import { db } from "./index";
-import { cities, tickets } from "./schema";
+import { cities, tickets, hotels } from "./schema";
+import { HOTELS_LIST } from "../app/hotel/data/hotels";
 
 const CITIES_DATA = [
   { code: "CGK", city: "Jakarta", airport: "Soekarno-Hatta (T3)" },
@@ -47,6 +48,7 @@ const CABIN_CLASSES = [
 async function seed() {
   await db.delete(cities);
   await db.delete(tickets);
+  await db.delete(hotels);
 
   await db.insert(cities).values(CITIES_DATA);
 
@@ -167,7 +169,29 @@ async function seed() {
   }
 
   await db.insert(tickets).values(ticketRows);
-  console.log(`Database seeded with ${ticketRows.length} tickets connecting all cities.`);
+
+  const hotelRows = HOTELS_LIST.map((h) => ({
+    id: h.id,
+    name: h.name,
+    badge: h.badge,
+    city: h.city,
+    location: h.location,
+    rating: h.rating.toString(),
+    reviewsCount: h.reviewsCount,
+    image: h.image,
+    subImages: JSON.stringify(h.subImages),
+    specs: JSON.stringify(h.specs),
+    discount: h.discount,
+    oldPrice: h.oldPrice,
+    priceNum: h.priceNum,
+    priceFormatted: h.priceFormatted,
+    pricePer: h.pricePer,
+    facilities: JSON.stringify(h.facilities),
+    highlights: JSON.stringify(h.highlights),
+  }));
+
+  await db.insert(hotels).values(hotelRows);
+  console.log(`Database seeded with ${ticketRows.length} tickets and ${hotelRows.length} hotels.`);
 }
 
 seed().catch((err) => {

@@ -48,6 +48,29 @@ function HotelPembayaranContent() {
         PAYMENT_METHODS.find((m) => m.id === selectedMethodId) ||
         PAYMENT_METHODS[0];
 
+    const handleConfirmPayment = async () => {
+        try {
+            await fetch("/api/hotels/booking", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    orderId: summary.orderId,
+                    hotelId: hotel.id,
+                    hotelName: hotel.name,
+                    hotelLocation: hotel.location,
+                    roomBrief: summary.roomBrief,
+                    guestName: "Budi Santoso (Tuan)",
+                    hasBreakfast,
+                    paymentMethod: activeMethod.name,
+                    totalPrice: summary.totalPrice,
+                }),
+            });
+        } catch (e) {
+            console.error("Booking error:", e);
+        }
+        setIsSuccessModalOpen(true);
+    };
+
     return (
         <div style={{ backgroundColor: "#f1f5f9", minHeight: "calc(100vh - 60px)" }}>
             <main className={styles.pageWrapper}>
@@ -87,7 +110,7 @@ function HotelPembayaranContent() {
 
                     <OrderSummarySidebar
                         summary={summary}
-                        onConfirmPayment={() => setIsSuccessModalOpen(true)}
+                        onConfirmPayment={handleConfirmPayment}
                     />
                 </div>
 

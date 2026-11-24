@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { notFound, useParams } from "next/navigation";
 import { HOTELS_LIST } from "../data/hotels";
@@ -10,7 +10,21 @@ export default function HotelDetailPage() {
     const params = useParams();
     const id = params?.id as string;
     const hotelId = parseInt(id, 10);
-    const hotel = HOTELS_LIST.find((h) => h.id === hotelId);
+    const initialHotel = HOTELS_LIST.find((h) => h.id === hotelId);
+
+    const [hotel, setHotel] = useState(initialHotel);
+
+    useEffect(() => {
+        if (!hotelId) return;
+        fetch(`/api/hotels/${hotelId}`)
+            .then((r) => r.json())
+            .then((data) => {
+                if (data && !data.error) {
+                    setHotel(data);
+                }
+            })
+            .catch(() => {});
+    }, [hotelId]);
 
     if (!hotel) {
         notFound();

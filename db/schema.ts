@@ -41,3 +41,39 @@ export const tickets = sqliteTable("tickets", {
   price: integer("price").notNull(),
   note: text("note").notNull(),
 });
+
+export const hotels = sqliteTable("hotels", {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    name: text("name").notNull(),
+    badge: text("badge").notNull(),
+    city: text("city").notNull(),
+    location: text("location").notNull(),
+    rating: text("rating").notNull(),
+    reviewsCount: integer("reviews_count").notNull(),
+    image: text("image").notNull(),
+    subImages: text("sub_images").notNull(),
+    specs: text("specs").notNull(),
+    discount: text("discount"),
+    oldPrice: text("old_price"),
+    priceNum: integer("price_num").notNull(),
+    priceFormatted: text("price_formatted").notNull(),
+    pricePer: text("price_per").notNull(),
+    facilities: text("facilities").notNull(),
+    highlights: text("highlights").notNull(),
+});
+
+export const hotelBookings = sqliteTable("hotel_bookings", {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    orderId: text("order_id").notNull().unique(),
+    hotelId: integer("hotel_id").notNull(),
+    hotelName: text("hotel_name").notNull(),
+    hotelLocation: text("hotel_location").notNull(),
+    roomBrief: text("room_brief").notNull(),
+    guestName: text("guest_name").notNull(),
+    hasBreakfast: integer("has_breakfast").notNull().default(0),
+    paymentMethod: text("payment_method").notNull(),
+    totalPrice: integer("total_price").notNull(),
+    status: text("status").notNull().default("diverifikasi"),
+    createdAt: text("created_at").$defaultFn(() => new Date().toISOString()),
+});
+
