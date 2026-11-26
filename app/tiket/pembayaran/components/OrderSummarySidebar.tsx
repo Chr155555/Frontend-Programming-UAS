@@ -32,11 +32,16 @@ export const OrderSummarySidebar: React.FC<OrderSummarySidebarProps> = ({
         <div className={styles.summaryFlightBrief}>
           <span className={styles.flightRouteText}>{summary.routeText}</span>
           <span className={styles.flightClassText}>{summary.flightBrief}</span>
+          {summary.dateText && (
+            <span style={{ fontSize: "12px", color: "#64748b", marginTop: "2px", display: "block" }}>
+              {summary.dateText}
+            </span>
+          )}
         </div>
 
         <div className={styles.summaryList}>
           <div className={styles.summaryRow}>
-            <span>Tiket Pesawat (PP)</span>
+            <span>Tiket Pesawat (Sekali Jalan)</span>
             <span>{formatRupiah(summary.ticketPrice)}</span>
           </div>
           <div className={styles.summaryRow}>
@@ -98,9 +103,9 @@ export const OrderSummarySidebar: React.FC<OrderSummarySidebarProps> = ({
             strokeLinecap="round"
             strokeLinejoin="round"
           >
-            <polyline points="20 6 9 17 4 12"></polyline>
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
           </svg>
-          <span>E-Tiket Otomatis Dikirim ke Email</span>
+          <span>Jaminan Tiket Asli & Konfirmasi Otomatis</span>
         </div>
       </div>
     </aside>

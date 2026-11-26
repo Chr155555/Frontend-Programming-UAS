@@ -4,7 +4,13 @@ import React from "react";
 import Link from "next/link";
 import styles from "../pembayaran.module.css";
 
-export const BookingStepper: React.FC = () => {
+interface BookingStepperProps {
+  ticketId?: string;
+}
+
+export const BookingStepper: React.FC<BookingStepperProps> = ({ ticketId }) => {
+  const detailLink = ticketId ? `/tiket/${ticketId}` : "/tiket/detail";
+
   return (
     <nav className={styles.bookingStepper} aria-label="Alur Pemesanan">
       <Link
@@ -35,7 +41,7 @@ export const BookingStepper: React.FC = () => {
       <div className={`${styles.stepDivider} ${styles.stepDividerCompleted}`}></div>
 
       <Link
-        href="/tiket/detail"
+        href={detailLink}
         className={`${styles.stepItem} ${styles.stepItemClickable}`}
         title="Kembali ke Detail & Harga"
       >
