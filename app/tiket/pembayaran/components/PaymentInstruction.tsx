@@ -6,12 +6,24 @@ import { PaymentMethod } from "../types";
 
 interface PaymentInstructionProps {
   method: PaymentMethod;
+  totalPrice?: number;
 }
 
 export const PaymentInstruction: React.FC<PaymentInstructionProps> = ({
   method,
+  totalPrice,
 }) => {
   const [copied, setCopied] = useState<boolean>(false);
+
+  const formatRupiah = (val: number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      maximumFractionDigits: 0,
+    }).format(val);
+  };
+
+  const formattedTotal = totalPrice ? formatRupiah(totalPrice) : "";
 
   const handleCopy = () => {
     if (method.accountNumber) {
@@ -20,6 +32,13 @@ export const PaymentInstruction: React.FC<PaymentInstructionProps> = ({
       setTimeout(() => setCopied(false), 2000);
     }
   };
+
+  const steps = method.instructions.map((step) => {
+    if (formattedTotal && step.includes("2.995.000")) {
+      return step.replace(/Rp\s*2\.995\.000/g, formattedTotal);
+    }
+    return step;
+  });
 
   return (
     <section className={styles.paymentSectionCard}>
@@ -51,7 +70,7 @@ export const PaymentInstruction: React.FC<PaymentInstructionProps> = ({
       )}
 
       <ol className={styles.stepGuideList}>
-        {method.instructions.map((step, idx) => (
+        {steps.map((step, idx) => (
           <li key={idx}>{step}</li>
         ))}
       </ol>

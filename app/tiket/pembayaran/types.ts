@@ -16,4 +16,6 @@ export interface OrderSummary {
   ticketPrice: number;
   systemFee: number;
   totalPrice: number;
+  ticketId?: string;
+  dateText?: string;
 }
