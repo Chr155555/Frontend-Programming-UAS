@@ -63,44 +63,46 @@ export default function Header() {
                     </Nav>
 
                     <div className="d-flex align-items-center gap-3 mt-3 mt-lg-0">
-                        <Link href="/inbox">
-                            <Button variant="secondary">
-                                <i className="bi bi-envelope-fill"></i>
-                            </Button>
-                        </Link>
-
                         {user ? (
-                            <Dropdown align="end">
-                                <Dropdown.Toggle
-                                    variant="primary"
-                                    id="dropdown-profil"
-                                    className="d-flex align-items-center gap-2"
-                                >
-                                    <i className="bi bi-person-fill"></i>
-                                    <span>{user.nama}</span>
-                                </Dropdown.Toggle>
+                            <>
+                                <Link href="/inbox">
+                                    <Button variant="secondary">
+                                        <i className="bi bi-envelope-fill"></i>
+                                    </Button>
+                                </Link>
 
-                                <Dropdown.Menu className="shadow border-0 rounded-3 mt-2">
-                                    <div className="px-3 py-2 border-bottom">
-                                        <div className="fw-semibold">{user.nama}</div>
-                                        <div className="text-muted small">{user.email}</div>
-                                    </div>
-                                    <Dropdown.Item as={Link} href="/profil">
-                                        <i className="bi bi-person me-2"></i>Profil
-                                    </Dropdown.Item>
-                                    <Dropdown.Item as={Link} href="/favorite">
-                                        <i className="bi bi-heart me-2"></i>Favorite
-                                    </Dropdown.Item>
-                                    <Dropdown.Divider />
-                                    <Dropdown.Item
-                                        onClick={handleLogout}
-                                        className="text-danger"
+                                <Dropdown align="end">
+                                    <Dropdown.Toggle
+                                        variant="primary"
+                                        id="dropdown-profil"
+                                        className="d-flex align-items-center gap-2"
                                     >
-                                        <i className="bi bi-box-arrow-right me-2"></i>
-                                        Keluar (Logout)
-                                    </Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
+                                        <i className="bi bi-person-fill"></i>
+                                        <span>{user.nama}</span>
+                                    </Dropdown.Toggle>
+
+                                    <Dropdown.Menu className="shadow border-0 rounded-3 mt-2">
+                                        <div className="px-3 py-2 border-bottom">
+                                            <div className="fw-semibold">{user.nama}</div>
+                                            <div className="text-muted small">{user.email}</div>
+                                        </div>
+                                        <Dropdown.Item as={Link} href="/profil">
+                                            <i className="bi bi-person me-2"></i>Profil
+                                        </Dropdown.Item>
+                                        <Dropdown.Item as={Link} href="/favorite">
+                                            <i className="bi bi-heart me-2"></i>Favorite
+                                        </Dropdown.Item>
+                                        <Dropdown.Divider />
+                                        <Dropdown.Item
+                                            onClick={handleLogout}
+                                            className="text-danger"
+                                        >
+                                            <i className="bi bi-box-arrow-right me-2"></i>
+                                            Keluar (Logout)
+                                        </Dropdown.Item>
+                                    </Dropdown.Menu>
+                                </Dropdown>
+                            </>
                         ) : (
                             <>
                                 <Link
@@ -124,4 +126,3 @@ export default function Header() {
         </Navbar>
     );
 }
-
