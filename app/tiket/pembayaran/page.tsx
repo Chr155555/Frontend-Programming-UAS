@@ -17,10 +17,14 @@ function PembayaranContent() {
   const searchParams = useSearchParams();
   const ticketId = searchParams.get("id");
   const totalParam = searchParams.get("total");
+  const addonsParam = searchParams.get("addons");
+  const discountParam = searchParams.get("discount");
 
+  const [ticketData, setTicketData] = useState<Ticket | null>(null);
   const [orderSummary, setOrderSummary] = useState<OrderSummary>(ORDER_SUMMARY);
   const [selectedMethodId, setSelectedMethodId] = useState<PaymentMethodId>("bca");
   const [isSuccessModalOpen, setIsSuccessModalOpen] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   useEffect(() => {
     if (!ticketId) return;
@@ -30,15 +34,23 @@ function PembayaranContent() {
       .then((res) => {
         if (res.success && res.data) {
           const t: Ticket = res.data;
-          const parsedTotal = totalParam ? parseInt(totalParam, 10) : t.price + 25000;
-          const randomOrderCode = `TK-${t.origin.code}${t.destination.code}-${t.id.replace("t-", "")}`;
+          setTicketData(t);
+          const addonsTotal = addonsParam ? parseInt(addonsParam, 10) || 0 : 0;
+          const discount = discountParam ? parseInt(discountParam, 10) || 0 : 0;
+          const parsedTotal = totalParam
+            ? parseInt(totalParam, 10)
+            : Math.max(0, t.price + 25000 + addonsTotal - discount);
+          const uniqueSuffix = String(Date.now()).slice(-4);
+          const orderCode = `TK-${t.origin.code}${t.destination.code}-${t.id.replace("t-", "")}-${uniqueSuffix}`;
 
           setOrderSummary({
-            orderId: randomOrderCode,
+            orderId: orderCode,
             routeText: `${t.origin.city} (${t.origin.code}) → ${t.destination.city} (${t.destination.code})`,
             flightBrief: `${t.airlineName} • 1 Penumpang, ${t.cabinClass}`,
             ticketPrice: t.price,
             systemFee: 25000,
+            addonsTotal,
+            discount,
             totalPrice: parsedTotal,
             ticketId: t.id,
             dateText: t.date,
@@ -46,11 +58,57 @@ function PembayaranContent() {
         }
       })
       .catch(() => {});
-  }, [ticketId, totalParam]);
+  }, [ticketId, totalParam, addonsParam, discountParam]);
 
   const activeMethod =
     PAYMENT_METHODS.find((m) => m.id === selectedMethodId) ||
     PAYMENT_METHODS[0];
+
+  const handleConfirmPayment = async () => {
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+
+    let passengerName = "Budi Santoso (Tuan)";
+    try {
+      const storedUser = localStorage.getItem("tiketku_user");
+      if (storedUser) {
+        const parsedUser = JSON.parse(storedUser);
+        if (parsedUser?.nama) {
+          passengerName = parsedUser.nama;
+        }
+      }
+    } catch {}
+
+    try {
+      await fetch("/api/tickets/booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          orderId: orderSummary.orderId,
+          ticketId: ticketData?.id || ticketId || "t-1",
+          airline: ticketData?.airline || "garuda",
+          airlineName: ticketData?.airlineName || "Garuda Indonesia",
+          airlineCode: ticketData?.airlineCode || "GA",
+          flightCode: ticketData?.flightCode || "GA-820 - Boeing 737-800 - Full Service",
+          originCode: ticketData?.origin.code || "CGK",
+          originCity: ticketData?.origin.city || "Jakarta",
+          originTime: ticketData?.origin.time || "08:00",
+          destinationCode: ticketData?.destination.code || "SIN",
+          destinationCity: ticketData?.destination.city || "Singapura",
+          destinationTime: ticketData?.destination.time || "10:50",
+          dateFormatted: ticketData?.date || "Senin, 28 Sep 2026",
+          passenger: ticketData?.passenger || "1 Dewasa",
+          cabinClass: ticketData?.cabinClass || "Ekonomi",
+          passengerName,
+          paymentMethod: activeMethod.name,
+          totalPrice: orderSummary.totalPrice,
+        }),
+      });
+    } catch {}
+
+    setIsSubmitting(false);
+    setIsSuccessModalOpen(true);
+  };
 
   return (
     <div style={{ backgroundColor: "#f1f5f9", minHeight: "calc(100vh - 60px)" }}>
@@ -75,7 +133,8 @@ function PembayaranContent() {
 
           <OrderSummarySidebar
             summary={orderSummary}
-            onConfirmPayment={() => setIsSuccessModalOpen(true)}
+            onConfirmPayment={handleConfirmPayment}
+            isSubmitting={isSubmitting}
           />
         </div>
 

@@ -222,7 +222,7 @@ export default function TicketDetailDynamicPage() {
           routeText={`${routeSummary} (Sekali Jalan)`}
           passengerName={PASSENGER_DATA.name}
           totalPrice={totalPrice}
-          paymentUrl={`/tiket/pembayaran?id=${ticket.id}&total=${totalPrice}`}
+          paymentUrl={`/tiket/pembayaran?id=${ticket.id}&total=${totalPrice}&addons=${addonsTotal}&discount=${discount}`}
         />
       </main>
     </div>
