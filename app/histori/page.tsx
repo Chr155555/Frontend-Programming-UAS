@@ -32,10 +32,34 @@ interface HotelHistoryItem {
     status: "Berhasil" | "Dibatalkan" | "Diverifikasi";
 }
 
+interface TicketBookingRecord {
+    id: number;
+    orderId: string;
+    ticketId: string;
+    airline: string;
+    airlineName: string;
+    airlineCode: string;
+    flightCode: string;
+    originCode: string;
+    originCity: string;
+    originTime: string;
+    destinationCode: string;
+    destinationCity: string;
+    destinationTime: string;
+    dateFormatted: string;
+    passenger: string;
+    cabinClass: string;
+    passengerName: string;
+    paymentMethod: string;
+    totalPrice: number;
+    status: string;
+    createdAt: string;
+}
+
 interface FlightHistoryItem {
     key: string;
     badge: string;
-    badgeClass: "garuda" | "singapore" | "batik";
+    badgeClass: "garuda" | "singapore" | "batik" | "citilink" | "airasia";
     airline: string;
     codeInfo: string;
     depTime: string;
@@ -45,8 +69,10 @@ interface FlightHistoryItem {
     arrCode: string;
     arrCity: string;
     dateInfo: string;
+    orderId?: string;
+    paymentMethod?: string;
     total: string;
-    status: "Berhasil";
+    status: "Berhasil" | "Diverifikasi" | "Dibatalkan";
 }
 
 interface PackageHistoryItem {
@@ -169,6 +195,7 @@ const STATIC_FLIGHT_HISTORY: FlightHistoryItem[] = [
 
 export default function HistoriPage() {
     const [dbBookings, setDbBookings] = useState<HotelHistoryItem[]>([]);
+    const [dbFlightBookings, setDbFlightBookings] = useState<FlightHistoryItem[]>([]);
 
     useEffect(() => {
         fetch("/api/hotels/booking")
@@ -195,9 +222,48 @@ export default function HistoriPage() {
                 }
             })
             .catch(() => {});
+
+        fetch("/api/tickets/booking")
+            .then((res) => res.json())
+            .then((data: TicketBookingRecord[]) => {
+                if (Array.isArray(data) && data.length > 0) {
+                    const validBadges = ["garuda", "singapore", "batik", "citilink", "airasia"];
+                    const mapped: FlightHistoryItem[] = data.map((item) => {
+                        const badgeClass = (validBadges.includes(item.airline)
+                            ? item.airline
+                            : "garuda") as FlightHistoryItem["badgeClass"];
+                        return {
+                            key: `db-flight-${item.id}`,
+                            badge: item.airlineCode,
+                            badgeClass,
+                            airline: item.airlineName,
+                            codeInfo: item.flightCode,
+                            depTime: item.originTime,
+                            depCode: item.originCode,
+                            depCity: item.originCity,
+                            arrTime: item.destinationTime,
+                            arrCode: item.destinationCode,
+                            arrCity: item.destinationCity,
+                            dateInfo: `${item.dateFormatted} - ${item.passenger} (${item.passengerName}) - ${item.cabinClass}`,
+                            orderId: item.orderId,
+                            paymentMethod: item.paymentMethod,
+                            total: `Rp ${item.totalPrice.toLocaleString("id-ID")}`,
+                            status:
+                                item.status === "berhasil"
+                                    ? "Berhasil"
+                                    : item.status === "dibatalkan"
+                                    ? "Dibatalkan"
+                                    : "Diverifikasi",
+                        };
+                    });
+                    setDbFlightBookings(mapped);
+                }
+            })
+            .catch(() => {});
     }, []);
 
     const allHotelHistory = [...dbBookings, ...STATIC_HOTEL_HISTORY];
+    const allFlightHistory = [...dbFlightBookings, ...STATIC_FLIGHT_HISTORY];
 
     const getStatusClass = (status: HotelHistoryItem["status"]) => {
         if (status === "Berhasil") return styles.berhasil;
@@ -271,7 +337,7 @@ export default function HistoriPage() {
                         <p>Semua pemesanan tiket pesawat yang kamu lakukan</p>
                     </div>
                     <div className={styles.flightHistoryList}>
-                        {STATIC_FLIGHT_HISTORY.map((flight) => (
+                        {allFlightHistory.map((flight) => (
                             <div key={flight.key} className={styles.flightHistoryCard}>
                                 <div className={`${styles.airlineBadge} ${styles[flight.badgeClass]}`}>
                                     {flight.badge}
@@ -295,11 +361,17 @@ export default function HistoriPage() {
                                         </div>
                                     </div>
                                     <p className={styles.flightDateHistory}>{flight.dateInfo}</p>
+                                    {flight.orderId && (
+                                        <p className={styles.historyId}>
+                                            ID Pesanan: {flight.orderId}
+                                            {flight.paymentMethod ? ` • ${flight.paymentMethod}` : ""}
+                                        </p>
+                                    )}
                                 </div>
                                 <div className={styles.flightHistoryPrice}>
                                     <p>Total Pembayaran</p>
                                     <h3>{flight.total}</h3>
-                                    <span className={`${styles.flightStatus} ${styles.berhasil}`}>
+                                    <span className={`${styles.flightStatus} ${getStatusClass(flight.status)}`}>
                                         {flight.status}
                                     </span>
                                 </div>

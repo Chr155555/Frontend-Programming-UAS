@@ -259,6 +259,18 @@
     border: 1px solid #fecdd3;
 }
 
+.citilink {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #bbf7d0;
+}
+
+.airasia {
+    background: #fee2e2;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
 .flightHistoryInfo {
     flex: 1;
 }

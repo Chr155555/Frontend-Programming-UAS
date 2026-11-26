@@ -133,3 +133,27 @@ export const paketBookings = sqliteTable("paket_bookings", {
     status: text("status").notNull().default("diverifikasi"),
     createdAt: text("created_at").$defaultFn(() => new Date().toISOString()),
 });
+
+export const ticketBookings = sqliteTable("ticket_bookings", {
+  id: integer("id").primaryKey({ autoIncrement: true }),
+  orderId: text("order_id").notNull().unique(),
+  ticketId: text("ticket_id").notNull(),
+  airline: text("airline").notNull(),
+  airlineName: text("airline_name").notNull(),
+  airlineCode: text("airline_code").notNull(),
+  flightCode: text("flight_code").notNull(),
+  originCode: text("origin_code").notNull(),
+  originCity: text("origin_city").notNull(),
+  originTime: text("origin_time").notNull(),
+  destinationCode: text("destination_code").notNull(),
+  destinationCity: text("destination_city").notNull(),
+  destinationTime: text("destination_time").notNull(),
+  dateFormatted: text("date_formatted").notNull(),
+  passenger: text("passenger").notNull(),
+  cabinClass: text("cabin_class").notNull(),
+  passengerName: text("passenger_name").notNull(),
+  paymentMethod: text("payment_method").notNull(),
+  totalPrice: integer("total_price").notNull(),
+  status: text("status").notNull().default("diverifikasi"),
+  createdAt: text("created_at").$defaultFn(() => new Date().toISOString()),
+});

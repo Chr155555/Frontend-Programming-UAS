@@ -15,6 +15,8 @@ export interface OrderSummary {
   flightBrief: string;
   ticketPrice: number;
   systemFee: number;
+  addonsTotal?: number;
+  discount?: number;
   totalPrice: number;
   ticketId?: string;
   dateText?: string;

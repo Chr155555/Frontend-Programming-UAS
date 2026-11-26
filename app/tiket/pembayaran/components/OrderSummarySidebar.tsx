@@ -7,11 +7,13 @@ import { OrderSummary } from "../types";
 interface OrderSummarySidebarProps {
   summary: OrderSummary;
   onConfirmPayment: () => void;
+  isSubmitting?: boolean;
 }
 
 export const OrderSummarySidebar: React.FC<OrderSummarySidebarProps> = ({
   summary,
   onConfirmPayment,
+  isSubmitting = false,
 }) => {
   const formatRupiah = (val: number) => {
     return new Intl.NumberFormat("id-ID", {
@@ -44,6 +46,12 @@ export const OrderSummarySidebar: React.FC<OrderSummarySidebarProps> = ({
             <span>Tiket Pesawat (Sekali Jalan)</span>
             <span>{formatRupiah(summary.ticketPrice)}</span>
           </div>
+          {summary.addonsTotal && summary.addonsTotal > 0 ? (
+            <div className={styles.summaryRow}>
+              <span>Proteksi & Layanan Tambahan</span>
+              <span>+{formatRupiah(summary.addonsTotal)}</span>
+            </div>
+          ) : null}
           <div className={styles.summaryRow}>
             <span>Pajak & Biaya Bandara</span>
             <span className={styles.freeText}>Termasuk</span>
@@ -52,6 +60,12 @@ export const OrderSummarySidebar: React.FC<OrderSummarySidebarProps> = ({
             <span>Biaya Layanan Sistem</span>
             <span>{formatRupiah(summary.systemFee)}</span>
           </div>
+          {summary.discount && summary.discount > 0 ? (
+            <div className={styles.summaryRow}>
+              <span style={{ color: "#15803d", fontWeight: 600 }}>Potongan Promo</span>
+              <span style={{ color: "#15803d", fontWeight: 700 }}>-{formatRupiah(summary.discount)}</span>
+            </div>
+          ) : null}
         </div>
 
         <div className={styles.summaryDivider}></div>
@@ -70,8 +84,9 @@ export const OrderSummarySidebar: React.FC<OrderSummarySidebarProps> = ({
           type="button"
           className={styles.btnCheckPayment}
           onClick={onConfirmPayment}
+          disabled={isSubmitting}
         >
-          Saya Sudah Bayar
+          {isSubmitting ? "Memproses Pesanan..." : "Saya Sudah Bayar"}
         </button>
       </div>
 

@@ -37,9 +37,12 @@ export const PaymentSuccessModal: React.FC<PaymentSuccessModalProps> = ({
         <h3 className={styles.modalTitle}>Pembayaran Sedang Diverifikasi</h3>
         <p className={styles.modalDesc}>
           Terima kasih! Pembayaran untuk pesanan <strong>{orderId}</strong> sedang
-          diverifikasi oleh sistem. E-tiket resmi akan segera dikirimkan ke email Anda.
+          diverifikasi oleh sistem dan sudah tercatat di halaman Pesanan.
         </p>
-        <Link href="/tiket" className={styles.btnModalClose} onClick={onClose}>
+        <Link href="/histori" className={styles.btnModalClose} onClick={onClose}>
+          Lihat Pesanan Saya
+        </Link>
+        <Link href="/tiket" className={styles.btnModalSecondary} onClick={onClose}>
           Kembali ke Beranda Tiket
         </Link>
       </div>
