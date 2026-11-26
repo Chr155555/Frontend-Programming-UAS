@@ -57,7 +57,7 @@ export default function Header() {
                         <Nav.Link as={Link} href="/paket">Paket</Nav.Link>
                         <Nav.Link as={Link} href="/tiket">Penerbangan</Nav.Link>
                         <Nav.Link as={Link} href="/hotel">Hotel</Nav.Link>
-                        <Nav.Link as={Link} href="/">Pesanan</Nav.Link>
+                        <Nav.Link as={Link} href="/histori">Pesanan</Nav.Link>
                         <Nav.Link as={Link} href="/favorite">Favorit</Nav.Link>
                         <Nav.Link as={Link} href="/bantuan">Bantuan</Nav.Link>
                     </Nav>
