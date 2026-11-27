@@ -1,8 +1,9 @@
 "use client";
 
-import { Suspense, useState } from "react";
+import { Suspense, useMemo, useState } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
+import "bootstrap-icons/font/bootstrap-icons.css";
 import styles from "./auth.module.css";
 
 type Mode = "login" | "register" | "forgot";
@@ -32,6 +33,32 @@ function AuthForm() {
   const isLogin = mode === "login";
   const isRegister = mode === "register";
   const isForgot = mode === "forgot";
+
+  const passwordChecks = useMemo(() => {
+    const pwd = form.password;
+    return {
+      minLength: pwd.length >= 6,
+      hasUpper: /[A-Z]/.test(pwd),
+      hasNumber: /[0-9]/.test(pwd),
+      hasSymbol: /[^A-Za-z0-9]/.test(pwd) || pwd.length >= 10,
+    };
+  }, [form.password]);
+
+  const strengthScore = useMemo(() => {
+    return Object.values(passwordChecks).filter(Boolean).length;
+  }, [passwordChecks]);
+
+  const strengthInfo = useMemo(() => {
+    if (!form.password)
+      return { label: "Belum diisi", color: "#94a3b8", percent: 0 };
+    if (strengthScore <= 1)
+      return { label: "Lemah", color: "#dc3545", percent: 25 };
+    if (strengthScore === 2)
+      return { label: "Cukup", color: "#fd7e14", percent: 55 };
+    if (strengthScore === 3)
+      return { label: "Kuat", color: "#0284c7", percent: 80 };
+    return { label: "Sangat Kuat", color: "#059669", percent: 100 };
+  }, [form.password, strengthScore]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -201,17 +228,109 @@ function AuthForm() {
             <label htmlFor="password" className="form-label">
               {isForgot ? "Password Baru" : "Password"}
             </label>
-            <input
-              id="password"
-              name="password"
-              type={showPassword ? "text" : "password"}
-              className="form-control"
-              placeholder="Minimal 6 karakter"
-              minLength={6}
-              value={form.password}
-              onChange={handleChange}
-              required
-            />
+            <div className={styles.inputGroup}>
+              <input
+                id="password"
+                name="password"
+                type={showPassword ? "text" : "password"}
+                className="form-control pe-5"
+                placeholder="Minimal 6 karakter"
+                minLength={6}
+                value={form.password}
+                onChange={handleChange}
+                required
+              />
+              <button
+                type="button"
+                className={styles.eyeBtn}
+                onClick={() => setShowPassword(!showPassword)}
+                aria-label="Toggle password visibility"
+              >
+                <i
+                  className={`bi ${
+                    showPassword ? "bi-eye-slash-fill" : "bi-eye-fill"
+                  }`}
+                ></i>
+              </button>
+            </div>
+
+            {!isLogin && (
+              <div className={styles.strengthBox}>
+                <div className={styles.strengthHeader}>
+                  <span>Kekuatan Password:</span>
+                  <span style={{ color: strengthInfo.color }}>
+                    {strengthInfo.label}
+                  </span>
+                </div>
+                <div className={styles.strengthBarBg}>
+                  <div
+                    className={styles.strengthBarFill}
+                    style={{
+                      width: `${strengthInfo.percent}%`,
+                      backgroundColor: strengthInfo.color,
+                    }}
+                  />
+                </div>
+                <div className={styles.criteriaList}>
+                  <span
+                    className={
+                      passwordChecks.minLength ? styles.criteriaMet : ""
+                    }
+                  >
+                    <i
+                      className={`bi ${
+                        passwordChecks.minLength
+                          ? "bi-check-circle-fill"
+                          : "bi-circle"
+                      } me-1`}
+                    ></i>
+                    Min. 6 karakter
+                  </span>
+                  <span
+                    className={
+                      passwordChecks.hasUpper ? styles.criteriaMet : ""
+                    }
+                  >
+                    <i
+                      className={`bi ${
+                        passwordChecks.hasUpper
+                          ? "bi-check-circle-fill"
+                          : "bi-circle"
+                      } me-1`}
+                    ></i>
+                    Huruf kapital (A-Z)
+                  </span>
+                  <span
+                    className={
+                      passwordChecks.hasNumber ? styles.criteriaMet : ""
+                    }
+                  >
+                    <i
+                      className={`bi ${
+                        passwordChecks.hasNumber
+                          ? "bi-check-circle-fill"
+                          : "bi-circle"
+                      } me-1`}
+                    ></i>
+                    Angka (0-9)
+                  </span>
+                  <span
+                    className={
+                      passwordChecks.hasSymbol ? styles.criteriaMet : ""
+                    }
+                  >
+                    <i
+                      className={`bi ${
+                        passwordChecks.hasSymbol
+                          ? "bi-check-circle-fill"
+                          : "bi-circle"
+                      } me-1`}
+                    ></i>
+                    Simbol / 10+ huruf
+                  </span>
+                </div>
+              </div>
+            )}
           </div>
 
           {!isLogin && (
@@ -232,21 +351,21 @@ function AuthForm() {
             </div>
           )}
 
-          <div className={styles.rowBetween}>
-            <div className="form-check">
-              <input
-                id="show"
-                type="checkbox"
-                className="form-check-input"
-                checked={showPassword}
-                onChange={(e) => setShowPassword(e.target.checked)}
-              />
-              <label htmlFor="show" className="form-check-label">
-                Tampilkan password
-              </label>
-            </div>
+          {isLogin && (
+            <div className={styles.rowBetween}>
+              <div className="form-check">
+                <input
+                  id="show"
+                  type="checkbox"
+                  className="form-check-input"
+                  checked={showPassword}
+                  onChange={(e) => setShowPassword(e.target.checked)}
+                />
+                <label htmlFor="show" className="form-check-label">
+                  Tampilkan password
+                </label>
+              </div>
 
-            {isLogin && (
               <button
                 type="button"
                 className={styles.link}
@@ -254,8 +373,8 @@ function AuthForm() {
               >
                 Lupa password?
               </button>
-            )}
-          </div>
+            </div>
+          )}
 
           {error && <div className="alert alert-danger py-2">{error}</div>}
           {success && <div className="alert alert-success py-2">{success}</div>}
