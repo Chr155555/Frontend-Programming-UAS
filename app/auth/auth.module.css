@@ -36,7 +36,7 @@
 
 .card {
   width: 100%;
-  max-width: 450px;
+  max-width: 460px;
   background: #fff;
   color: #0f172a;
   border-radius: 16px;
@@ -148,6 +148,46 @@
 .criteriaMet {
   color: #059669;
   font-weight: 600;
+}
+
+.otpContainer {
+  text-align: center;
+  padding: 0.5rem 0;
+}
+
+.otpBadge {
+  display: inline-block;
+  background: #e0f2fe;
+  color: #0369a1;
+  border: 1px dashed #0284c7;
+  border-radius: 10px;
+  padding: 0.55rem 0.9rem;
+  font-size: 0.83rem;
+  margin-bottom: 1rem;
+}
+
+.otpInputs {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin: 1rem 0 1.25rem;
+}
+
+.otpDigit {
+  width: 46px;
+  height: 52px;
+  text-align: center;
+  font-size: 1.25rem;
+  font-weight: 700;
+  border-radius: 8px;
+  border: 2px solid #cbd5e1;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.otpDigit:focus {
+  border-color: #0284c7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.2);
 }
 
 .rowBetween {
