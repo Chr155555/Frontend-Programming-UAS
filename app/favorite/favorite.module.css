@@ -266,6 +266,76 @@
     box-shadow: 0 6px 16px rgba(2, 132, 199, 0.35);
 }
 
+.hotelActionGroup {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.btnRemoveFav {
+    padding: 9px 14px;
+    font-size: 13px;
+    font-weight: 700;
+    border-radius: 8px;
+    background: #dc2626;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 12px rgba(220, 38, 38, 0.25);
+}
+
+.btnRemoveFav:hover {
+    background: #b91c1c;
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(220, 38, 38, 0.35);
+}
+
+.emptyFavoriteBox {
+    padding: 28px 20px;
+    background: #ffffff;
+    border: 1px dashed #cbd5e1;
+    border-radius: 16px;
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.paketActionGroup {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.ticketActionGroup {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.btnRemoveFavFull {
+    width: 100%;
+    padding: 8px 14px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btnRemoveFavFull:hover {
+    background: #fef2f2;
+    border-color: #f87171;
+}
+
 .cardTicket {
     width: 100%;
     background: #ffffff;

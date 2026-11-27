@@ -77,6 +77,12 @@ export const hotelBookings = sqliteTable("hotel_bookings", {
     createdAt: text("created_at").$defaultFn(() => new Date().toISOString()),
 });
 
+export const hotelFavorites = sqliteTable("hotel_favorites", {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    hotelId: integer("hotel_id").notNull().unique(),
+    createdAt: text("created_at").$defaultFn(() => new Date().toISOString()),
+});
+
 export const users = sqliteTable("users", {
     id: integer("id").primaryKey({ autoIncrement: true }),
     nama: text("nama").notNull(),
