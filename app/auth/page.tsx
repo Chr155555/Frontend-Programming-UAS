@@ -19,8 +19,12 @@ function AuthForm() {
       ? "forgot"
       : "login"
   );
+
   const [showPassword, setShowPassword] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
+  const [agreedTerms, setAgreedTerms] = useState(false);
   const [loading, setLoading] = useState(false);
+
   const [form, setForm] = useState({
     nama: "",
     telepon: "",
@@ -43,12 +47,29 @@ function AuthForm() {
   const [otpTimer, setOtpTimer] = useState(0);
   const otpRefs = useRef<(HTMLInputElement | null)[]>([]);
 
+  // Quick preview modal for Kebijakan / Syarat
+  const [previewDoc, setPreviewDoc] = useState<"kebijakan" | "syarat" | null>(
+    null
+  );
+
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
 
   const isLogin = mode === "login";
   const isRegister = mode === "register";
   const isForgot = mode === "forgot";
+
+  useEffect(() => {
+    try {
+      const savedEmail = localStorage.getItem("tiketku_remember_email");
+      if (savedEmail) {
+        setForm((prev) => ({ ...prev, email: savedEmail }));
+        setRememberMe(true);
+      }
+    } catch {
+      // ignore storage errors
+    }
+  }, []);
 
   useEffect(() => {
     if (otpTimer <= 0) return;
@@ -170,12 +191,12 @@ function AuthForm() {
         });
         const data = await res.json();
         if (!res.ok) {
-          setError(data.error || "Gagal mengatur ulang password.");
+          setError(data.error || "Gagal mereset password.");
           setOtpStep(false);
           return;
         }
         setSuccess(
-          data.message || "Password berhasil diperbarui! Silakan masuk."
+          data.message || "Password berhasil direset! Silakan login."
         );
         setTimeout(() => {
           setOtpStep(false);
@@ -213,6 +234,12 @@ function AuthForm() {
         setError("Konfirmasi password tidak sama.");
         return;
       }
+      if (isRegister && !agreedTerms) {
+        setError(
+          "Kamu wajib menyetujui Kebijakan Privasi serta Syarat & Ketentuan."
+        );
+        return;
+      }
       generateNewOtp();
       return;
     }
@@ -232,13 +259,18 @@ function AuthForm() {
         return;
       }
 
+      if (rememberMe) {
+        localStorage.setItem("tiketku_remember_email", form.email);
+      } else {
+        localStorage.removeItem("tiketku_remember_email");
+      }
+
       if (data.user) {
         localStorage.setItem("tiketku_user", JSON.stringify(data.user));
         window.dispatchEvent(new Event("tiketku-auth-change"));
       }
 
       setSuccess("Login berhasil! Mengalihkan ke beranda...");
-
       setTimeout(() => {
         router.push("/");
       }, 600);
@@ -249,12 +281,34 @@ function AuthForm() {
     }
   };
 
+  const handleQuickDemoAccount = (provider: "Google" | "BlibliTiket") => {
+    const demoUser = {
+      id: 999,
+      nama: provider === "Google" ? "Traveler Google" : "Member BlibliTiket",
+      email:
+        provider === "Google"
+          ? "traveler.google@tiketku.id"
+          : "member@bliblitiket.com",
+    };
+    localStorage.setItem("tiketku_user", JSON.stringify(demoUser));
+    window.dispatchEvent(new Event("tiketku-auth-change"));
+    setSuccess(`Berhasil masuk dengan akun ${provider}! Mengalihkan...`);
+    setTimeout(() => router.push("/"), 600);
+  };
+
   return (
     <main className={styles.wrapper}>
       <Link href="/" className={styles.back}>
-        ← Kembali ke beranda
+        <i className="bi bi-arrow-left"></i> Kembali ke beranda
       </Link>
+
       <div className={styles.card}>
+        <div className={styles.headerCenter}>
+          <span className={styles.brandBadge}>
+            <i className="bi bi-shield-lock-fill"></i> TiketKu Single Sign-On
+          </span>
+        </div>
+
         <h1 className={styles.title}>
           {isLogin
             ? "Selamat Datang"
@@ -264,10 +318,10 @@ function AuthForm() {
         </h1>
         <p className={styles.subtitle}>
           {isLogin
-            ? "Masuk untuk melanjutkan pemesanan"
+            ? "Masuk untuk melanjutkan pemesanan tiket & hotel"
             : isRegister
-            ? "Daftar untuk mulai memesan tiket"
-            : "Masukkan email terdaftar dan buat password baru"}
+            ? "Satu akun terintegrasi untuk seluruh ekosistem TiketKu"
+            : "Masukkan email terdaftar dan buat password baru kamu"}
         </p>
 
         <div className={styles.tabs}>
@@ -299,7 +353,7 @@ function AuthForm() {
             <div className={styles.otpContainer}>
               <div className={styles.otpBadge}>
                 <i className="bi bi-envelope-check-fill me-1"></i>
-                Simulasi OTP ke <strong>{form.email}</strong>:{" "}
+                Simulasi SMS/Email OTP ke <strong>{form.email}</strong>:{" "}
                 <strong className="fs-6 text-decoration-underline">
                   {generatedOtp}
                 </strong>
@@ -368,15 +422,18 @@ function AuthForm() {
               {isRegister && (
                 <>
                   <div className="mb-3">
-                    <label htmlFor="nama" className="form-label">
-                      Nama Lengkap
+                    <label
+                      htmlFor="nama"
+                      className="form-label fw-semibold small"
+                    >
+                      Nama Lengkap (Sesuai KTP/Paspor)
                     </label>
                     <input
                       id="nama"
                       name="nama"
                       type="text"
                       className="form-control"
-                      placeholder="Nama lengkap"
+                      placeholder="Contoh: Rizki Ardi"
                       value={form.nama}
                       onChange={handleChange}
                       required
@@ -384,7 +441,10 @@ function AuthForm() {
                   </div>
 
                   <div className="mb-3">
-                    <label htmlFor="telepon" className="form-label">
+                    <label
+                      htmlFor="telepon"
+                      className="form-label fw-semibold small"
+                    >
                       Nomor Telepon (Untuk Penggabungan Akun)
                     </label>
                     <input
@@ -401,8 +461,8 @@ function AuthForm() {
               )}
 
               <div className="mb-3">
-                <label htmlFor="email" className="form-label">
-                  Email
+                <label htmlFor="email" className="form-label fw-semibold small">
+                  Alamat Email
                 </label>
                 <input
                   id="email"
@@ -417,7 +477,10 @@ function AuthForm() {
               </div>
 
               <div className="mb-3">
-                <label htmlFor="password" className="form-label">
+                <label
+                  htmlFor="password"
+                  className="form-label fw-semibold small"
+                >
                   {isForgot ? "Password Baru" : "Password"}
                 </label>
                 <div className={styles.inputGroup}>
@@ -527,7 +590,10 @@ function AuthForm() {
 
               {!isLogin && (
                 <div className="mb-3">
-                  <label htmlFor="konfirmasi" className="form-label">
+                  <label
+                    htmlFor="konfirmasi"
+                    className="form-label fw-semibold small"
+                  >
                     Konfirmasi {isForgot ? "Password Baru" : "Password"}
                   </label>
                   <input
@@ -547,14 +613,14 @@ function AuthForm() {
                 <div className={styles.rowBetween}>
                   <div className="form-check">
                     <input
-                      id="show"
+                      id="rememberMe"
                       type="checkbox"
                       className="form-check-input"
-                      checked={showPassword}
-                      onChange={(e) => setShowPassword(e.target.checked)}
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
                     />
-                    <label htmlFor="show" className="form-check-label">
-                      Tampilkan password
+                    <label htmlFor="rememberMe" className="form-check-label">
+                      Ingat email saya
                     </label>
                   </div>
 
@@ -567,11 +633,52 @@ function AuthForm() {
                   </button>
                 </div>
               )}
+
+              {isRegister && (
+                <div className="form-check mb-3 small">
+                  <input
+                    id="agreedTerms"
+                    type="checkbox"
+                    className="form-check-input"
+                    checked={agreedTerms}
+                    onChange={(e) => setAgreedTerms(e.target.checked)}
+                  />
+                  <label htmlFor="agreedTerms" className="form-check-label">
+                    Saya telah membaca &amp; menyetujui{" "}
+                    <button
+                      type="button"
+                      className={styles.link}
+                      onClick={() => setPreviewDoc("kebijakan")}
+                    >
+                      Pemberitahuan Privasi
+                    </button>{" "}
+                    serta{" "}
+                    <button
+                      type="button"
+                      className={styles.link}
+                      onClick={() => setPreviewDoc("syarat")}
+                    >
+                      Syarat &amp; Ketentuan
+                    </button>{" "}
+                    penggabungan akun TiketKu.
+                  </label>
+                </div>
+              )}
             </>
           )}
 
-          {error && <div className="alert alert-danger py-2">{error}</div>}
-          {success && <div className="alert alert-success py-2">{success}</div>}
+          {error && (
+            <div className="alert alert-danger py-2 small d-flex align-items-center gap-2">
+              <i className="bi bi-exclamation-triangle-fill"></i>
+              <span>{error}</span>
+            </div>
+          )}
+          {success && (
+            <div className="alert alert-success py-2 small d-flex align-items-center gap-2">
+              <i className="bi bi-check-circle-fill"></i>
+              <span>{success}</span>
+            </div>
+          )}
 
           <button type="submit" className={styles.submit} disabled={loading}>
             {loading
@@ -579,12 +686,40 @@ function AuthForm() {
               : otpStep
               ? "Verifikasi Kode OTP"
               : isLogin
-              ? "Masuk"
+              ? "Masuk Sekarang"
               : isRegister
               ? "Lanjut Verifikasi OTP"
               : "Kirim OTP Reset Password"}
           </button>
         </form>
+
+        {isLogin && !otpStep && (
+          <>
+            <div className={styles.divider}>
+              <span>atau masuk cepat dengan</span>
+            </div>
+            <div className={styles.socialGrid}>
+              <button
+                type="button"
+                className={styles.socialBtn}
+                onClick={() => handleQuickDemoAccount("Google")}
+              >
+                <i className="bi bi-google text-danger"></i> Google
+              </button>
+              <button
+                type="button"
+                className={styles.socialBtn}
+                onClick={() => handleQuickDemoAccount("BlibliTiket")}
+              >
+                <i
+                  className="bi bi-ticket-perforated-fill"
+                  style={{ color: "#0284c7" }}
+                ></i>{" "}
+                BlibliTiket
+              </button>
+            </div>
+          </>
+        )}
 
         <p className={styles.switch}>
           {isLogin ? "Belum punya akun? " : "Sudah punya akun? "}
@@ -593,7 +728,7 @@ function AuthForm() {
             className={styles.link}
             onClick={() => switchMode(isLogin ? "register" : "login")}
           >
-            {isLogin ? "Daftar" : "Masuk"}
+            {isLogin ? "Daftar sekarang" : "Masuk di sini"}
           </button>
         </p>
 
@@ -603,6 +738,97 @@ function AuthForm() {
           <Link href="/syarat">Syarat &amp; Ketentuan</Link> TiketKu.
         </p>
       </div>
+
+      {/* Modal Preview Cepat Kebijakan / Syarat & Ketentuan */}
+      {previewDoc && (
+        <div
+          className={styles.modalOverlay}
+          onClick={() => setPreviewDoc(null)}
+        >
+          <div
+            className={styles.modalCard}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className={styles.modalHeader}>
+              <h5 className="mb-0 fw-bold">
+                {previewDoc === "kebijakan"
+                  ? "Ringkasan Pemberitahuan Privasi TiketKu"
+                  : "Ringkasan Syarat & Ketentuan Akun TiketKu"}
+              </h5>
+              <button
+                type="button"
+                className="btn-close"
+                onClick={() => setPreviewDoc(null)}
+              />
+            </div>
+            <div className={styles.modalBody}>
+              {previewDoc === "kebijakan" ? (
+                <>
+                  <p>
+                    <strong>1. Pengumpulan &amp; Penggunaan Data Pribadi:</strong>{" "}
+                    TiketKu mengumpulkan nama lengkap, email, dan nomor telepon
+                    Anda untuk keperluan autentikasi, pemesanan tiket/hotel, dan
+                    program loyalitas ekosistem BlibliTiket.
+                  </p>
+                  <p>
+                    <strong>2. Dasar Pemrosesan:</strong> Data diproses
+                    berdasarkan persetujuan eksplisit Anda, pemenuhan kontrak
+                    transaksi, dan kepatuhan hukum yang berlaku di Republik
+                    Indonesia.
+                  </p>
+                  <p>
+                    <strong>3. Hak Subjek Data:</strong> Anda berhak mengakses,
+                    memperbaiki, mengunduh salinan data, mengatur preferensi
+                    cookie, atau mengajukan penghapusan akun kapan saja.
+                  </p>
+                </>
+              ) : (
+                <>
+                  <p>
+                    <strong>
+                      1. Akun Tunggal Ekosistem (Single Sign-On):
+                    </strong>{" "}
+                    Akun TiketKu dapat digunakan di seluruh jaringan Blibli,
+                    tiket.com, dan Ranch.
+                  </p>
+                  <p>
+                    <strong>2. Penggabungan Akun:</strong> Akun yang memiliki
+                    nomor telepon atau email terverifikasi yang sama akan
+                    otomatis digabungkan menjadi 1 Akun TiketKu.
+                  </p>
+                  <p>
+                    <strong>3. Keamanan &amp; Kepatuhan:</strong> Pengguna
+                    bertanggung jawab menjaga kerahasiaan kredensial dan OTP.
+                    Perusahaan berhak menonaktifkan akun apabila ditemukan
+                    indikasi penipuan atau pelanggaran hukum.
+                  </p>
+                </>
+              )}
+            </div>
+            <div className={styles.modalFooter}>
+              <Link
+                href={previewDoc === "kebijakan" ? "/kebijakan" : "/syarat"}
+                className="btn btn-outline-secondary btn-sm"
+              >
+                Baca Dokumen Lengkap{" "}
+                <i className="bi bi-box-arrow-up-right ms-1"></i>
+              </Link>
+              <button
+                type="button"
+                className="btn btn-sm text-white fw-semibold"
+                style={{ backgroundColor: "#0284c7" }}
+                onClick={() => {
+                  setAgreedTerms(true);
+                  setPreviewDoc(null);
+                }}
+              >
+                <i className="bi bi-check2-circle me-1"></i> Saya Mengerti &amp;
+                Setuju
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
