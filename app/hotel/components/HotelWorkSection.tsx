@@ -109,6 +109,7 @@ export default function HotelWorkSection({
     filterCity || "Semua",
   );
   const [hotelsList, setHotelsList] = useState<HotelItem[]>(HOTELS_DATA);
+  const [favoriteIds, setFavoriteIds] = useState<number[]>([]);
 
   useEffect(() => {
     fetch("/api/hotels")
@@ -130,7 +131,36 @@ export default function HotelWorkSection({
         }
       })
       .catch(() => {});
+
+    fetch("/api/hotels/favorites")
+      .then((res) => res.json())
+      .then((data) => {
+        if (Array.isArray(data)) {
+          setFavoriteIds(data.map((item: { hotelId: number }) => item.hotelId));
+        }
+      })
+      .catch(() => {});
   }, []);
+
+  const handleToggleFavorite = async (hotelId: number) => {
+    try {
+      const res = await fetch("/api/hotels/favorites", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ hotelId }),
+      });
+      if (res.ok) {
+        const result = await res.json();
+        setFavoriteIds((prev) =>
+          result.favorited
+            ? prev.includes(hotelId)
+              ? prev
+              : [...prev, hotelId]
+            : prev.filter((id) => id !== hotelId),
+        );
+      }
+    } catch {}
+  };
 
   const cities = ["Semua", "Jakarta", "Bandung", "Bogor", "Surabaya", "Bali"];
 
@@ -191,9 +221,25 @@ export default function HotelWorkSection({
                 <p className={styles.priceLabel}>MULAI DARI</p>
                 <h3>{hotel.price}</h3>
                 <p className={styles.taxLabel}>TERMASUK PAJAK</p>
-                <Link href={`/hotel/${hotel.id}`} className={styles.btnDetail}>
-                  Lihat hotel
-                </Link>
+                <div className={styles.actionGroup}>
+                  <button
+                    type="button"
+                    onClick={() => handleToggleFavorite(hotel.id)}
+                    className={`${styles.btnFav} ${
+                      favoriteIds.includes(hotel.id) ? styles.btnFavActive : ""
+                    }`}
+                    title={
+                      favoriteIds.includes(hotel.id)
+                        ? "Hapus dari Favorit"
+                        : "Tambah ke Favorit"
+                    }
+                  >
+                    <span>{favoriteIds.includes(hotel.id) ? "Favorit" : "Add Favorit"}</span>
+                  </button>
+                  <Link href={`/hotel/${hotel.id}`} className={styles.btnDetail}>
+                    Lihat hotel
+                  </Link>
+                </div>
               </div>
             </div>
           ))}
