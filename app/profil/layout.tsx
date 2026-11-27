@@ -65,6 +65,14 @@ export default function ProfilLayout({ children }: { children: React.ReactNode }
                         >
                             Profil
                         </Link>
+                        <Link
+                            href="/profil/wishlist"
+                            className={`${styles.menuLink} ${
+                                pathname === "/profil/wishlist" ? styles.activeMenu : ""
+                            }`}
+                        >
+                            Wishlist
+                        </Link>
                         <button
                             type="button"
                             onClick={handleLogout}
