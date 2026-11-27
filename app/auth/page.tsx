@@ -5,13 +5,18 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import styles from "./auth.module.css";
 
-type Mode = "login" | "register";
+type Mode = "login" | "register" | "forgot";
 
 function AuthForm() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const initialMode = searchParams.get("mode");
   const [mode, setMode] = useState<Mode>(
-    searchParams.get("mode") === "register" ? "register" : "login"
+    initialMode === "register"
+      ? "register"
+      : initialMode === "forgot"
+      ? "forgot"
+      : "login"
   );
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -25,6 +30,8 @@ function AuthForm() {
   const [success, setSuccess] = useState("");
 
   const isLogin = mode === "login";
+  const isRegister = mode === "register";
+  const isForgot = mode === "forgot";
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -48,6 +55,29 @@ function AuthForm() {
 
     setLoading(true);
     try {
+      if (isForgot) {
+        const res = await fetch("/api/auth/reset-password", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            email: form.email,
+            newPassword: form.password,
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          setError(data.error || "Gagal mengatur ulang password.");
+          return;
+        }
+        setSuccess(
+          data.message || "Password berhasil diperbarui! Silakan masuk."
+        );
+        setTimeout(() => {
+          switchMode("login");
+        }, 1000);
+        return;
+      }
+
       const endpoint = isLogin ? "/api/auth/login" : "/api/auth/register";
       const payload = isLogin
         ? { email: form.email, password: form.password }
@@ -93,9 +123,19 @@ function AuthForm() {
         ← Kembali ke beranda
       </Link>
       <div className={styles.card}>
-        <h1 className={styles.title}>{isLogin ? "Selamat Datang" : "Buat Akun Baru"}</h1>
+        <h1 className={styles.title}>
+          {isLogin
+            ? "Selamat Datang"
+            : isRegister
+            ? "Buat Akun Baru"
+            : "Atur Ulang Password"}
+        </h1>
         <p className={styles.subtitle}>
-          {isLogin ? "Masuk untuk melanjutkan pemesanan" : "Daftar untuk mulai memesan tiket"}
+          {isLogin
+            ? "Masuk untuk melanjutkan pemesanan"
+            : isRegister
+            ? "Daftar untuk mulai memesan tiket"
+            : "Masukkan email terdaftar dan buat password baru"}
         </p>
 
         <div className={styles.tabs}>
@@ -108,17 +148,26 @@ function AuthForm() {
           </button>
           <button
             type="button"
-            className={`${styles.tab} ${!isLogin ? styles.tabActive : ""}`}
+            className={`${styles.tab} ${isRegister ? styles.tabActive : ""}`}
             onClick={() => switchMode("register")}
           >
             Daftar
           </button>
+          <button
+            type="button"
+            className={`${styles.tab} ${isForgot ? styles.tabActive : ""}`}
+            onClick={() => switchMode("forgot")}
+          >
+            Reset
+          </button>
         </div>
 
         <form onSubmit={handleSubmit}>
-          {!isLogin && (
+          {isRegister && (
             <div className="mb-3">
-              <label htmlFor="nama" className="form-label">Nama Lengkap</label>
+              <label htmlFor="nama" className="form-label">
+                Nama Lengkap
+              </label>
               <input
                 id="nama"
                 name="nama"
@@ -133,7 +182,9 @@ function AuthForm() {
           )}
 
           <div className="mb-3">
-            <label htmlFor="email" className="form-label">Email</label>
+            <label htmlFor="email" className="form-label">
+              Email
+            </label>
             <input
               id="email"
               name="email"
@@ -147,7 +198,9 @@ function AuthForm() {
           </div>
 
           <div className="mb-3">
-            <label htmlFor="password" className="form-label">Password</label>
+            <label htmlFor="password" className="form-label">
+              {isForgot ? "Password Baru" : "Password"}
+            </label>
             <input
               id="password"
               name="password"
@@ -163,7 +216,9 @@ function AuthForm() {
 
           {!isLogin && (
             <div className="mb-3">
-              <label htmlFor="konfirmasi" className="form-label">Konfirmasi Password</label>
+              <label htmlFor="konfirmasi" className="form-label">
+                Konfirmasi {isForgot ? "Password Baru" : "Password"}
+              </label>
               <input
                 id="konfirmasi"
                 name="konfirmasi"
@@ -177,22 +232,42 @@ function AuthForm() {
             </div>
           )}
 
-          <div className="form-check mb-3">
-            <input
-              id="show"
-              type="checkbox"
-              className="form-check-input"
-              checked={showPassword}
-              onChange={(e) => setShowPassword(e.target.checked)}
-            />
-            <label htmlFor="show" className="form-check-label">Tampilkan password</label>
+          <div className={styles.rowBetween}>
+            <div className="form-check">
+              <input
+                id="show"
+                type="checkbox"
+                className="form-check-input"
+                checked={showPassword}
+                onChange={(e) => setShowPassword(e.target.checked)}
+              />
+              <label htmlFor="show" className="form-check-label">
+                Tampilkan password
+              </label>
+            </div>
+
+            {isLogin && (
+              <button
+                type="button"
+                className={styles.link}
+                onClick={() => switchMode("forgot")}
+              >
+                Lupa password?
+              </button>
+            )}
           </div>
 
           {error && <div className="alert alert-danger py-2">{error}</div>}
           {success && <div className="alert alert-success py-2">{success}</div>}
 
           <button type="submit" className={styles.submit} disabled={loading}>
-            {loading ? "Memproses..." : isLogin ? "Masuk" : "Daftar"}
+            {loading
+              ? "Memproses..."
+              : isLogin
+              ? "Masuk"
+              : isRegister
+              ? "Daftar"
+              : "Simpan Password Baru"}
           </button>
         </form>
 

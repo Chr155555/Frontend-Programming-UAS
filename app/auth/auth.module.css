@@ -5,48 +5,67 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 3rem 1rem;
-  background: #f5f6fa;
+  padding: 3.5rem 1rem;
+  background: #f8fafc;
 }
 
 .back {
   position: absolute;
   top: 1.25rem;
   left: 1.5rem;
-  color: rgb(0, 65, 206);
+  color: #0284c7;
   font-weight: 600;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  background: #fff;
+  border-radius: 999px;
+  border: 1px solid #e2e8f0;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.1);
+  transition: all 0.2s ease;
+}
+
+.back:hover {
+  background: #0284c7;
+  color: #fff;
+  border-color: #0284c7;
+  text-decoration: none;
 }
 
 .card {
   width: 100%;
-  max-width: 440px;
+  max-width: 450px;
   background: #fff;
-  color: #171717;
+  color: #0f172a;
   border-radius: 16px;
   padding: 2rem;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 16px rgba(2, 132, 199, 0.12);
+  border: 1px solid #e2e8f0;
 }
 
 .title {
   font-size: 1.6rem;
   font-weight: 800;
-  color: rgb(0, 65, 206);
+  color: #0284c7;
   text-align: center;
 }
 
 .subtitle {
   text-align: center;
-  color: #666;
+  color: #64748b;
   margin-bottom: 1.5rem;
   font-size: 0.95rem;
 }
 
 .tabs {
   display: flex;
-  background: #eef0f8;
+  background: #f1f5f9;
   border-radius: 10px;
   padding: 4px;
   margin-bottom: 1.5rem;
+  border: 1px solid #e2e8f0;
 }
 
 .tab {
@@ -56,13 +75,23 @@
   padding: 0.55rem;
   border-radius: 8px;
   font-weight: 600;
-  color: #555;
+  color: #475569;
   cursor: pointer;
+  transition: all 0.2s ease;
 }
 
 .tabActive {
-  background: rgb(0, 65, 206);
+  background: #0284c7;
   color: #fff;
+  box-shadow: 0 2px 8px rgba(2, 132, 199, 0.25);
+}
+
+.rowBetween {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.88rem;
+  margin-bottom: 1rem;
 }
 
 .submit {
@@ -71,13 +100,21 @@
   padding: 0.65rem;
   font-weight: 700;
   border: none;
-  border-radius: 10px;
-  background: rgb(0, 65, 206);
+  border-radius: 8px;
+  background: #0284c7;
   color: #fff;
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
+  transition: all 0.2s ease;
 }
 
-.submit:hover {
-  background: rgb(0, 50, 170);
+.submit:hover:not(:disabled) {
+  background: #0369a1;
+  transform: translateY(-1px);
+}
+
+.submit:disabled {
+  background: #7dd3fc;
+  cursor: not-allowed;
 }
 
 .switch {
@@ -90,11 +127,11 @@
   text-align: center;
   margin-top: 1.5rem;
   font-size: 0.8rem;
-  color: #777;
+  color: #64748b;
 }
 
 .terms a {
-  color: #0d6efd;
+  color: #0284c7;
   text-decoration: underline;
 }
 
@@ -105,8 +142,13 @@
 .link {
   background: none;
   border: none;
-  color: rgb(0, 65, 206);
+  color: #0284c7;
   font-weight: 600;
   cursor: pointer;
+  padding: 0;
 }
 
+.link:hover {
+  color: #0369a1;
+  text-decoration: underline;
+}
