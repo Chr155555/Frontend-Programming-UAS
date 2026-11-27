@@ -83,6 +83,19 @@ export const hotelFavorites = sqliteTable("hotel_favorites", {
     createdAt: text("created_at").$defaultFn(() => new Date().toISOString()),
 });
 
+export const paketFavorites = sqliteTable("paket_favorites", {
+    id: integer("id").primaryKey({ autoIncrement: true }),
+    packageKey: text("package_key").notNull().unique(),
+    destinationLink: text("destination_link").notNull(),
+    packageId: text("package_id").notNull(),
+    title: text("title").notNull(),
+    destinationName: text("destination_name").notNull(),
+    duration: text("duration").notNull(),
+    coverImage: text("cover_image").notNull(),
+    price: text("price").notNull(),
+    createdAt: text("created_at").$defaultFn(() => new Date().toISOString()),
+});
+
 export const users = sqliteTable("users", {
     id: integer("id").primaryKey({ autoIncrement: true }),
     nama: text("nama").notNull(),

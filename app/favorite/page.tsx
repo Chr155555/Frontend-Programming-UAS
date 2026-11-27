@@ -4,7 +4,6 @@ import React from "react";
 import styles from "./favorite.module.css";
 import FavoritePaket from "./components/FavoritePaket";
 import FavoriteHotel from "./components/FavoriteHotel";
-import FavoriteTiket from "./components/FavoriteTiket";
 
 export default function FavoritePage() {
     return (
@@ -22,7 +21,6 @@ export default function FavoritePage() {
 
                 <FavoritePaket />
                 <FavoriteHotel />
-                <FavoriteTiket />
             </section>
         </main>
     );
