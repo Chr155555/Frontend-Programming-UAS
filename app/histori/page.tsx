@@ -75,9 +75,41 @@ interface FlightHistoryItem {
     status: "Berhasil" | "Diverifikasi" | "Dibatalkan";
 }
 
+interface PaketBookingRecord {
+    id: number;
+    orderId: string;
+    destinationLink: string;
+    packageId: string;
+    packageTitle: string;
+    destinationName: string;
+    duration: string;
+    hotelBrief: string;
+    coverImage: string;
+    guestName: string;
+    paymentMethod: string;
+    totalPrice: number;
+    status: string;
+    createdAt: string;
+}
+
+interface PackageHistoryItem {
+    key: string;
+    image: string;
+    title: string;
+    location: string;
+    departure: string;
+    duration: string;
+    participants: string;
+    facilities: string;
+    orderId?: string;
+    total: string;
+    status: "Berhasil" | "Diverifikasi" | "Dibatalkan";
+}
+
 export default function HistoriPage() {
     const [dbBookings, setDbBookings] = useState<HotelHistoryItem[]>([]);
     const [dbFlightBookings, setDbFlightBookings] = useState<FlightHistoryItem[]>([]);
+    const [dbPackageBookings, setDbPackageBookings] = useState<PackageHistoryItem[]>([]);
 
     useEffect(() => {
         fetch("/api/hotels/booking")
@@ -137,10 +169,35 @@ export default function HistoriPage() {
                 }
             })
             .catch(() => {});
+
+        fetch("/api/pakets/booking")
+            .then((res) => res.json())
+            .then((data: PaketBookingRecord[]) => {
+                if (Array.isArray(data) && data.length > 0) {
+                    const mapped: PackageHistoryItem[] = data.map((item) => {
+                        return {
+                            key: `db-package-${item.id}`,
+                            image: item.coverImage || "/paket/destinasi/singapore.jpg",
+                            title: `Paket Wisata ${item.destinationName} — ${item.packageTitle}`,
+                            location: `${item.destinationName} • ${item.hotelBrief}`,
+                            departure: item.createdAt ? new Date(item.createdAt).toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" }) : "30 November 2026",
+                            duration: item.duration,
+                            participants: item.guestName,
+                            facilities: item.paymentMethod,
+                            orderId: item.orderId,
+                            total: `IDR ${item.totalPrice.toLocaleString("id-ID")}`,
+                            status: item.status === "dibatalkan" ? "Dibatalkan" : item.status === "diverifikasi" ? "Diverifikasi" : "Berhasil",
+                        };
+                    });
+                    setDbPackageBookings(mapped);
+                }
+            })
+            .catch(() => {});
     }, []);
 
     const allHotelHistory = dbBookings;
     const allFlightHistory = dbFlightBookings;
+    const allPackageHistory = dbPackageBookings;
 
     const getStatusClass = (status: HotelHistoryItem["status"]) => {
         if (status === "Berhasil") return styles.berhasil;
@@ -275,9 +332,53 @@ export default function HistoriPage() {
                         <p>Semua pemesanan paket liburan yang kamu lakukan</p>
                     </div>
                     <div className={styles.historyList}>
-                        <div className={styles.emptyState}>
-                            Belum ada riwayat pembelian
-                        </div>
+                        {allPackageHistory.length === 0 ? (
+                            <div className={styles.emptyState}>
+                                Belum ada riwayat pembelian paket wisata.
+                            </div>
+                        ) : (
+                            allPackageHistory.map((pkg) => (
+                                <div key={pkg.key} className={styles.historyCard}>
+                                    <img
+                                        src={pkg.image}
+                                        alt={pkg.title}
+                                        className={styles.historyImage}
+                                    />
+                                    <div className={styles.historyInfo}>
+                                        <h2>{pkg.title}</h2>
+                                        <p className={styles.historyLocation}>{pkg.location}</p>
+                                        <div className={styles.historyDetail}>
+                                            <div>
+                                                <p>Keberangkatan</p>
+                                                <strong>{pkg.departure}</strong>
+                                            </div>
+                                            <div>
+                                                <p>Durasi</p>
+                                                <strong>{pkg.duration}</strong>
+                                            </div>
+                                            <div>
+                                                <p>Peserta</p>
+                                                <strong>{pkg.participants}</strong>
+                                            </div>
+                                            <div>
+                                                <p>Metode Pembayaran</p>
+                                                <strong>{pkg.facilities}</strong>
+                                            </div>
+                                        </div>
+                                        {pkg.orderId && (
+                                            <p className={styles.historyId}>ID Pesanan: {pkg.orderId}</p>
+                                        )}
+                                    </div>
+                                    <div className={styles.historyPrice}>
+                                        <p>Total Pembayaran</p>
+                                        <h3>{pkg.total}</h3>
+                                        <span className={`${styles.historyStatus} ${getStatusClass(pkg.status)}`}>
+                                            {pkg.status}
+                                        </span>
+                                    </div>
+                                </div>
+                            ))
+                        )}
                     </div>
                 </section>
             </div>

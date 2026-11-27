@@ -1,6 +1,6 @@
 import { db } from "./index";
 import { destinations, packages } from "./schema";
-import { PAKET_DATA } from "../app/paket/data/paket"; // Adjust import path if needed
+import { PAKET_DATA } from "../app/paket/data/paket";
 
 async function seedPakets() {
     await db.delete(packages);
