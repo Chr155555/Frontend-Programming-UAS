@@ -13,6 +13,7 @@ export default function HotelDetailPage() {
     const initialHotel = HOTELS_LIST.find((h) => h.id === hotelId);
 
     const [hotel, setHotel] = useState(initialHotel);
+    const [isFavorited, setIsFavorited] = useState(false);
 
     useEffect(() => {
         if (!hotelId) return;
@@ -24,7 +25,33 @@ export default function HotelDetailPage() {
                 }
             })
             .catch(() => {});
+
+        fetch("/api/hotels/favorites")
+            .then((r) => r.json())
+            .then((data) => {
+                if (Array.isArray(data)) {
+                    setIsFavorited(
+                        data.some((item: { hotelId: number }) => item.hotelId === hotelId)
+                    );
+                }
+            })
+            .catch(() => {});
     }, [hotelId]);
+
+    const handleToggleFavorite = async () => {
+        if (!hotelId) return;
+        try {
+            const res = await fetch("/api/hotels/favorites", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ hotelId }),
+            });
+            if (res.ok) {
+                const result = await res.json();
+                setIsFavorited(Boolean(result.favorited));
+            }
+        } catch {}
+    };
 
     if (!hotel) {
         notFound();
@@ -124,6 +151,16 @@ export default function HotelDetailPage() {
                         onClick={() => setIsCheckoutModalOpen(true)}
                     >
                         Pesan Sekarang
+                    </button>
+
+                    <button
+                        type="button"
+                        className={`${styles.btnFavDetail} ${
+                            isFavorited ? styles.btnFavDetailActive : ""
+                        }`}
+                        onClick={handleToggleFavorite}
+                    >
+                        <span>{isFavorited ? "Tersimpan di Favorit" : "Tambah ke Favorit"}</span>
                     </button>
                 </aside>
             </section>

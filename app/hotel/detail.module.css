@@ -262,6 +262,34 @@
     transform: translateY(-1px);
 }
 
+.btnFavDetail {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    background: #ffffff;
+    color: #334155;
+    border: 1.5px solid #cbd5e1;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btnFavDetail:hover {
+    background: #f0f9ff;
+    color: #0284c7;
+    border-color: #0284c7;
+}
+
+.btnFavDetailActive {
+    background: #e0f2fe;
+    color: #0369a1;
+    border-color: #0284c7;
+}
+
 .sectionTitle {
     font-size: 20px;
     font-weight: 800;

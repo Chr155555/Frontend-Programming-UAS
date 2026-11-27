@@ -4,28 +4,6 @@ import React from "react";
 import Link from "next/link";
 import styles from "../favorite.module.css";
 
-interface PackageFavorite {
-    id: number;
-    name: string;
-    image: string;
-    link: string;
-}
-
-const FAVORITE_PACKAGES: PackageFavorite[] = [
-    {
-        id: 1,
-        name: "Yogyakarta",
-        image: "/paket/destinasi/gunungkidul.jpeg",
-        link: "/paket/yogyakarta",
-    },
-    {
-        id: 2,
-        name: "Bali",
-        image: "/paket/destinasi/ulundanu.jpeg",
-        link: "/paket/bali",
-    },
-];
-
 export default function FavoritePaket() {
     return (
         <div className={styles.favoriteGroup}>
@@ -33,28 +11,11 @@ export default function FavoritePaket() {
                 <span>Paket Wisata Favorit</span>
             </div>
 
-            <div className={styles.paketGrid}>
-                {FAVORITE_PACKAGES.map((pkg) => (
-                    <div className={styles.paketCard} key={pkg.id}>
-                        <img
-                            src={pkg.image}
-                            alt={pkg.name}
-                            className={styles.paketImage}
-                        />
-                        <div className={styles.paketInfo}>
-                            <div className={styles.paketTitle}>
-                                <h3>{pkg.name}</h3>
-                            </div>
-                            <div className={styles.paketDivider} />
-                            <Link
-                                href={pkg.link}
-                                className={styles.btnDetailPaket}
-                            >
-                                Lihat paket
-                            </Link>
-                        </div>
-                    </div>
-                ))}
+            <div className={styles.emptyFavoriteBox}>
+                <span>Belum ada paket wisata favorit yang disimpan.</span>
+                <Link href="/paket" className={styles.btnDetail}>
+                    Jelajahi Paket Sekarang
+                </Link>
             </div>
         </div>
     );
