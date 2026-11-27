@@ -42,7 +42,11 @@ function PaketPembayaranContent() {
         ? parseInt(totalParam, 10)
         : packagePrice + serviceFee;
 
-    const orderId = "PKT-250135";
+    const [orderId] = useState(() => {
+        const numericHash = pkg.id.split("").reduce((acc, char) => acc + char.charCodeAt(0), 1000);
+        const uniqueSuffix = String(Date.now()).slice(-4);
+        return `PKT-${numericHash + 42}-${uniqueSuffix}`;
+    });
 
     const summary: PaketOrderSummary = {
         orderId,
@@ -64,7 +68,7 @@ function PaketPembayaranContent() {
 
     const handleConfirmPayment = async () => {
         try {
-            await fetch("/api/paket/booking", {
+            await fetch("/api/pakets/booking", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
@@ -72,6 +76,10 @@ function PaketPembayaranContent() {
                     destinationLink: destination.destinationLink,
                     packageId: pkg.id,
                     packageTitle: pkg.title,
+                    destinationName: destination.name,
+                    duration: pkg.duration,
+                    hotelBrief: `${pkg.hotelName} (${pkg.roomType})`,
+                    coverImage: pkg.coverImage,
                     guestName: "Budi Santoso (Tuan)",
                     paymentMethod: activeMethod.name,
                     totalPrice: summary.totalPrice,
