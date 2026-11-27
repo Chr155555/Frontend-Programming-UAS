@@ -32,7 +32,7 @@ export async function POST(request: Request) {
             hasBreakfast: hasBreakfast ? 1 : 0,
             paymentMethod: paymentMethod || "BCA",
             totalPrice: Number(totalPrice),
-            status: "diverifikasi",
+            status: "berhasil",
         }).returning();
 
         return NextResponse.json(newBooking, { status: 201 });

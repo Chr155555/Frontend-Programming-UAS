@@ -181,6 +181,17 @@
     color: #b45309;
 }
 
+.emptyState {
+    padding: 28px 20px;
+    background: #ffffff;
+    border: 1px dashed #cbd5e1;
+    border-radius: 16px;
+    text-align: center;
+    color: #64748b;
+    font-size: 14px;
+    font-weight: 500;
+}
+
 .flightHistory {
     width: 100%;
     margin-top: 36px;
