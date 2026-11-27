@@ -8,6 +8,7 @@ interface HotelFavoriteItem {
     favoriteId: number;
     hotelId: number;
     name: string;
+    city?: string;
     image: string;
     location: string;
     rating: string;
@@ -16,7 +17,11 @@ interface HotelFavoriteItem {
     priceFormatted: string;
 }
 
-export default function FavoriteHotel() {
+interface FavoriteHotelProps {
+    selectedCity?: string | null;
+}
+
+export default function FavoriteHotel({ selectedCity }: FavoriteHotelProps) {
     const [favorites, setFavorites] = useState<HotelFavoriteItem[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -43,6 +48,14 @@ export default function FavoriteHotel() {
         } catch {}
     };
 
+    const displayedFavorites = selectedCity
+        ? favorites.filter((hotel) =>
+              `${hotel.city || ""} ${hotel.location || ""}`
+                  .toLowerCase()
+                  .includes(selectedCity.toLowerCase())
+          )
+        : favorites;
+
     return (
         <div className={styles.favoriteGroup}>
             <div className={styles.favoriteGroupTitle}>
@@ -53,15 +66,19 @@ export default function FavoriteHotel() {
                 <div className={styles.emptyFavoriteBox}>
                     Memuat hotel favorit...
                 </div>
-            ) : favorites.length === 0 ? (
+            ) : displayedFavorites.length === 0 ? (
                 <div className={styles.emptyFavoriteBox}>
-                    <span>Belum ada hotel favorit yang disimpan.</span>
+                    <span>
+                        {selectedCity
+                            ? `Belum ada hotel favorit di ${selectedCity}.`
+                            : "Belum ada hotel favorit yang disimpan."}
+                    </span>
                     <Link href="/hotel" className={styles.btnDetail}>
                         Cari Hotel Sekarang
                     </Link>
                 </div>
             ) : (
-                favorites.map((hotel) => (
+                displayedFavorites.map((hotel) => (
                     <div className={styles.hotelCard} key={hotel.hotelId}>
                         <img
                             src={hotel.image}

@@ -16,7 +16,11 @@ interface PackageFavoriteItem {
     price: string;
 }
 
-export default function FavoritePaket() {
+interface FavoritePaketProps {
+    selectedCity?: string | null;
+}
+
+export default function FavoritePaket({ selectedCity }: FavoritePaketProps) {
     const [favorites, setFavorites] = useState<PackageFavoriteItem[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -46,6 +50,14 @@ export default function FavoritePaket() {
         } catch {}
     };
 
+    const displayedFavorites = selectedCity
+        ? favorites.filter((pkg) =>
+              `${pkg.destinationName || ""} ${pkg.destinationLink || ""}`
+                  .toLowerCase()
+                  .includes(selectedCity.toLowerCase())
+          )
+        : favorites;
+
     return (
         <div className={styles.favoriteGroup}>
             <div className={styles.favoriteGroupTitle}>
@@ -56,16 +68,20 @@ export default function FavoritePaket() {
                 <div className={styles.emptyFavoriteBox}>
                     Memuat paket wisata favorit...
                 </div>
-            ) : favorites.length === 0 ? (
+            ) : displayedFavorites.length === 0 ? (
                 <div className={styles.emptyFavoriteBox}>
-                    <span>Belum ada paket wisata favorit yang disimpan.</span>
+                    <span>
+                        {selectedCity
+                            ? `Belum ada paket wisata favorit di ${selectedCity}.`
+                            : "Belum ada paket wisata favorit yang disimpan."}
+                    </span>
                     <Link href="/paket" className={styles.btnDetail}>
                         Jelajahi Paket Sekarang
                     </Link>
                 </div>
             ) : (
                 <div className={styles.paketGrid}>
-                    {favorites.map((pkg) => (
+                    {displayedFavorites.map((pkg) => (
                         <div className={styles.paketCard} key={pkg.packageKey}>
                             <img
                                 src={pkg.coverImage}
