@@ -186,7 +186,7 @@ export default function HistoriPage() {
                             facilities: item.paymentMethod,
                             orderId: item.orderId,
                             total: `IDR ${item.totalPrice.toLocaleString("id-ID")}`,
-                            status: item.status === "dibatalkan" ? "Dibatalkan" : item.status === "diverifikasi" ? "Diverifikasi" : "Berhasil",
+                            status: item.status === "dibatalkan" ? "Dibatalkan" : "Berhasil",
                         };
                     });
                     setDbPackageBookings(mapped);

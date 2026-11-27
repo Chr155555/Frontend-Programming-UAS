@@ -21,7 +21,7 @@ export default function FavoriteHotel() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch("/api/hotels/favorites")
+        fetch("/api/hotels/favorites", { cache: "no-store" })
             .then((res) => res.json())
             .then((data) => {
                 if (Array.isArray(data)) {
