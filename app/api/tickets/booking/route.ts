@@ -34,7 +34,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const existingOrder = db
+    const existingOrder = await db
       .select()
       .from(ticketBookings)
       .where(eq(ticketBookings.orderId, orderId))
@@ -44,7 +44,7 @@ export async function POST(request: Request) {
       return NextResponse.json([existingOrder], { status: 200 });
     }
 
-    const dbTicket = db
+    const dbTicket = await db
       .select()
       .from(tickets)
       .where(eq(tickets.id, ticketId))

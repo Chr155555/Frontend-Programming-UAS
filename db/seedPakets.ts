@@ -1,3 +1,4 @@
+try { process.loadEnvFile(); } catch {}
 import { db } from "./index";
 import { destinations, packages } from "./schema";
 import { PAKET_DATA } from "../app/paket/data/paket";
@@ -9,17 +10,17 @@ async function seedPakets() {
     let packageCount = 0;
 
     for (const dest of PAKET_DATA) {
-        const insertedDest = db.insert(destinations).values({
+        const [insertedDest] = await db.insert(destinations).values({
             destinationLink: dest.destinationLink,
             name: dest.name,
             regionGroup: dest.regionGroup,
             coverImage: dest.coverImage,
-        }).returning().run();
+        }).returning();
 
-        const destId = insertedDest.lastInsertRowid as number;
+        const destId = insertedDest.id;
 
         for (const pkg of dest.packages) {
-            db.insert(packages).values({
+            await db.insert(packages).values({
                 id: pkg.id,
                 destinationId: destId,
                 badge: pkg.badge,
@@ -42,7 +43,7 @@ async function seedPakets() {
                 returnFlight: JSON.stringify(pkg.returnFlight),
                 features: JSON.stringify(pkg.features),
                 policies: JSON.stringify(pkg.policies),
-            }).run();
+            });
 
             packageCount++;
         }

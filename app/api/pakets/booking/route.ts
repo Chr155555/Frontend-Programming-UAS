@@ -27,7 +27,7 @@ export async function POST(request: Request) {
       );
     }
 
-    const existingOrder = db
+    const existingOrder = await db
       .select()
       .from(paketBookings)
       .where(eq(paketBookings.orderId, orderId))
@@ -44,12 +44,12 @@ export async function POST(request: Request) {
     let resolvedCoverImage = coverImage;
 
     if (!resolvedCoverImage) {
-        const pkg = db.select().from(packages).where(eq(packages.id, packageId)).get();
+        const pkg = await db.select().from(packages).where(eq(packages.id, packageId)).get();
         resolvedCoverImage = pkg?.coverImage || "/paket/destinasi/singapore.jpg";
     }
 
     if (!resolvedTitle || !resolvedDestName) {
-      const dest = db
+      const dest = await db
         .select()
         .from(destinations)
         .where(eq(destinations.destinationLink, destinationLink))
@@ -57,7 +57,7 @@ export async function POST(request: Request) {
 
       if (dest) {
         resolvedDestName = dest.name;
-        const pkg = db
+        const pkg = await db
           .select()
           .from(packages)
           .where(and(eq(packages.destinationId, dest.id), eq(packages.id, packageId)))
