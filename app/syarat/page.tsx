@@ -177,7 +177,6 @@ export default function SyaratPage() {
   const [activeId, setActiveId] = useState<string>(sections[0].id);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Interactive simulator for Bab 2 (Penggabungan Akun TiketKu)
   const [emailVerified, setEmailVerified] = useState(true);
   const [phoneSame, setPhoneSame] = useState(true);
   const [selectedPlatforms, setSelectedPlatforms] = useState<string[]>([
@@ -185,16 +184,13 @@ export default function SyaratPage() {
     "Blibli",
   ]);
 
-  // Digital acceptance state
   const [acceptedAt, setAcceptedAt] = useState<string | null>(null);
 
   useEffect(() => {
     try {
       const saved = localStorage.getItem("tiketku_terms_accepted_at");
       if (saved) setAcceptedAt(saved);
-    } catch {
-      // ignore
-    }
+    } catch {}
   }, []);
 
   useEffect(() => {
@@ -288,7 +284,6 @@ export default function SyaratPage() {
         } as React.CSSProperties
       }
     >
-      {/* Reading Progress Bar */}
       <div
         style={{
           position: "sticky",
@@ -308,7 +303,6 @@ export default function SyaratPage() {
         />
       </div>
 
-      {/* Hero Banner */}
       <div
         className="text-white py-4 mb-4"
         style={{
@@ -345,7 +339,6 @@ export default function SyaratPage() {
 
       <main className="container" style={{ maxWidth: 1120 }}>
         <div className="row g-4">
-          {/* Sticky Sidebar */}
           <aside className="col-lg-4">
             <div className="sticky-top" style={{ top: "1.5rem" }}>
               <div className="card border-0 shadow-sm rounded-4 mb-3">
@@ -429,7 +422,6 @@ export default function SyaratPage() {
                 </div>
               </div>
 
-              {/* Status Persetujuan Digital */}
               <div className="card border-0 shadow-sm rounded-4">
                 <div className="card-body p-3">
                   <h6 className="fw-bold mb-2">
@@ -471,9 +463,7 @@ export default function SyaratPage() {
             </div>
           </aside>
 
-          {/* Main Content */}
           <div className="col-lg-8">
-            {/* Pengantar Resmi */}
             <div className="card border-0 shadow-sm rounded-4 mb-4">
               <div className="card-body p-4">
                 <p className="mb-2 small text-secondary">
@@ -485,7 +475,6 @@ export default function SyaratPage() {
               </div>
             </div>
 
-            {/* Simulator Interaktif Cek Kelayakan Penggabungan Akun */}
             <div className="card border-primary border-opacity-25 shadow-sm rounded-4 mb-4">
               <div className="card-body p-4">
                 <div className="d-flex align-items-center justify-content-between mb-2">
@@ -580,7 +569,6 @@ export default function SyaratPage() {
               </div>
             </div>
 
-            {/* Daftar Pasal Syarat & Ketentuan */}
             {filteredSections.length === 0 ? (
               <div className="alert alert-warning rounded-4">
                 Tidak ditemukan pasal dengan kata kunci{" "}
