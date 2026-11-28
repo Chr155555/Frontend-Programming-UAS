@@ -1,304 +1,327 @@
 .homeWrapper {
-  background-color: #f8fafc;
-  min-height: 100vh;
-  padding-bottom: 64px;
+	background-color: #f8fafc;
+	min-height: 100vh;
+	padding-bottom: 64px;
 }
 
 .heroSection {
-  position: relative;
-  width: 100%;
-  padding: 48px 0 64px;
-  background: linear-gradient(
-      180deg,
-      rgba(66, 46, 46, 0.94) 0%,
-      rgba(255, 255, 255, 0.78) 50%,
-      rgba(255, 255, 255, 0.35) 100%
-    ),
-    url("/home/hero-bg.jpg") center / cover no-repeat;
-  border-bottom: 1px solid #e2e8f0;
+	position: relative;
+	width: 100%;
+	border-bottom: 1px solid #e2e8f0;
+}
+
+.heroCarousel {
+	width: 100%;
+}
+
+.heroSlide {
+	width: 100%;
+	min-height: 460px;
+	padding: 56px 0 64px;
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+	display: flex;
+	align-items: center;
 }
 
 .heroContent {
-  max-width: 960px;
+	max-width: 960px;
+}
+
+.heroBadge {
+	display: inline-block;
+	background-color: rgba(14, 165, 233, 0.25);
+	border: 1px solid rgba(125, 211, 252, 0.5);
+	color: #e0f2fe;
+	font-size: 0.85rem;
+	font-weight: 600;
+	padding: 6px 14px;
+	border-radius: 999px;
+	margin-bottom: 16px;
 }
 
 .heroTitle {
-  font-size: 2.25rem;
-  font-weight: 800;
-  color: #111827;
-  margin-bottom: 12px;
-  letter-spacing: -0.02em;
+	font-size: 2.5rem;
+	font-weight: 800;
+	color: #ffffff;
+	margin-bottom: 12px;
+	letter-spacing: -0.02em;
+	text-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
 }
 
 .heroSubtitle {
-  font-size: 1rem;
-  color: #374151;
-  max-width: 680px;
-  line-height: 1.6;
-  margin-bottom: 32px;
+	font-size: 1.05rem;
+	color: #f1f5f9;
+	max-width: 660px;
+	line-height: 1.6;
+	margin-bottom: 32px;
+	text-shadow: 0 1px 8px rgba(0, 0, 0, 0.3);
 }
 
 .heroStats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  max-width: 820px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 20px;
+	max-width: 820px;
 }
 
 .statCard {
-  background-color: #ffffff;
-  border-radius: 12px;
-  padding: 24px 20px;
-  text-align: center;
-  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08);
-  transition: transform 0.2s ease;
+	background-color: rgba(255, 255, 255, 0.94);
+	border: 1px solid rgba(255, 255, 255, 0.6);
+	border-radius: 14px;
+	padding: 20px 18px;
+	text-align: center;
+	box-shadow: 0 8px 24px rgba(15, 23, 42, 0.16);
+	transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 .statCard:hover {
-  transform: translateY(-3px);
+	transform: translateY(-4px);
+	background-color: #ffffff;
 }
 
 .statNumber {
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #0077cc;
-  margin-bottom: 6px;
+	font-size: 1.5rem;
+	font-weight: 800;
+	color: #0077cc;
+	margin-bottom: 4px;
 }
 
 .statLabel {
-  font-size: 0.9rem;
-  color: #4b5563;
-  margin: 0;
-  font-weight: 500;
+	font-size: 0.9rem;
+	color: #334155;
+	margin: 0;
+	font-weight: 600;
 }
 
 .contentSection {
-  padding-top: 48px;
+	padding-top: 48px;
 }
 
 .flightSection {
-  padding-top: 56px;
+	padding-top: 56px;
 }
 
 .sectionHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 16px;
-  margin-bottom: 28px;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	flex-wrap: wrap;
+	gap: 16px;
+	margin-bottom: 28px;
 }
 
 .sectionTitle {
-  font-size: 1.45rem;
-  font-weight: 700;
-  color: #111827;
-  margin: 0 0 4px 0;
+	font-size: 1.45rem;
+	font-weight: 700;
+	color: #111827;
+	margin: 0 0 4px 0;
 }
 
 .sectionSubtitle {
-  font-size: 0.92rem;
-  color: #64748b;
-  margin: 0;
+	font-size: 0.92rem;
+	color: #64748b;
+	margin: 0;
 }
 
 .filterGroup {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
 }
 
 .filterPill {
-  padding: 7px 18px;
-  border-radius: 999px;
-  border: 1px solid #d1d5db;
-  background-color: #ffffff;
-  color: #374151;
-  font-size: 0.875rem;
-  font-weight: 500;
-  cursor: pointer;
-  transition: all 0.2s ease;
+	padding: 7px 18px;
+	border-radius: 999px;
+	border: 1px solid #d1d5db;
+	background-color: #ffffff;
+	color: #374151;
+	font-size: 0.875rem;
+	font-weight: 500;
+	cursor: pointer;
+	transition: all 0.2s ease;
 }
 
 .filterPill:hover {
-  border-color: #0077cc;
-  color: #0077cc;
+	border-color: #0077cc;
+	color: #0077cc;
 }
 
 .filterPillActive {
-  background-color: #0077cc;
-  border-color: #0077cc;
-  color: #ffffff;
+	background-color: #0077cc;
+	border-color: #0077cc;
+	color: #ffffff;
 }
 
 .filterPillActive:hover {
-  background-color: #0062a8;
-  color: #ffffff;
+	background-color: #0062a8;
+	color: #ffffff;
 }
 
 .seeAllLink {
-  font-size: 0.92rem;
-  font-weight: 600;
-  color: #0077cc;
-  text-decoration: none;
+	font-size: 0.92rem;
+	font-weight: 600;
+	color: #0077cc;
+	text-decoration: none;
 }
 
 .seeAllLink:hover {
-  text-decoration: underline;
+	text-decoration: underline;
 }
 
 .cardGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	gap: 24px;
 }
 
 .promoCard {
-  background-color: #ffffff;
-  border-radius: 14px;
-  padding: 22px;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
-  border: 1px solid #eef2f6;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+	background-color: #ffffff;
+	border-radius: 14px;
+	padding: 22px;
+	box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+	border: 1px solid #eef2f6;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .promoCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1);
+	transform: translateY(-4px);
+	box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1);
 }
 
 .promoBadge {
-  display: inline-block;
-  background-color: #e0f2fe;
-  color: #0077cc;
-  font-size: 0.75rem;
-  font-weight: 700;
-  padding: 4px 10px;
-  border-radius: 6px;
-  margin-bottom: 12px;
+	display: inline-block;
+	background-color: #e0f2fe;
+	color: #0077cc;
+	font-size: 0.75rem;
+	font-weight: 700;
+	padding: 4px 10px;
+	border-radius: 6px;
+	margin-bottom: 12px;
 }
 
 .promoTitle {
-  font-size: 1rem;
-  font-weight: 600;
-  color: #1e293b;
-  line-height: 1.5;
-  margin-bottom: 20px;
+	font-size: 1rem;
+	font-weight: 600;
+	color: #1e293b;
+	line-height: 1.5;
+	margin-bottom: 20px;
 }
 
 .promoFooter {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+	display: flex;
+	flex-direction: column;
+	gap: 12px;
 }
 
 .codeBox {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #f1f5f9;
-  border: 1px dashed #94a3b8;
-  border-radius: 8px;
-  padding: 8px 12px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: #f1f5f9;
+	border: 1px dashed #94a3b8;
+	border-radius: 8px;
+	padding: 8px 12px;
 }
 
 .codeLabel {
-  font-size: 0.78rem;
-  color: #64748b;
+	font-size: 0.78rem;
+	color: #64748b;
 }
 
 .codeValue {
-  font-size: 0.92rem;
-  font-weight: 700;
-  color: #0f172a;
-  letter-spacing: 0.04em;
+	font-size: 0.92rem;
+	font-weight: 700;
+	color: #0f172a;
+	letter-spacing: 0.04em;
 }
 
 .flightCard {
-  background-color: #ffffff;
-  border-radius: 14px;
-  overflow: hidden;
-  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
-  border: 1px solid #eef2f6;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+	background-color: #ffffff;
+	border-radius: 14px;
+	overflow: hidden;
+	box-shadow: 0 4px 16px rgba(15, 23, 42, 0.06);
+	border: 1px solid #eef2f6;
+	display: flex;
+	flex-direction: column;
+	transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .flightCard:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1);
+	transform: translateY(-4px);
+	box-shadow: 0 10px 24px rgba(15, 23, 42, 0.1);
 }
 
 .flightImageWrapper {
-  width: 100%;
-  height: 185px;
-  overflow: hidden;
+	width: 100%;
+	height: 185px;
+	overflow: hidden;
 }
 
 .flightImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
 }
 
 .flightBody {
-  padding: 20px;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+	padding: 20px;
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	flex: 1;
 }
 
 .flightRoute {
-  font-size: 1.2rem;
-  font-weight: 700;
-  color: #111827;
-  margin-bottom: 4px;
+	font-size: 1.2rem;
+	font-weight: 700;
+	color: #111827;
+	margin-bottom: 4px;
 }
 
 .flightAirline {
-  font-size: 0.85rem;
-  color: #64748b;
-  margin-bottom: 8px;
+	font-size: 0.85rem;
+	color: #64748b;
+	margin-bottom: 8px;
 }
 
 .flightPrice {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: #0077cc;
-  margin-bottom: 16px;
+	font-size: 0.95rem;
+	font-weight: 700;
+	color: #0077cc;
+	margin-bottom: 16px;
 }
 
 .primaryBtn {
-  display: block;
-  width: 100%;
-  padding: 10px 16px;
-  background-color: #0077cc;
-  color: #ffffff;
-  font-size: 0.92rem;
-  font-weight: 600;
-  text-align: center;
-  text-decoration: none;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+	display: block;
+	width: 100%;
+	padding: 10px 16px;
+	background-color: #0077cc;
+	color: #ffffff;
+	font-size: 0.92rem;
+	font-weight: 600;
+	text-align: center;
+	text-decoration: none;
+	border: none;
+	border-radius: 8px;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
 }
 
 .primaryBtn:hover {
-  background-color: #005fa3;
-  color: #ffffff;
+	background-color: #005fa3;
+	color: #ffffff;
 }
 
 .copiedBtn {
-  background-color: #16a34a;
+	background-color: #16a34a;
 }
 
 .copiedBtn:hover {
-  background-color: #15803d;
+	background-color: #15803d;
 }
