@@ -37,6 +37,9 @@ export default function Header() {
     }, []);
 
     const handleLogout = () => {
+        const confirmLogout = window.confirm("Apakah Anda yakin ingin keluar?");
+        if (!confirmLogout) return;
+
         localStorage.removeItem("tiketku_user");
         setUser(null);
         window.dispatchEvent(new Event("tiketku-auth-change"));
