@@ -1,1108 +1,1108 @@
 .pageWrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px 20px 60px;
-  color: #0f172a;
-  font-family: inherit;
-  width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px 20px 60px;
+    color: #0f172a;
+    font-family: inherit;
+    width: 100%;
 }
 
 .bookingStepper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 24px;
-  background: #ffffff;
-  padding: 14px 20px;
-  border-radius: 10px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+    background: #ffffff;
+    padding: 14px 20px;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
 }
 
 .stepItem {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
 }
 
 .stepItemClickable {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .stepCircle {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 700;
-  background: #f1f5f9;
-  color: #64748b;
-  transition: all 0.15s ease;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    background: #f1f5f9;
+    color: #64748b;
+    transition: all 0.15s ease;
 }
 
 .stepCircleCompleted {
-  background: #0284c7;
-  color: #ffffff;
+    background: #0284c7;
+    color: #ffffff;
 }
 
 .stepCircleActive {
-  background: #0284c7;
-  color: #ffffff;
-  box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.15);
+    background: #0284c7;
+    color: #ffffff;
+    box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.15);
 }
 
 .stepInfo {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .stepNumber {
-  font-size: 11px;
-  font-weight: 600;
-  text-transform: uppercase;
-  color: #64748b;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #64748b;
 }
 
 .stepTitle {
-  font-size: 13px;
-  font-weight: 700;
-  color: #0f172a;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
 }
 
 .stepTitleActive {
-  color: #0284c7;
+    color: #0284c7;
 }
 
 .stepDivider {
-  flex: 1;
-  max-width: 70px;
-  height: 2px;
-  background: #e2e8f0;
-  margin: 0 14px;
+    flex: 1;
+    max-width: 70px;
+    height: 2px;
+    background: #e2e8f0;
+    margin: 0 14px;
 }
 
 .stepDividerCompleted {
-  background: #0284c7;
+    background: #0284c7;
 }
 
 .flightSummaryBanner {
-  background: #0284c7;
-  border-radius: 12px;
-  padding: 20px 24px;
-  color: #ffffff;
-  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.18);
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 16px;
+    background: #0284c7;
+    border-radius: 12px;
+    padding: 20px 24px;
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(2, 132, 199, 0.18);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
 }
 
 .summaryRouteGroup {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
 }
 
 .summaryRouteTitle {
-  font-size: 20px;
-  font-weight: 700;
-  display: flex;
-  align-items: center;
-  gap: 10px;
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .summaryRouteArrow {
-  color: rgba(255, 255, 255, 0.85);
-  display: inline-flex;
+    color: rgba(255, 255, 255, 0.85);
+    display: inline-flex;
 }
 
 .summaryBadges {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
 }
 
 .summaryPill {
-  background: rgba(255, 255, 255, 0.18);
-  padding: 4px 12px;
-  border-radius: 16px;
-  font-size: 12px;
-  font-weight: 600;
-  border: 1px solid rgba(255, 255, 255, 0.25);
-  color: #ffffff;
+    background: rgba(255, 255, 255, 0.18);
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: #ffffff;
 }
 
 .btnChangeFlight {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: #ffffff;
-  color: #0284c7;
-  font-size: 13px;
-  font-weight: 600;
-  padding: 8px 14px;
-  border-radius: 6px;
-  text-decoration: none;
-  transition: all 0.15s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: #ffffff;
+    color: #0284c7;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 8px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: all 0.15s ease;
 }
 
 .btnChangeFlight:hover {
-  background: #f8fafc;
+    background: #f8fafc;
 }
 
 .detailLayoutGrid {
-  display: grid;
-  grid-template-columns: 1fr 370px;
-  gap: 22px;
-  align-items: start;
+    display: grid;
+    grid-template-columns: 1fr 370px;
+    gap: 22px;
+    align-items: start;
 }
 
 .detailMainContent {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .detailSidebar {
-  position: sticky;
-  top: 85px;
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
+    position: sticky;
+    top: 85px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
 }
 
 .flightTripSection {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .tripSectionHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px;
 }
 
 .tripTitleWrapper {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .tripIconBadge {
-  width: 34px;
-  height: 34px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f1f5f9;
-  color: #0284c7;
-  border: 1px solid #e2e8f0;
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f1f5f9;
+    color: #0284c7;
+    border: 1px solid #e2e8f0;
 }
 
 .tripHeaderText h2 {
-  font-size: 16px;
-  font-weight: 700;
-  color: #0f172a;
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
 }
 
 .tripHeaderText p {
-  font-size: 12px;
-  color: #64748b;
+    font-size: 12px;
+    color: #64748b;
 }
 
 .tripBadgePill {
-  font-size: 11px;
-  font-weight: 600;
-  padding: 3px 10px;
-  border-radius: 4px;
-  background: #f1f5f9;
-  color: #334155;
-  border: 1px solid #e2e8f0;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 4px;
+    background: #f1f5f9;
+    color: #334155;
+    border: 1px solid #e2e8f0;
 }
 
 .cardTicket {
-  position: relative;
-  width: 100%;
-  display: flex;
-  background-color: #ffffff;
-  border-radius: 10px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-  transition: all 0.15s ease;
-  overflow: hidden;
+    position: relative;
+    width: 100%;
+    display: flex;
+    background-color: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    transition: all 0.15s ease;
+    overflow: hidden;
 }
 
 .cardTicket:hover {
-  border-color: #cbd5e1;
+    border-color: #cbd5e1;
 }
 
 .contentTicket {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  padding: 18px 20px;
-  gap: 12px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 18px 20px;
+    gap: 12px;
 }
 
 .airlineHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 10px;
-  border-bottom: 1px dashed #e2e8f0;
-  padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+    border-bottom: 1px dashed #e2e8f0;
+    padding-bottom: 10px;
 }
 
 .airlineInfo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .airlineCodeBadge {
-  width: 36px;
-  height: 36px;
-  border-radius: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 700;
-  background: #f8fafc;
-  color: #0f172a;
-  border: 1px solid #e2e8f0;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    background: #f8fafc;
+    color: #0f172a;
+    border: 1px solid #e2e8f0;
 }
 
 .airlineName {
-  font-size: 14px;
-  font-weight: 700;
-  color: #0f172a;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
 }
 
 .flightCode {
-  font-size: 12px;
-  color: #64748b;
-  font-weight: 500;
+    font-size: 12px;
+    color: #64748b;
+    font-weight: 500;
 }
 
 .ticketDateBadge {
-  background: #f8fafc;
-  color: #475569;
-  border: 1px solid #e2e8f0;
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-size: 11px;
-  font-weight: 500;
+    background: #f8fafc;
+    color: #475569;
+    border: 1px solid #e2e8f0;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 500;
 }
 
 .contentData {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .destination {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
 }
 
 .dest {
-  display: flex;
-  flex-direction: column;
-  min-width: 120px;
+    display: flex;
+    flex-direction: column;
+    min-width: 120px;
 }
 
 .destOrigin {
-  text-align: left;
+    text-align: left;
 }
 
 .destPoint {
-  text-align: right;
+    text-align: right;
 }
 
 .hour {
-  font-size: 20px;
-  font-weight: 700;
-  color: #0f172a;
-  display: flex;
-  align-items: baseline;
-  gap: 4px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #0f172a;
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
 }
 
 .destPoint .hour {
-  justify-content: flex-end;
+    justify-content: flex-end;
 }
 
 .timezone {
-  font-size: 11px;
-  font-weight: 500;
-  color: #64748b;
+    font-size: 11px;
+    font-weight: 500;
+    color: #64748b;
 }
 
 .acronym {
-  font-size: 16px;
-  font-weight: 700;
-  color: #0f172a;
-  margin-top: 2px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-top: 2px;
 }
 
 .country {
-  font-size: 13px;
-  font-weight: 500;
-  color: #334155;
+    font-size: 13px;
+    font-weight: 500;
+    color: #334155;
 }
 
 .airportDetail {
-  font-size: 11px;
-  color: #64748b;
+    font-size: 11px;
+    color: #64748b;
 }
 
 .flightDateTag {
-  font-size: 11px;
-  font-weight: 500;
-  color: #64748b;
-  margin-top: 3px;
-  display: inline-block;
-  width: fit-content;
+    font-size: 11px;
+    font-weight: 500;
+    color: #64748b;
+    margin-top: 3px;
+    display: inline-block;
+    width: fit-content;
 }
 
 .destPoint .flightDateTag {
-  margin-left: auto;
+    margin-left: auto;
 }
 
 .flightDurationCenter {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  max-width: 180px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 180px;
 }
 
 .durationText {
-  font-size: 11px;
-  font-weight: 500;
-  color: #64748b;
-  margin-bottom: 2px;
+    font-size: 11px;
+    font-weight: 500;
+    color: #64748b;
+    margin-bottom: 2px;
 }
 
 .flightLineTrack {
-  width: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 16px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 16px;
 }
 
 .flightLineTrack::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 50%;
-  height: 1.5px;
-  background: #cbd5e1;
-  transform: translateY(-50%);
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 50%;
+    height: 1.5px;
+    background: #cbd5e1;
+    transform: translateY(-50%);
 }
 
 .flightLineDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #64748b;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #64748b;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
 }
 
 .flightLineDotStart {
-  left: 0;
+    left: 0;
 }
 
 .flightLineDotEnd {
-  right: 0;
+    right: 0;
 }
 
 .flightPlaneIcon {
-  background: #ffffff;
-  padding: 0 4px;
-  color: #0284c7;
-  position: relative;
-  z-index: 3;
+    background: #ffffff;
+    padding: 0 4px;
+    color: #0284c7;
+    position: relative;
+    z-index: 3;
 }
 
 .flightTypeBadge {
-  font-size: 10px;
-  font-weight: 500;
-  color: #64748b;
-  margin-top: 2px;
-  background: #f1f5f9;
-  border: 1px solid #e2e8f0;
-  padding: 2px 6px;
-  border-radius: 4px;
+    font-size: 10px;
+    font-weight: 500;
+    color: #64748b;
+    margin-top: 2px;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    padding: 2px 6px;
+    border-radius: 4px;
 }
 
 .dataFlex {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 8px;
-  background: #f8fafc;
-  padding: 8px 12px;
-  border-radius: 6px;
-  border: 1px solid #edf2f7;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    background: #f8fafc;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #edf2f7;
 }
 
 .dataTitle {
-  font-size: 10px;
-  font-weight: 600;
-  color: #64748b;
-  text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
 }
 
 .dataSubtitle {
-  font-size: 12px;
-  font-weight: 600;
-  color: #0f172a;
+    font-size: 12px;
+    font-weight: 600;
+    color: #0f172a;
 }
 
 .facilitiesBadges {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-wrap: wrap;
 }
 
 .badgeItem {
-  font-size: 11px;
-  font-weight: 500;
-  color: #475569;
-  background: #f8fafc;
-  padding: 3px 8px;
-  border-radius: 4px;
-  border: 1px solid #e2e8f0;
+    font-size: 11px;
+    font-weight: 500;
+    color: #475569;
+    background: #f8fafc;
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid #e2e8f0;
 }
 
 .separator {
-  position: relative;
-  width: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    position: relative;
+    width: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .spanLines {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  height: 100%;
-  border-left: 1.5px dashed #cbd5e1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    border-left: 1.5px dashed #cbd5e1;
 }
 
 .spanLines::after,
 .spanLines::before {
-  content: "";
-  position: absolute;
-  left: -1px;
-  transform: translateX(-50%);
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background-color: #f1f5f9;
-  border: 1px solid #cbd5e1;
+    content: "";
+    position: absolute;
+    left: -1px;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: #f1f5f9;
+    border: 1px solid #cbd5e1;
 }
 
 .spanLines::after {
-  top: -10px;
+    top: -10px;
 }
 
 .spanLines::before {
-  bottom: -10px;
+    bottom: -10px;
 }
 
 .ticketStub {
-  width: 210px;
-  min-width: 210px;
-  background: #fafafa;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap: 10px;
+    width: 210px;
+    min-width: 210px;
+    background: #fafafa;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 .stubStatusPill {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  background: #f1f5f9;
-  color: #0284c7;
-  border: 1px solid #e2e8f0;
-  padding: 2px 7px;
-  border-radius: 4px;
-  font-size: 11px;
-  font-weight: 600;
-  width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: #f1f5f9;
+    color: #0284c7;
+    border: 1px solid #e2e8f0;
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    width: fit-content;
 }
 
 .stubPriceInfo {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 .stubPriceLabel {
-  font-size: 10px;
-  font-weight: 600;
-  color: #64748b;
-  text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
 }
 
 .stubPriceValue {
-  font-size: 18px;
-  font-weight: 700;
-  color: #0284c7;
+    font-size: 18px;
+    font-weight: 700;
+    color: #0284c7;
 }
 
 .stubPriceTax {
-  font-size: 10px;
-  color: #64748b;
+    font-size: 10px;
+    color: #64748b;
 }
 
 .btnTicketPolicy {
-  background: transparent;
-  border: 1px solid #e2e8f0;
-  color: #334155;
-  border-radius: 6px;
-  padding: 6px 8px;
-  font-size: 11px;
-  font-weight: 500;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 4px;
-  transition: all 0.15s ease;
+    background: transparent;
+    border: 1px solid #e2e8f0;
+    color: #334155;
+    border-radius: 6px;
+    padding: 6px 8px;
+    font-size: 11px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    transition: all 0.15s ease;
 }
 
 .btnTicketPolicy:hover {
-  background: #f1f5f9;
-  color: #0284c7;
+    background: #f1f5f9;
+    color: #0284c7;
 }
 
 .passengerInfoCard,
 .addonsCard,
 .infoBanner {
-  background: #ffffff;
-  border-radius: 10px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
-  padding: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .cardInnerHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #edf2f7;
-  padding-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #edf2f7;
+    padding-bottom: 8px;
 }
 
 .cardInnerTitle {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 14px;
-  font-weight: 700;
-  color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
 }
 
 .passengerDataGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-  gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
 }
 
 .passengerDataBox {
-  background: #f8fafc;
-  padding: 8px 10px;
-  border-radius: 6px;
-  border: 1px solid #edf2f7;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+    background: #f8fafc;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #edf2f7;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
 }
 
 .dataLabel {
-  font-size: 10px;
-  font-weight: 600;
-  color: #64748b;
-  text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 600;
+    color: #64748b;
+    text-transform: uppercase;
 }
 
 .dataVal {
-  font-size: 12px;
-  font-weight: 600;
-  color: #0f172a;
+    font-size: 12px;
+    font-weight: 600;
+    color: #0f172a;
 }
 
 .addonsList {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .addonItem {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 10px 12px;
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s ease;
 }
 
 .addonItem:hover {
-  border-color: #cbd5e1;
+    border-color: #cbd5e1;
 }
 
 .addonLeft {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
 .addonCheckbox {
-  width: 16px;
-  height: 16px;
-  accent-color: #0284c7;
-  cursor: pointer;
+    width: 16px;
+    height: 16px;
+    accent-color: #0284c7;
+    cursor: pointer;
 }
 
 .addonContent h4 {
-  font-size: 12px;
-  font-weight: 600;
-  color: #0f172a;
+    font-size: 12px;
+    font-weight: 600;
+    color: #0f172a;
 }
 
 .addonContent p {
-  font-size: 11px;
-  color: #64748b;
+    font-size: 11px;
+    color: #64748b;
 }
 
 .addonPrice {
-  font-size: 12px;
-  font-weight: 700;
-  color: #0284c7;
+    font-size: 12px;
+    font-weight: 700;
+    color: #0284c7;
 }
 
 .pricePathCard {
-  background: #ffffff;
-  border-radius: 10px;
-  border: 1px solid #e2e8f0;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
-  overflow: hidden;
+    background: #ffffff;
+    border-radius: 10px;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    overflow: hidden;
 }
 
 .pricePathHeader {
-  background: #f8fafc;
-  border-bottom: 1px solid #e2e8f0;
-  padding: 12px 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    background: #f8fafc;
+    border-bottom: 1px solid #e2e8f0;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .pricePathTitle {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 14px;
-  font-weight: 700;
-  color: #0f172a;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
 }
 
 .pricePathBody {
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
 .priceRouteSummary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-bottom: 8px;
-  border-bottom: 1px dashed #e2e8f0;
-  font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed #e2e8f0;
+    font-size: 12px;
 }
 
 .routeTags {
-  font-weight: 600;
-  color: #0f172a;
+    font-weight: 600;
+    color: #0f172a;
 }
 
 .passengerTag {
-  color: #64748b;
+    color: #64748b;
 }
 
 .priceBreakdownList {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .priceRow {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 12px;
 }
 
 .rowLabel {
-  color: #334155;
+    color: #334155;
 }
 
 .rowVal {
-  font-weight: 600;
-  color: #0f172a;
+    font-weight: 600;
+    color: #0f172a;
 }
 
 .rowValFree {
-  color: #0284c7;
-  font-weight: 600;
+    color: #0284c7;
+    font-weight: 600;
 }
 
 .rowValDiscount {
-  color: #0284c7;
-  font-weight: 600;
+    color: #0284c7;
+    font-weight: 600;
 }
 
 .promoBox {
-  margin-top: 4px;
+    margin-top: 4px;
 }
 
 .promoForm {
-  display: flex;
-  gap: 6px;
+    display: flex;
+    gap: 6px;
 }
 
 .promoInput {
-  flex: 1;
-  padding: 7px 10px;
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
-  font-size: 12px;
-  font-weight: 500;
-  color: #0f172a;
-  outline: none;
-  text-transform: uppercase;
+    flex: 1;
+    padding: 7px 10px;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: #0f172a;
+    outline: none;
+    text-transform: uppercase;
 }
 
 .promoInput:focus {
-  border-color: #0284c7;
+    border-color: #0284c7;
 }
 
 .btnApplyPromo {
-  background: #0284c7;
-  color: #ffffff;
-  border: none;
-  border-radius: 6px;
-  padding: 7px 12px;
-  font-size: 12px;
-  font-weight: 600;
-  cursor: pointer;
+    background: #0284c7;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .btnApplyPromo:hover {
-  background: #0369a1;
+    background: #0369a1;
 }
 
 .promoMessage {
-  font-size: 11px;
-  margin-top: 4px;
-  color: #0284c7;
+    font-size: 11px;
+    margin-top: 4px;
+    color: #0284c7;
 }
 
 .priceDivider {
-  height: 1px;
-  background: #e2e8f0;
-  margin: 4px 0;
+    height: 1px;
+    background: #e2e8f0;
+    margin: 4px 0;
 }
 
 .totalPaymentBox {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding-top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 2px;
 }
 
 .totalLabel {
-  font-size: 13px;
-  font-weight: 700;
-  color: #0f172a;
+    font-size: 13px;
+    font-weight: 700;
+    color: #0f172a;
 }
 
 .totalSublabel {
-  font-size: 10px;
-  color: #64748b;
+    font-size: 10px;
+    color: #64748b;
 }
 
 .totalAmount {
-  font-size: 20px;
-  font-weight: 700;
-  color: #0284c7;
+    font-size: 20px;
+    font-weight: 700;
+    color: #0284c7;
 }
 
 .btnProceedPayment {
-  background: #0284c7;
-  color: #ffffff;
-  border: none;
-  border-radius: 6px;
-  padding: 12px 16px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  transition: background-color 0.15s ease;
-  width: 100%;
+    background: #0284c7;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    transition: background-color 0.15s ease;
+    width: 100%;
 }
 
 .btnProceedPayment:hover {
-  background: #0369a1;
+    background: #0369a1;
 }
 
 .priceTrustNotes {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 12px 16px;
-  background: #f8fafc;
-  border-top: 1px solid #e2e8f0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 12px 16px;
+    background: #f8fafc;
+    border-top: 1px solid #e2e8f0;
 }
 
 .trustItem {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 11px;
-  color: #64748b;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: #64748b;
 }
 
 .infoTitle {
-  font-size: 14px;
-  font-weight: 700;
-  color: #0f172a;
-  margin-bottom: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 10px;
 }
 
 .infoGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
 }
 
 .infoItem {
-  background: #f8fafc;
-  padding: 10px 12px;
-  border-radius: 6px;
-  border: 1px solid #edf2f7;
+    background: #f8fafc;
+    padding: 10px 12px;
+    border-radius: 6px;
+    border: 1px solid #edf2f7;
 }
 
 .infoItem h4 {
-  font-size: 12px;
-  font-weight: 600;
-  color: #0f172a;
-  margin-bottom: 2px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 2px;
 }
 
 .infoItem p {
-  font-size: 11px;
-  color: #64748b;
-  line-height: 1.4;
+    font-size: 11px;
+    color: #64748b;
+    line-height: 1.4;
 }
 
 .modalBackdrop {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(15, 23, 42, 0.4);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-  padding: 16px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(15, 23, 42, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+    padding: 16px;
 }
 
 .modalBox {
-  background: #ffffff;
-  border-radius: 10px;
-  padding: 24px;
-  max-width: 440px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  gap: 12px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    background: #ffffff;
+    border-radius: 10px;
+    padding: 24px;
+    max-width: 440px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
 }
 
 .modalIconSuccess {
-  width: 48px;
-  height: 48px;
-  border-radius: 50%;
-  background: #f1f5f9;
-  color: #0284c7;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: #f1f5f9;
+    color: #0284c7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .modalTitle {
-  font-size: 16px;
-  font-weight: 700;
-  color: #0f172a;
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
 }
 
 .modalDesc {
-  font-size: 12px;
-  color: #64748b;
-  line-height: 1.4;
+    font-size: 12px;
+    color: #64748b;
+    line-height: 1.4;
 }
 
 .modalSummaryBox {
-  width: 100%;
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 6px;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-size: 12px;
-  text-align: left;
+    width: 100%;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 12px;
+    text-align: left;
 }
 
 .modalActions {
-  display: flex;
-  gap: 10px;
-  width: 100%;
-  margin-top: 6px;
+    display: flex;
+    gap: 10px;
+    width: 100%;
+    margin-top: 6px;
 }
 
 .btnModalCancel {
-  flex: 1;
-  background: #f1f5f9;
-  border: 1px solid #e2e8f0;
-  color: #475569;
-  border-radius: 6px;
-  padding: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
+    flex: 1;
+    background: #f1f5f9;
+    border: 1px solid #e2e8f0;
+    color: #475569;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
 }
 
 .btnModalConfirm {
-  flex: 1;
-  background: #0284c7;
-  color: #ffffff;
-  border-radius: 6px;
-  padding: 10px;
-  font-size: 13px;
-  font-weight: 600;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    flex: 1;
+    background: #0284c7;
+    color: #ffffff;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btnModalConfirm:hover {
-  background: #0369a1;
+    background: #0369a1;
 }
 
 @media (max-width: 900px) {
-  .detailLayoutGrid {
-    grid-template-columns: 1fr;
-  }
-  .detailSidebar {
-    position: static;
-  }
+    .detailLayoutGrid {
+        grid-template-columns: 1fr;
+    }
+    .detailSidebar {
+        position: static;
+    }
 }
 
 @media (max-width: 640px) {
-  .bookingStepper {
-    padding: 10px 12px;
-  }
-  .stepDivider {
-    margin: 0 6px;
-  }
-  .cardTicket {
-    flex-direction: column;
-  }
-  .separator {
-    width: 100%;
-    height: 0;
-  }
-  .separator .spanLines {
-    width: 100%;
-    height: 0;
-    border-left: none;
-    border-top: 1.5px dashed #cbd5e1;
-    left: 0;
-    right: 0;
-  }
-  .separator .spanLines::after {
-    top: -10px;
-    left: -10px;
-    transform: none;
-  }
-  .separator .spanLines::before {
-    bottom: -10px;
-    right: -10px;
-    left: auto;
-    transform: none;
-  }
-  .ticketStub {
-    width: 100%;
-    min-width: 100%;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: center;
-  }
-  .destination {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  .destPoint {
-    text-align: left;
-  }
-  .destPoint .hour {
-    justify-content: flex-start;
-  }
+    .bookingStepper {
+        padding: 10px 12px;
+    }
+    .stepDivider {
+        margin: 0 6px;
+    }
+    .cardTicket {
+        flex-direction: column;
+    }
+    .separator {
+        width: 100%;
+        height: 0;
+    }
+    .separator .spanLines {
+        width: 100%;
+        height: 0;
+        border-left: none;
+        border-top: 1.5px dashed #cbd5e1;
+        left: 0;
+        right: 0;
+    }
+    .separator .spanLines::after {
+        top: -10px;
+        left: -10px;
+        transform: none;
+    }
+    .separator .spanLines::before {
+        bottom: -10px;
+        right: -10px;
+        left: auto;
+        transform: none;
+    }
+    .ticketStub {
+        width: 100%;
+        min-width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+    }
+    .destination {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .destPoint {
+        text-align: left;
+    }
+    .destPoint .hour {
+        justify-content: flex-start;
+    }
 }
