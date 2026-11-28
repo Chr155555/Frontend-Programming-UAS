@@ -49,20 +49,13 @@ export async function GET(
     request: Request,
     { params }: { params: Promise<{ id: string }> }
 ) {
-    try {
-        const { id } = await params;
-        const row = db.select().from(tickets).where(eq(tickets.id, id)).get();
-        if (!row) {
-            return NextResponse.json(
-                { success: false, message: "Tiket tidak ditemukan" },
-                { status: 404 }
-            );
-        }
-        return NextResponse.json({ success: true, data: mapDbTicket(row) });
-    } catch {
-        return NextResponse.json(
-            { success: false, message: "Gagal mengambil data tiket" },
-            { status: 500 }
-        );
+  try {
+    const { id } = await params;
+    const row = await db.select().from(tickets).where(eq(tickets.id, id)).get();
+    if (!row) {
+      return NextResponse.json(
+        { success: false, message: "Tiket tidak ditemukan" },
+        { status: 404 }
+      );
     }
 }

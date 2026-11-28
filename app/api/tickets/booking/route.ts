@@ -34,21 +34,21 @@ export async function POST(request: Request) {
             );
         }
 
-        const existingOrder = db
-            .select()
-            .from(ticketBookings)
-            .where(eq(ticketBookings.orderId, orderId))
-            .get();
+    const existingOrder = await db
+      .select()
+      .from(ticketBookings)
+      .where(eq(ticketBookings.orderId, orderId))
+      .get();
 
         if (existingOrder) {
             return NextResponse.json([existingOrder], { status: 200 });
         }
 
-        const dbTicket = db
-            .select()
-            .from(tickets)
-            .where(eq(tickets.id, ticketId))
-            .get();
+    const dbTicket = await db
+      .select()
+      .from(tickets)
+      .where(eq(tickets.id, ticketId))
+      .get();
 
         const newBooking = await db
             .insert(ticketBookings)

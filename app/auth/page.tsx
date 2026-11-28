@@ -33,7 +33,6 @@ function AuthForm() {
     konfirmasi: "",
   });
 
-  // OTP verification simulation state
   const [otpStep, setOtpStep] = useState(false);
   const [generatedOtp, setGeneratedOtp] = useState("");
   const [otpDigits, setOtpDigits] = useState<string[]>([
@@ -47,7 +46,6 @@ function AuthForm() {
   const [otpTimer, setOtpTimer] = useState(0);
   const otpRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  // Quick preview modal for Kebijakan / Syarat
   const [previewDoc, setPreviewDoc] = useState<"kebijakan" | "syarat" | null>(
     null
   );
@@ -66,9 +64,7 @@ function AuthForm() {
         setForm((prev) => ({ ...prev, email: savedEmail }));
         setRememberMe(true);
       }
-    } catch {
-      // ignore storage errors
-    }
+    } catch {}
   }, []);
 
   useEffect(() => {
@@ -281,14 +277,14 @@ function AuthForm() {
     }
   };
 
-  const handleQuickDemoAccount = (provider: "Google" | "BlibliTiket") => {
+  const handleQuickDemoAccount = (provider: "Google" | "TiketKu") => {
     const demoUser = {
       id: 999,
-      nama: provider === "Google" ? "Traveler Google" : "Member BlibliTiket",
+      nama: provider === "Google" ? "Traveler Google" : "Member TiketKu",
       email:
         provider === "Google"
           ? "traveler.google@tiketku.id"
-          : "member@bliblitiket.com",
+          : "member@tiketku.id",
     };
     localStorage.setItem("tiketku_user", JSON.stringify(demoUser));
     window.dispatchEvent(new Event("tiketku-auth-change"));
@@ -303,12 +299,6 @@ function AuthForm() {
       </Link>
 
       <div className={styles.card}>
-        <div className={styles.headerCenter}>
-          <span className={styles.brandBadge}>
-            <i className="bi bi-shield-lock-fill"></i> TiketKu Single Sign-On
-          </span>
-        </div>
-
         <h1 className={styles.title}>
           {isLogin
             ? "Selamat Datang"
@@ -709,13 +699,13 @@ function AuthForm() {
               <button
                 type="button"
                 className={styles.socialBtn}
-                onClick={() => handleQuickDemoAccount("BlibliTiket")}
+                onClick={() => handleQuickDemoAccount("TiketKu")}
               >
                 <i
                   className="bi bi-ticket-perforated-fill"
                   style={{ color: "#0284c7" }}
                 ></i>{" "}
-                BlibliTiket
+                TiketKu
               </button>
             </div>
           </>
@@ -739,7 +729,6 @@ function AuthForm() {
         </p>
       </div>
 
-      {/* Modal Preview Cepat Kebijakan / Syarat & Ketentuan */}
       {previewDoc && (
         <div
           className={styles.modalOverlay}
