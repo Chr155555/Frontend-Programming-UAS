@@ -1,230 +1,263 @@
 .pageWrapper {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 24px 20px 60px;
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 24px 20px 60px;
 }
 
 .searchSection {
-  margin-bottom: 24px;
-  padding: 0;
+	margin-bottom: 24px;
+	padding: 0;
 }
 
 .searchContainer {
-  width: 100%;
+	width: 100%;
 }
 
 .searchContainer h1 {
-  font-size: 22px;
-  font-weight: 800;
-  margin-bottom: 14px;
-  color: #0f172a;
+	font-size: 22px;
+	font-weight: 800;
+	margin-bottom: 14px;
+	color: #0f172a;
 }
 
 .searchBox {
-  background: #ffffff;
-  padding: 16px 20px;
-  border-radius: 14px;
-  border: 1.5px solid #e2e8f0;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+	background: #ffffff;
+	padding: 16px 20px;
+	border-radius: 14px;
+	border: 1.5px solid #e2e8f0;
+	box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
 }
 
 .searchItem label {
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: #64748b;
-  margin-bottom: 4px;
+	font-size: 0.95rem;
+	font-weight: 600;
+	color: #64748b;
+	margin-bottom: 4px;
 }
 
 .searchItem input,
 .searchItem select {
-  width: 100%;
-  height: 45px;
-  padding: 10px;
-  border: 1px solid #ced4da;
-  border-radius: 7px;
-  color: #333;
-  font-size: 1rem;
+	width: 100%;
+	height: 45px;
+	padding: 10px;
+	border: 1px solid #ced4da;
+	border-radius: 7px;
+	color: #333;
+	font-size: 1rem;
 }
 
 .paketNote {
-  margin-top: 8px;
-  font-size: 0.95rem;
-  color: #64748b;
+	margin-top: 8px;
+	font-size: 0.95rem;
+	color: #64748b;
 }
 
 .paketCard {
-  display: flex;
-  min-width: 100%;
-  width: 100%;
-  min-height: 480px;
-  background: #fff;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-  margin-bottom: 20px;
-  transition: 0.3s ease;
+	display: flex;
+	min-width: 100%;
+	width: 100%;
+	min-height: 480px;
+	background: #fff;
+	border-radius: 12px;
+	overflow: hidden;
+	box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+	margin-bottom: 20px;
+	transition: 0.3s ease;
 }
 
 .paketCard:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+	transform: translateY(-3px);
+	box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .paketImage {
-  position: relative;
-  padding: 0.5rem;
-  width: 30%;
-  min-width: 260px;
-  overflow: hidden;
+	position: relative;
+	padding: 0.5rem;
+	width: 30%;
+	min-width: 260px;
+	overflow: hidden;
 }
 
 .paketImage img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-  border-radius: 12px;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+	border-radius: 12px;
 }
 
 .paketBadge {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  padding: 6px 12px;
-  border-radius: 20px;
-  background: #fff;
-  font-size: 0.95rem;
-  font-weight: 600;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+	position: absolute;
+	top: 15px;
+	left: 15px;
+	padding: 6px 12px;
+	border-radius: 20px;
+	background: #fff;
+	font-size: 0.95rem;
+	font-weight: 600;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
 .paketInfo {
-  flex: 1;
-  padding: 20px 25px;
-  display: flex;
-  flex-direction: column;
+	flex: 1;
+	padding: 20px 25px;
+	display: flex;
+	flex-direction: column;
 }
 
 .paketHeading {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 20px;
 }
 
 .paketHeading h3 {
-  font-size: 1.5rem;
-  color: #0f172a;
+	font-size: 1.5rem;
+	color: #0f172a;
 }
 
 .paketRating {
-  white-space: nowrap;
-  font-size: 1rem;
-  font-weight: 600;
+	white-space: nowrap;
+	font-size: 1rem;
+	font-weight: 600;
 }
 
 .paketDurasi {
-  font-size: 1.1rem;
-  color: #475569;
+	font-size: 1.1rem;
+	color: #475569;
 }
 
 .paketDurasi,
 .paketSection {
-  padding: 10px 0;
-  border-top: 1px solid #dbdada;
+	padding: 10px 0;
+	border-top: 1px solid #dbdada;
 }
 
 .paketSectionTitle h4 {
-  font-size: 1.15rem;
-  color: #1e293b;
+	font-size: 1.15rem;
+	color: #1e293b;
 }
 
 .paketSectionDetails {
-  margin-top: 6px;
-  padding-left: 16px;
-  font-size: 1.05rem;
-  color: rgb(77, 75, 75);
+	margin-top: 6px;
+	padding-left: 16px;
+	font-size: 1.05rem;
+	color: rgb(77, 75, 75);
 }
 
 .paketBottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 20px;
-  margin-top: auto;
-  padding-top: 15px;
-  border-top: 1px solid #dbdada;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-end;
+	gap: 20px;
+	margin-top: auto;
+	padding-top: 15px;
+	border-top: 1px solid #dbdada;
 }
 
 .paketHarga h2 {
-  font-size: 1.75rem;
-  color: #0f172a;
+	font-size: 1.75rem;
+	color: #0f172a;
 }
 
 .paketHarga p {
-  font-size: 0.95rem;
-  color: #888;
+	font-size: 0.95rem;
+	color: #888;
 }
 
 .paketButton {
-  padding: 11px 20px;
-  border-radius: 8px;
-  background: #0284c7;
-  color: #fff;
-  text-decoration: none;
-  font-size: 1.1rem;
-  font-weight: 600;
-  transition: 0.3s ease;
+	padding: 11px 20px;
+	border-radius: 8px;
+	background: #0284c7;
+	color: #fff;
+	text-decoration: none;
+	font-size: 1.1rem;
+	font-weight: 600;
+	transition: 0.3s ease;
 }
 
 .paketButton:hover {
-  opacity: 0.9;
+	opacity: 0.9;
 }
 
 .paketActions {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
 }
 
 .btnFav {
-  padding: 11px 16px;
-  border-radius: 8px;
-  font-size: 1rem;
-  font-weight: 600;
-  background: #ffffff;
-  color: #334155;
-  border: 1px solid #cbd5e1;
-  cursor: pointer;
-  transition: all 0.2s ease;
+	padding: 11px 16px;
+	border-radius: 8px;
+	font-size: 1rem;
+	font-weight: 600;
+	background: #ffffff;
+	color: #334155;
+	border: 1px solid #cbd5e1;
+	cursor: pointer;
+	transition: all 0.2s ease;
 }
 
 .btnFav:hover {
-  background: #f0f9ff;
-  color: #0284c7;
-  border-color: #0284c7;
+	background: #f0f9ff;
+	color: #0284c7;
+	border-color: #0284c7;
 }
 
 .btnFavActive {
-  background: #e0f2fe;
-  color: #0369a1;
-  border-color: #0284c7;
+	background: #e0f2fe;
+	color: #0369a1;
+	border-color: #0284c7;
+}
+
+@media (max-width: 992px) {
+	.paketCard {
+		min-height: auto;
+	}
+	.paketHeading {
+		flex-direction: column;
+		gap: 8px;
+		align-items: flex-start;
+	}
 }
 
 @media (max-width: 900px) {
-  .paketCard {
-    flex-direction: column;
-  }
-  .paketImage {
-    width: 100%;
-    min-width: unset;
-    height: 250px;
-  }
-  .paketBottom {
-    flex-direction: column;
-    align-items: stretch;
-  }
-  .paketButton {
-    text-align: center;
-  }
+	.pageWrapper {
+		padding: 16px 12px 40px;
+	}
+	.paketCard {
+		flex-direction: column;
+	}
+	.paketImage {
+		width: 100%;
+		min-width: unset;
+		height: 220px;
+	}
+	.paketBottom {
+		flex-direction: column;
+		align-items: stretch;
+		gap: 15px;
+	}
+	.paketActions {
+		flex-direction: column;
+		width: 100%;
+	}
+	.paketButton,
+	.btnFav {
+		width: 100%;
+		text-align: center;
+	}
+}
+
+@media (max-width: 576px) {
+	.searchBox {
+		padding: 12px 14px;
+	}
+	.paketHeading h3 {
+		font-size: 1.25rem;
+	}
+	.paketHarga h2 {
+		font-size: 1.5rem;
+	}
 }
