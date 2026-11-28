@@ -33,7 +33,6 @@ function AuthForm() {
     konfirmasi: "",
   });
 
-  // OTP verification simulation state
   const [otpStep, setOtpStep] = useState(false);
   const [generatedOtp, setGeneratedOtp] = useState("");
   const [otpDigits, setOtpDigits] = useState<string[]>([
@@ -47,7 +46,6 @@ function AuthForm() {
   const [otpTimer, setOtpTimer] = useState(0);
   const otpRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  // Quick preview modal for Kebijakan / Syarat
   const [previewDoc, setPreviewDoc] = useState<"kebijakan" | "syarat" | null>(
     null
   );
@@ -66,9 +64,7 @@ function AuthForm() {
         setForm((prev) => ({ ...prev, email: savedEmail }));
         setRememberMe(true);
       }
-    } catch {
-      // ignore storage errors
-    }
+    } catch {}
   }, []);
 
   useEffect(() => {
@@ -733,7 +729,6 @@ function AuthForm() {
         </p>
       </div>
 
-      {/* Modal Preview Cepat Kebijakan / Syarat & Ketentuan */}
       {previewDoc && (
         <div
           className={styles.modalOverlay}

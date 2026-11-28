@@ -194,7 +194,6 @@ export default function KebijakanPage() {
   const [activeId, setActiveId] = useState<string>(sections[0].id);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  // Interactive Cookie Preferences state
   const [cookies, setCookies] = useState({
     essential: true,
     analytics: true,
@@ -203,19 +202,15 @@ export default function KebijakanPage() {
   });
   const [cookieSavedMsg, setCookieSavedMsg] = useState("");
 
-  // Helpful feedback state
   const [feedback, setFeedback] = useState<"yes" | "no" | null>(null);
 
   useEffect(() => {
     try {
       const saved = localStorage.getItem("tiketku_cookie_prefs");
       if (saved) {
-        setCookies({ ...cookies, ...JSON.parse(saved), essential: true });
+        setCookies((prev) => ({ ...prev, ...JSON.parse(saved), essential: true }));
       }
-    } catch {
-      // ignore
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    } catch {}
   }, []);
 
   useEffect(() => {
@@ -307,7 +302,6 @@ export default function KebijakanPage() {
         } as React.CSSProperties
       }
     >
-      {/* Reading Progress Bar */}
       <div
         style={{
           position: "sticky",
@@ -327,7 +321,6 @@ export default function KebijakanPage() {
         />
       </div>
 
-      {/* Hero Header */}
       <div
         className="text-white py-4 mb-4"
         style={{
@@ -364,7 +357,6 @@ export default function KebijakanPage() {
 
       <main className="container" style={{ maxWidth: 1120 }}>
         <div className="row g-4">
-          {/* Sticky Sidebar Daftar Isi */}
           <aside className="col-lg-4">
             <div className="sticky-top" style={{ top: "1.5rem" }}>
               <div className="card border-0 shadow-sm rounded-4 mb-3">
@@ -453,9 +445,7 @@ export default function KebijakanPage() {
             </div>
           </aside>
 
-          {/* Main Document & Interactive Privacy Tools */}
           <div className="col-lg-8">
-            {/* Pengantar */}
             <div className="card border-0 shadow-sm rounded-4 mb-4">
               <div className="card-body p-4">
                 <p className="mb-2">
@@ -470,7 +460,6 @@ export default function KebijakanPage() {
               </div>
             </div>
 
-            {/* Panel Interaktif Preferensi Cookie & Hak Subjek Data */}
             <div className="card border-primary border-opacity-25 shadow-sm rounded-4 mb-4 bg-white">
               <div className="card-body p-4">
                 <div className="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
@@ -630,7 +619,6 @@ export default function KebijakanPage() {
               </div>
             </div>
 
-            {/* Daftar Pasal Kebijakan */}
             {filteredSections.length === 0 ? (
               <div className="alert alert-warning rounded-4">
                 Tidak ditemukan bab kebijakan dengan kata kunci{" "}
@@ -696,7 +684,6 @@ export default function KebijakanPage() {
               })
             )}
 
-            {/* Widget Feedback Dokumen */}
             <div className="card border-0 shadow-sm rounded-4 mt-4">
               <div className="card-body p-4 d-flex flex-wrap justify-content-between align-items-center gap-3">
                 <div>
