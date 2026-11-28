@@ -2,7 +2,8 @@
     background-image: linear-gradient(rgba(255, 255, 255, 0.7), rgba(207, 207, 207, 0.1)), url('../../public/paket/destinasi/destinasi_background.jpg');
     background-size: cover;
     background-position: center;
-    height: 50vh;
+    min-height: 50vh;
+    padding: 40px 0;
 }
 
 .aboutTitle {
@@ -51,10 +52,17 @@
 .aboutImgWrapper {
     position: relative;
     display: inline-block;
+    max-width: 100%;
     border-radius: 16px;
     overflow: hidden;
     box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
     border: 4px solid #ffffff;
+}
+
+.aboutImgWrapper img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
 .listSection {
@@ -152,7 +160,7 @@
 }
 
 .paketTitle h3 {
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
     color: #0f172a;
     margin: 0 0 4px 0;
@@ -171,9 +179,9 @@
     width: 100%;
     text-align: center;
     text-decoration: none;
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 700;
-    padding: 9px 20px;
+    padding: 10px 20px;
     border-radius: 8px;
     background: #0284c7;
     color: #ffffff;
@@ -193,49 +201,74 @@
 @media (max-width: 1024px) {
     .paketList {
         grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
     }
     
-    .paketCard {
-        flex-direction: column;
-        align-items: stretch;
-    }
-
-    .paketImage {
-        width: 100%;
-        height: 200px;
-    }
-
-    .btnDetail {
-        width: 100%;
-        text-align: center;
+    .aboutTitle {
+        font-size: 36px;
     }
 }
 
 @media (max-width: 768px) {
+    .aboutSection {
+        height: auto;
+        padding: 30px 0;
+    }
+
     .aboutTitle {
-        font-size: 24px;
+        font-size: 26px;
+        line-height: 1.2;
+    }
+
+    .aboutText {
+        font-size: 16px;
+        margin-bottom: 2rem;
     }
 
     .aboutStats {
         flex-direction: column;
-        gap: 8px;
+        gap: 12px;
+    }
+
+    .statNumber {
+        font-size: 28px;
+    }
+
+    .statLabel {
+        font-size: 16px;
     }
 
     .listHeader {
         flex-direction: column;
         align-items: flex-start;
+        gap: 12px;
     }
 
     .paketList {
         grid-template-columns: 1fr;
+        gap: 16px;
     }
 
     .paketImage {
-        height: 220px;
+        height: 210px;
     }
 
-    .listHeader {
-        flex-direction: column;
-        align-items: flex-start;
+    .paketTitle h3 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .aboutTitle {
+        font-size: 22px;
+    }
+
+    .filterPills {
+        gap: 6px;
+    }
+
+    .pillBtn {
+        padding: 5px 12px;
+        font-size: 12px;
     }
 }

@@ -29,7 +29,6 @@
     transform: translateY(-1px);
 }
 
-
 .bookingStepper {
     display: flex;
     align-items: center;
@@ -40,6 +39,7 @@
     padding: 14px 20px;
     margin-bottom: 24px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    overflow-x: auto;
 }
 
 .stepItem {
@@ -48,6 +48,7 @@
     gap: 10px;
     text-decoration: none;
     color: #64748b;
+    white-space: nowrap;
 }
 
 .stepItemClickable {
@@ -224,6 +225,8 @@
     justify-content: space-between;
     align-items: center;
     margin-bottom: 4px;
+    flex-wrap: wrap;
+    gap: 6px;
 }
 
 .methodName {
@@ -266,6 +269,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 12px;
+    flex-wrap: wrap;
 }
 
 .vaInfo {
@@ -273,6 +277,7 @@
     flex-direction: column;
     gap: 3px;
     flex: 1;
+    min-width: 180px;
 }
 
 .vaLabel {
@@ -399,6 +404,7 @@
     display: flex;
     justify-content: space-between;
     font-size: 12px;
+    gap: 10px;
 }
 
 .freeText {
@@ -417,6 +423,7 @@
     justify-content: space-between;
     align-items: flex-end;
     margin-bottom: 16px;
+    gap: 10px;
 }
 
 .totalTitle {
@@ -435,6 +442,7 @@
     font-size: 18px;
     font-weight: 700;
     color: #0284c7;
+    text-align: right;
 }
 
 .btnCheckPayment {
@@ -567,7 +575,7 @@
   background: #e2e8f0;
 }
 
-@media (max-width: 860px) {
+@media (max-width: 900px) {
     .paymentLayoutGrid {
         grid-template-columns: 1fr;
     }
@@ -577,14 +585,27 @@
 }
 
 @media (max-width: 640px) {
+    .pageWrapper {
+        padding: 16px 12px 40px;
+    }
     .bookingStepper {
         padding: 10px 12px;
+        justify-content: flex-start;
     }
     .stepDivider {
         margin: 0 6px;
+        min-width: 30px;
     }
     .countdownBanner {
         flex-direction: column;
         align-items: flex-start;
+    }
+    .vaDisplayBox {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .btnCopy {
+        width: 100%;
+        text-align: center;
     }
 }
