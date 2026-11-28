@@ -211,20 +211,53 @@
 	border-color: #0284c7;
 }
 
+@media (max-width: 992px) {
+	.paketCard {
+		min-height: auto;
+	}
+	.paketHeading {
+		flex-direction: column;
+		gap: 8px;
+		align-items: flex-start;
+	}
+}
+
 @media (max-width: 900px) {
+	.pageWrapper {
+		padding: 16px 12px 40px;
+	}
 	.paketCard {
 		flex-direction: column;
 	}
 	.paketImage {
 		width: 100%;
 		min-width: unset;
-		height: 250px;
+		height: 220px;
 	}
 	.paketBottom {
 		flex-direction: column;
 		align-items: stretch;
+		gap: 15px;
 	}
-	.paketButton {
+	.paketActions {
+		flex-direction: column;
+		width: 100%;
+	}
+	.paketButton,
+	.btnFav {
+		width: 100%;
 		text-align: center;
+	}
+}
+
+@media (max-width: 576px) {
+	.searchBox {
+		padding: 12px 14px;
+	}
+	.paketHeading h3 {
+		font-size: 1.25rem;
+	}
+	.paketHarga h2 {
+		font-size: 1.5rem;
 	}
 }
