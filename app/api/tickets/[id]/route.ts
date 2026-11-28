@@ -51,7 +51,7 @@ export async function GET(
 ) {
   try {
     const { id } = await params;
-    const row = db.select().from(tickets).where(eq(tickets.id, id)).get();
+    const row = await db.select().from(tickets).where(eq(tickets.id, id)).get();
     if (!row) {
       return NextResponse.json(
         { success: false, message: "Tiket tidak ditemukan" },

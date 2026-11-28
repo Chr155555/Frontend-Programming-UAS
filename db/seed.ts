@@ -1,3 +1,4 @@
+try { process.loadEnvFile(); } catch {}
 import { db } from "./index";
 import { cities, tickets, hotels } from "./schema";
 import { HOTELS_LIST } from "../app/hotel/data/hotels";
