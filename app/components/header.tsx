@@ -15,14 +15,24 @@ interface AuthUser {
 export default function Header() {
     const router = useRouter();
     const [user, setUser] = useState<AuthUser | null>(null);
+    const [fotoProfil, setFotoProfil] = useState<string | null>(null);
 
     useEffect(() => {
         const syncUser = () => {
             try {
                 const stored = localStorage.getItem("tiketku_user");
-                setUser(stored ? JSON.parse(stored) : null);
+                const parsed = stored ? JSON.parse(stored) : null;
+                setUser(parsed);
+
+                if (parsed && parsed.email) {
+                    const savedFoto = localStorage.getItem("tiketku_foto_" + parsed.email);
+                    setFotoProfil(savedFoto);
+                } else {
+                    setFotoProfil(null);
+                }
             } catch {
                 setUser(null);
+                setFotoProfil(null);
             }
         };
 
@@ -42,12 +52,19 @@ export default function Header() {
 
         localStorage.removeItem("tiketku_user");
         setUser(null);
+        setFotoProfil(null);
         window.dispatchEvent(new Event("tiketku-auth-change"));
         router.push("/auth?mode=login");
     };
 
     return (
         <Navbar expand="lg" className="bg-light shadow-sm py-2">
+            <style>{`
+                #dropdown-profil::after {
+                    display: none !important;
+                }
+            `}</style>
+
             <Container fluid>
                 <Navbar.Brand as={Link} href="/" id="logo" className="me-lg-5">
                     Tiket<span>Ku</span>
@@ -78,10 +95,22 @@ export default function Header() {
                                     <Dropdown.Toggle
                                         variant="primary"
                                         id="dropdown-profil"
-                                        className="d-flex align-items-center gap-2"
+                                        className="rounded-circle p-0 d-flex align-items-center justify-content-center overflow-hidden border-0"
+                                        style={{ width: "40px", height: "40px" }}
                                     >
-                                        <i className="bi bi-person-fill"></i>
-                                        <span>{user.nama}</span>
+                                        {fotoProfil ? (
+                                            <img
+                                                src={fotoProfil}
+                                                alt="Foto Profil"
+                                                style={{
+                                                    width: "100%",
+                                                    height: "100%",
+                                                    objectFit: "cover",
+                                                }}
+                                            />
+                                        ) : (
+                                            <i className="bi bi-person-fill fs-5"></i>
+                                        )}
                                     </Dropdown.Toggle>
 
                                     <Dropdown.Menu className="shadow border-0 rounded-3 mt-2">

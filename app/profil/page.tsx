@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import styles from "./profil.module.css";
 
 interface AuthUser {
@@ -37,12 +38,18 @@ export default function ProfilPage() {
             <h1 className={styles.cardTitle}>Akun Anda yang Terhubung:</h1>
 
             <div className={styles.accountInfo}>
+                <p>Nama: {user?.nama || "-"}</p>
                 <p>Email: {user?.email || "-"}</p>
-                <p>Password: ************</p>
+                <p className={styles.passwordLine}>
+                    <span>Password: ************</span>
+                    <Link href="/auth?mode=forgot" className={styles.changePwdBtn}>
+                        Ganti Password
+                    </Link>
+                </p>
             </div>
 
             <p className={styles.infoNote}>
-                Untuk mengakses detail profilmu, kategori, dan mengganti password, silakan masuk ke Pusat Akun Tiketku ya.
+                Data di atas digunakan untuk masuk dan memesan tiket di TiketKu. Gunakan tombol Ganti Password jika ingin memperbarui kata sandi akunmu.
             </p>
         </section>
     );
