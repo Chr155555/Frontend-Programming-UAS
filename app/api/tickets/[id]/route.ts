@@ -58,4 +58,11 @@ export async function GET(
         { status: 404 }
       );
     }
+    return NextResponse.json({ success: true, data: mapDbTicket(row) });
+  } catch {
+    return NextResponse.json(
+      { success: false, message: "Gagal mengambil data tiket" },
+      { status: 500 }
+    );
+  }
 }
