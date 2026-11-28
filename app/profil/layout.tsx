@@ -15,14 +15,24 @@ export default function ProfilLayout({ children }: { children: React.ReactNode }
     const pathname = usePathname();
     const router = useRouter();
     const [user, setUser] = useState<AuthUser | null>(null);
+    const [fotoProfil, setFotoProfil] = useState<string | null>(null);
 
     useEffect(() => {
         const syncUser = () => {
             try {
                 const stored = localStorage.getItem("tiketku_user");
-                setUser(stored ? JSON.parse(stored) : null);
+                const parsed = stored ? JSON.parse(stored) : null;
+                setUser(parsed);
+
+                if (parsed && parsed.email) {
+                    const savedFoto = localStorage.getItem("tiketku_foto_" + parsed.email);
+                    setFotoProfil(savedFoto);
+                } else {
+                    setFotoProfil(null);
+                }
             } catch {
                 setUser(null);
+                setFotoProfil(null);
             }
         };
 
@@ -35,6 +45,30 @@ export default function ProfilLayout({ children }: { children: React.ReactNode }
             window.removeEventListener("tiketku-auth-change", syncUser);
         };
     }, []);
+
+    const handleGantiFoto = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files ? e.target.files[0] : null;
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = () => {
+            const hasilBase64 = reader.result as string;
+            setFotoProfil(hasilBase64);
+            if (user && user.email) {
+                localStorage.setItem("tiketku_foto_" + user.email, hasilBase64);
+                window.dispatchEvent(new Event("tiketku-auth-change"));
+            }
+        };
+        reader.readAsDataURL(file);
+    };
+
+    const handleHapusFoto = () => {
+        setFotoProfil(null);
+        if (user && user.email) {
+            localStorage.removeItem("tiketku_foto_" + user.email);
+            window.dispatchEvent(new Event("tiketku-auth-change"));
+        }
+    };
 
     const handleLogout = () => {
         const confirmLogout = window.confirm("Apakah Anda yakin ingin keluar?");
@@ -50,10 +84,42 @@ export default function ProfilLayout({ children }: { children: React.ReactNode }
         <main className={styles.pageWrapper}>
             <div className={styles.container}>
                 <aside className={styles.sidebar}>
-                    <h2 className={styles.userName}>{user?.nama || "User"}</h2>
+                    <h2 className={styles.userName}>{user ? user.nama : "User"}</h2>
 
-                    <div className={styles.avatarCircle}>
-                        <i className="bi bi-person-fill"></i>
+                    <div className={styles.avatarWrapper}>
+                        <div className={styles.avatarCircle}>
+                            {fotoProfil ? (
+                                <img
+                                    src={fotoProfil}
+                                    alt="Foto Profil"
+                                    className={styles.avatarImg}
+                                />
+                            ) : (
+                                <i className="bi bi-person-fill"></i>
+                            )}
+                        </div>
+
+                        <div className={styles.photoActions}>
+                            <label className={styles.changePhotoLabel}>
+                                Ganti Foto
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={handleGantiFoto}
+                                    hidden
+                                />
+                            </label>
+
+                            {fotoProfil && (
+                                <button
+                                    type="button"
+                                    onClick={handleHapusFoto}
+                                    className={styles.removePhotoBtn}
+                                >
+                                    Hapus Foto
+                                </button>
+                            )}
+                        </div>
                     </div>
 
                     <nav className={styles.menuList}>
